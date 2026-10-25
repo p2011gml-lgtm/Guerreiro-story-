@@ -934,4 +934,4 @@ if ($("addDetail")) {
 // SACOLA
 if ($("openCart")) {
   $("openCart").addEventListener("click", openCart);
-    }
+                         }   }

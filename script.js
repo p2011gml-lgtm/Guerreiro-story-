@@ -1,7 +1,9 @@
+// ============================================
+// GUERREIRO STORY — CATÁLOGO DE PRODUTOS
+// ============================================
 
 const products = [
-  // CAMISA DUBAI
-  // Fotos preta/branca invertidas conforme a correção solicitada.
+  // CAMISAS DUBAI — PRESERVADAS
   {id:1,name:"Camisa Dubai",category:"Camisas",color:"Preta",price:169.90,sizes:"P, M, G, GG",img:"produto-02.jpg"},
   {id:2,name:"Camisa Dubai",category:"Camisas",color:"Branca",price:169.90,sizes:"P, G, GG",img:"produto-01.jpg"},
   {id:3,name:"Camisa Dubai",category:"Camisas",color:"Verde",price:169.90,sizes:"P, G, GG",img:"produto-03.jpg"},
@@ -33,20 +35,17 @@ const products = [
   {id:19,name:"T-shirt Texturizada",category:"T-shirts",color:"Preta",price:119.90,sizes:"M, G, GG",img:"produto-19.jpg"},
 
   // T-SHIRT TRICÔ
-  // Confira os arquivos das fotos antes de publicar.
   {id:20,name:"T-shirt Tricô",category:"T-shirts",color:"Branca",price:119.90,sizes:"Consultar disponibilidade",img:"produto-20.jpg"},
   {id:23,name:"T-shirt Tricô",category:"T-shirts",color:"Azul-claro",price:119.90,sizes:"Consultar disponibilidade",img:"produto-23.jpg"},
 
   // T-SHIRT ALGODÃO
-  // A primeira foto existente foi mantida como referência.
-  // As outras três fotos precisam estar salvas com estes nomes.
   {id:21,name:"T-shirt Algodão",category:"T-shirts",color:"Bege",price:69.90,sizes:"P, M, G, GG",img:"produto-21.jpg"},
   {id:24,name:"T-shirt Algodão",category:"T-shirts",color:"Branca",price:69.90,sizes:"P, M, G, GG",img:"produto-24.jpg"},
   {id:25,name:"T-shirt Algodão",category:"T-shirts",color:"Preta",price:69.90,sizes:"P, M, G, GG",img:"produto-25.jpg"},
   {id:26,name:"T-shirt Algodão",category:"T-shirts",color:"Marrom-escuro",price:69.90,sizes:"P, M, G, GG",img:"produto-26.jpg"},
 
-  // REGATA
-  {id:22,name:"Regata",category:"Regatas",color:"Variadas",price:87.00,sizes:"Consultar disponibilidade",img:"produto-22.jpg"}
+  // REGATA PRETA — CATEGORIA SEPARADA
+  {id:22,name:"Regata",category:"Regatas",color:"Preta",price:87.00,sizes:"Consultar disponibilidade",img:"produto-22.jpg"}
 ];
 
 // WHATSAPP OFICIAL
@@ -65,6 +64,7 @@ let selectedVariant = null;
 let builderSelection = new Set();
 let toastTimer;
 
+// PROTEÇÃO DE TEXTO
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({
     "&": "&amp;",
@@ -75,25 +75,29 @@ function escapeHTML(value) {
   })[char]);
 }
 
+// AVISOS
 function showToast(message) {
-  $("toast").textContent = message;
-  $("toast").classList.add("show");
+  const toast = $("toast");
+  if (!toast) return;
+
+  toast.textContent = message;
+  toast.classList.add("show");
   clearTimeout(toastTimer);
 
   toastTimer = setTimeout(() => {
-    $("toast").classList.remove("show");
+    toast.classList.remove("show");
   }, 2600);
 }
 
-// AGRUPAR AS VARIAÇÕES DE CADA PRODUTO
+// AGRUPAR VARIAÇÕES PELO NOME E PELA CATEGORIA
 function productGroups() {
   const groups = new Map();
 
   products.forEach(product => {
-    if (!groups.has(product.name)) {
-      groups.set(product.name, []);
-    }
-    groups.get(product.name).push(product);
+    const key = `${product.category}::${product.name}`;
+
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(product);
   });
 
   return [...groups.values()];
@@ -101,12 +105,15 @@ function productGroups() {
 
 // CATÁLOGO
 function renderProducts() {
+  const grid = $("productGrid");
+  if (!grid) return;
+
   const groups = productGroups().filter(group =>
     activeFilter === "Todos" ||
     group[0].category === activeFilter
   );
 
-  $("productGrid").innerHTML = groups.map(group => {
+  grid.innerHTML = groups.map(group => {
     const product = group[0];
     const colors = group.map(item => item.color);
 
@@ -114,22 +121,19 @@ function renderProducts() {
       <article class="product-card">
         <div class="product-image">
           <img src="${escapeHTML(product.img)}"
-               alt="${escapeHTML(product.name)}"
+               alt="${escapeHTML(product.name)} ${escapeHTML(product.color)}"
                loading="lazy">
           <span class="product-tag">
-            ${group.length} ${group.length === 1 ? "OPÇÃO" : "CORES"}
+            ${group.length === 1 ? "1 OPÇÃO" : `${group.length} CORES`}
           </span>
         </div>
         <div class="product-info">
-          <span class="product-category">
-            ${escapeHTML(product.category)}
-          </span>
+          <span class="product-category">${escapeHTML(product.category)}</span>
           <h3>${escapeHTML(product.name)}</h3>
           <p class="product-color">${colors.map(escapeHTML).join(" · ")}</p>
           <p class="product-sizes">Consulte os tamanhos disponíveis</p>
           <div class="product-price">${money(product.price)}</div>
-          <button class="btn btn-outline full"
-                  data-detail="${product.id}">
+          <button class="btn btn-outline full" data-detail="${product.id}">
             VER MAIS +
           </button>
         </div>
@@ -137,7 +141,7 @@ function renderProducts() {
     `;
   }).join("");
 
-  $("productGrid").querySelectorAll("[data-detail]").forEach(button => {
+  grid.querySelectorAll("[data-detail]").forEach(button => {
     button.addEventListener("click", () => {
       openProduct(Number(button.dataset.detail));
     });
@@ -155,14 +159,22 @@ function setFilter(filter) {
   renderProducts();
 }
 
+const filterContainer = $("filters");
+if (filterContainer) {
+  filterContainer.querySelectorAll("[data-filter]").forEach(button => {
+    button.addEventListener("click", () => {
+      setFilter(button.dataset.filter);
+    });
+  });
+}
+
 // TAMANHOS
 function getAvailableSizes(product) {
   if (/consultar/i.test(product.sizes)) return [];
-
   return product.sizes.split(",").map(size => size.trim()).filter(Boolean);
 }
 
-// DETALHES DO PRODUTO
+// DETALHES
 function openProduct(id) {
   selectedVariant = products.find(product => product.id === id);
   if (!selectedVariant) return;
@@ -181,13 +193,12 @@ function renderProductOptions() {
   if (!selectedVariant) return;
 
   const variants = products.filter(product =>
-    product.name === selectedVariant.name
+    product.name === selectedVariant.name &&
+    product.category === selectedVariant.category
   );
 
   $("detailImage").src = selectedVariant.img;
-  $("detailImage").alt =
-    `${selectedVariant.name} - ${selectedVariant.color}`;
-
+  $("detailImage").alt = `${selectedVariant.name} - ${selectedVariant.color}`;
   $("detailPrice").textContent = money(selectedVariant.price);
   $("selectedColorLabel").textContent = selectedVariant.color;
 
@@ -210,21 +221,18 @@ function renderProductOptions() {
 
   const sizes = getAvailableSizes(selectedVariant);
 
-  $("detailSize").innerHTML =
-    '<option value="">Selecione o tamanho</option>' +
-    sizes.map(size => `
-      <option value="${escapeHTML(size)}">${escapeHTML(size)}</option>
-    `).join("");
-
-  if (!sizes.length) {
-    $("detailSize").innerHTML =
-      '<option value="">Tamanho a confirmar pelo WhatsApp</option>';
-  }
+  $("detailSize").innerHTML = sizes.length
+    ? '<option value="">Selecione o tamanho</option>' +
+      sizes.map(size => `<option value="${escapeHTML(size)}">${escapeHTML(size)}</option>`).join("")
+    : '<option value="">Tamanho a confirmar pelo WhatsApp</option>';
 }
 
 function closeProduct() {
-  $("productModal").classList.remove("open");
-  $("productModal").setAttribute("aria-hidden", "true");
+  const modal = $("productModal");
+  if (!modal) return;
+
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
 
   if (!$("cartDrawer").classList.contains("open")) {
     document.body.classList.remove("locked");
@@ -259,12 +267,11 @@ function addDetailToCart() {
   }
 
   addProductToCart(selectedVariant, size || "A confirmar");
-
   closeProduct();
   showToast("Produto adicionado à sacola!");
 }
 
-// LOOKS PRONTOS — 5% DE DESCONTO
+// LOOKS PRONTOS COM 5% DE DESCONTO
 const looks = [
   {name:"Clássico urbano",items:[1,4]},
   {name:"Minimalista claro",items:[2,8]},
@@ -275,7 +282,10 @@ const looks = [
 ];
 
 function renderLooks() {
-  $("lookGrid").innerHTML = looks.map((look, index) => {
+  const grid = $("lookGrid");
+  if (!grid) return;
+
+  grid.innerHTML = looks.map((look, index) => {
     const items = look.items.map(id =>
       products.find(product => product.id === id)
     ).filter(Boolean);
@@ -306,7 +316,7 @@ function renderLooks() {
     `;
   }).join("");
 
-  $("lookGrid").querySelectorAll("[data-look]").forEach(button => {
+  grid.querySelectorAll("[data-look]").forEach(button => {
     button.addEventListener("click", () => {
       addReadyLook(Number(button.dataset.look));
     });
@@ -322,15 +332,17 @@ function addReadyLook(index) {
   ).filter(Boolean);
 
   const total = items.reduce((sum, product) => sum + product.price, 0);
+  if (!total) return;
+
   const discounted = Number((total * 0.95).toFixed(2));
   const factor = discounted / total;
   const lookKey = `look-${Date.now()}`;
   let subtotal = 0;
 
-  items.forEach((product, i) => {
+  items.forEach((product, index) => {
     let price = Number((product.price * factor).toFixed(2));
 
-    if (i === items.length - 1) {
+    if (index === items.length - 1) {
       price = Number((discounted - subtotal).toFixed(2));
     } else {
       subtotal += price;
@@ -356,7 +368,10 @@ function addReadyLook(index) {
 
 // MONTAGEM PERSONALIZADA
 function renderBuilder() {
-  $("builderList").innerHTML = products.map(product => `
+  const list = $("builderList");
+  if (!list) return;
+
+  list.innerHTML = products.map(product => `
     <label class="builder-item">
       <input type="checkbox"
              value="${product.id}"
@@ -372,7 +387,7 @@ function renderBuilder() {
     </label>
   `).join("");
 
-  $("builderList").querySelectorAll('input[type="checkbox"]').forEach(input => {
+  list.querySelectorAll('input[type="checkbox"]').forEach(input => {
     input.addEventListener("change", () => {
       const id = Number(input.value);
 
@@ -390,8 +405,8 @@ function updateBuilderTotal() {
   const chosen = products.filter(product => builderSelection.has(product.id));
   const total = chosen.reduce((sum, product) => sum + product.price, 0);
 
-  $("builderCount").textContent = chosen.length;
-  $("builderTotal").textContent = money(total);
+  if ($("builderCount")) $("builderCount").textContent = chosen.length;
+  if ($("builderTotal")) $("builderTotal").textContent = money(total);
 }
 
 function addCustomLook() {
@@ -427,13 +442,18 @@ function cartTotalValue() {
 }
 
 function renderCart() {
+  const countElement = $("cartCount");
+  const totalElement = $("cartTotal");
+  const itemsElement = $("cartItems");
+
   const count = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  $("cartCount").textContent = count;
-  $("cartTotal").textContent = money(cartTotalValue());
+  if (countElement) countElement.textContent = count;
+  if (totalElement) totalElement.textContent = money(cartTotalValue());
+  if (!itemsElement) return;
 
   if (!cart.length) {
-    $("cartItems").innerHTML = `
+    itemsElement.innerHTML = `
       <p class="empty-cart">
         Sua sacola está vazia. Escolha suas peças favoritas!
       </p>
@@ -441,7 +461,7 @@ function renderCart() {
     return;
   }
 
-  $("cartItems").innerHTML = cart.map(item => `
+  itemsElement.innerHTML = cart.map(item => `
     <article class="cart-item">
       <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}">
       <div>
@@ -457,7 +477,7 @@ function renderCart() {
     </article>
   `).join("");
 
-  $("cartItems").querySelectorAll("[data-remove]").forEach(button => {
+  itemsElement.querySelectorAll("[data-remove]").forEach(button => {
     button.addEventListener("click", () => {
       cart = cart.filter(item => item.key !== button.dataset.remove);
       renderCart();
@@ -518,52 +538,50 @@ function sendOrder() {
 }
 
 // MENU PARA CELULAR
-$("menuBtn").addEventListener("click", () => {
-  const isOpen = $("nav").classList.toggle("open");
-  $("menuBtn").setAttribute("aria-expanded", String(isOpen));
-});
+if ($("menuBtn") && $("nav")) {
+  $("menuBtn").addEventListener("click", () => {
+    const isOpen = $("nav").classList.toggle("open");
+    $("menuBtn").setAttribute("aria-expanded", String(isOpen));
+  });
 
-$("nav").querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => $("nav").classList.remove("open"));
-});
-
-// FILTROS
-$("filters").querySelectorAll("[data-filter]").forEach(button => {
-  button.addEventListener("click", () => setFilter(button.dataset.filter));
-});
+  $("nav").querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => $("nav").classList.remove("open"));
+  });
+}
 
 // MODAL
-$("closeProduct").addEventListener("click", closeProduct);
+if ($("closeProduct")) $("closeProduct").addEventListener("click", closeProduct);
 
-$("productModal").addEventListener("click", event => {
-  if (event.target === $("productModal")) closeProduct();
-});
+if ($("productModal")) {
+  $("productModal").addEventListener("click", event => {
+    if (event.target === $("productModal")) closeProduct();
+  });
+}
 
-$("addDetail").addEventListener("click", addDetailToCart);
+if ($("addDetail")) $("addDetail").addEventListener("click", addDetailToCart);
 
 // SACOLA
-$("openCart").addEventListener("click", openCart);
-$("closeCart").addEventListener("click", closeCart);
-$("overlay").addEventListener("click", closeCart);
-$("sendOrder").addEventListener("click", sendOrder);
+if ($("openCart")) $("openCart").addEventListener("click", openCart);
+if ($("closeCart")) $("closeCart").addEventListener("click", closeCart);
+if ($("overlay")) $("overlay").addEventListener("click", closeCart);
+if ($("sendOrder")) $("sendOrder").addEventListener("click", sendOrder);
 
 // MONTAGEM
-$("addLook").addEventListener("click", addCustomLook);
+if ($("addLook")) $("addLook").addEventListener("click", addCustomLook);
 
 // ESCAPE
 document.addEventListener("keydown", event => {
   if (event.key === "Escape") {
     closeProduct();
     closeCart();
-    $("nav").classList.remove("open");
+    if ($("nav")) $("nav").classList.remove("open");
   }
 });
 
 // INICIALIZAÇÃO
-$("year").textContent = new Date().getFullYear();
+if ($("year")) $("year").textContent = new Date().getFullYear();
 
 renderProducts();
 renderLooks();
 renderBuilder();
 renderCart();
-  

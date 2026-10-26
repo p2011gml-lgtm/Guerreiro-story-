@@ -1,4 +1,3 @@
-
 /* ==========================================
    GUERREIRO STORY — SCRIPT COMPLETO
    Catálogo, produtos, looks, sacola e WhatsApp
@@ -36,17 +35,17 @@ const products = [
   // T-SHIRT TEXTURIZADA
   { id: 19, name: "T-shirt Texturizada", category: "T-shirts", color: "Preta", price: 119.90, sizes: "M, G, GG", img: "produto-19.jpg" },
 
-  // T-SHIRT TRICÔ — FOTOS CORRIGIDAS
-  { id: 20, name: "T-shirt Tricô", category: "T-shirts", color: "Branca", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-24.jpg" },
+  // T-SHIRT TRICÔ
+  { id: 20, name: "T-shirt Tricô", category: "T-shirts", color: "Branca", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-21.jpg" },
   { id: 23, name: "T-shirt Tricô", category: "T-shirts", color: "Azul-claro", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-20.jpg" },
 
-  // T-SHIRT ALGODÃO — FOTOS CORRIGIDAS
+  // T-SHIRT ALGODÃO
   { id: 21, name: "T-shirt Algodão", category: "T-shirts", color: "Bege", price: 69.90, sizes: "P, M, G, GG", img: "produto-25.jpg" },
   { id: 24, name: "T-shirt Algodão", category: "T-shirts", color: "Branca", price: 69.90, sizes: "P, M, G, GG", img: "produto-24.jpg" },
   { id: 25, name: "T-shirt Algodão", category: "T-shirts", color: "Preta", price: 69.90, sizes: "P, M, G, GG", img: "produto-23.jpg" },
   { id: 26, name: "T-shirt Algodão", category: "T-shirts", color: "Marrom-escuro", price: 69.90, sizes: "P, M, G, GG", img: "produto-22.jpg" },
 
-  // REGATAS — FOTOS CORRIGIDAS
+  // REGATAS
   { id: 22, name: "Regata", category: "Regatas", color: "Preta", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-26.jpg" },
   { id: 27, name: "Regata", category: "Regatas", color: "Branca", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-30.jpg" },
   { id: 28, name: "Regata", category: "Regatas", color: "Verde", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-32.jpg" },
@@ -68,6 +67,7 @@ let selectedVariant = null;
 let builderSelection = new Set();
 let toastTimer;
 
+// ESCAPAR TEXTO PARA EVITAR INSERÇÃO DE HTML INDESEJADO
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({
     "&": "&amp;",
@@ -78,6 +78,7 @@ function escapeHTML(value) {
   })[char]);
 }
 
+// AVISOS NA TELA
 function showToast(message) {
   const toast = $("toast");
   if (!toast) return;
@@ -97,7 +98,6 @@ function productGroups() {
 
   products.forEach(product => {
     const key = `${product.category}::${product.name}`;
-
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key).push(product);
   });
@@ -105,7 +105,7 @@ function productGroups() {
   return [...groups.values()];
 }
 
-// CATÁLOGO
+// CATÁLOGO DE PRODUTOS
 function renderProducts() {
   const grid = $("productGrid");
   if (!grid) return;
@@ -121,10 +121,13 @@ function renderProducts() {
     return `
       <article class="product-card">
         <div class="product-image">
-          <img src="${escapeHTML(product.img)}"
-               alt="${escapeHTML(product.name)} ${escapeHTML(product.color)}"
-               loading="lazy"
-               onerror="this.style.display='none'">
+          <img
+            src="${escapeHTML(product.img)}"
+            alt="${escapeHTML(product.name)} ${escapeHTML(product.color)}"
+            loading="lazy"
+            onerror="this.style.display='none'"
+          >
+
           <span class="product-tag">
             ${group.length === 1 ? "1 OPÇÃO" : `${group.length} CORES`}
           </span>
@@ -135,10 +138,14 @@ function renderProducts() {
           <h3>${escapeHTML(product.name)}</h3>
           <p class="product-color">${colors.map(escapeHTML).join(" · ")}</p>
           <p class="product-sizes">Consulte os tamanhos disponíveis</p>
+
           <div class="product-price">${money(product.price)}</div>
 
-          <button class="btn btn-outline full"
-                  data-detail="${product.id}" type="button">
+          <button
+            class="btn btn-outline full"
+            data-detail="${product.id}"
+            type="button"
+          >
             VER MAIS +
           </button>
         </div>
@@ -153,7 +160,7 @@ function renderProducts() {
   });
 }
 
-// FILTROS
+// FILTROS DE CATEGORIA
 function setFilter(filter) {
   activeFilter = filter;
 
@@ -166,20 +173,26 @@ function setFilter(filter) {
 
 if ($("filters")) {
   $("filters").querySelectorAll("[data-filter]").forEach(button => {
-    button.addEventListener("click", () => setFilter(button.dataset.filter));
+    button.addEventListener("click", () => {
+      setFilter(button.dataset.filter);
+    });
   });
 }
 
-// TAMANHOS
+// TAMANHOS DISPONÍVEIS
 function getAvailableSizes(product) {
   if (/consultar/i.test(product.sizes)) return [];
 
-  return product.sizes.split(",").map(size => size.trim()).filter(Boolean);
+  return product.sizes
+    .split(",")
+    .map(size => size.trim())
+    .filter(Boolean);
 }
 
-// DETALHES DO PRODUTO
+// ABRIR DETALHES DO PRODUTO
 function openProduct(id) {
   selectedVariant = products.find(product => product.id === id);
+
   if (!selectedVariant || !$("productModal")) return;
 
   $("detailCategory").textContent = selectedVariant.category.toUpperCase();
@@ -192,6 +205,7 @@ function openProduct(id) {
   document.body.classList.add("locked");
 }
 
+// RENDERIZAR CORES E TAMANHOS DO PRODUTO
 function renderProductOptions() {
   if (!selectedVariant) return;
 
@@ -206,9 +220,11 @@ function renderProductOptions() {
   $("selectedColorLabel").textContent = selectedVariant.color;
 
   $("colorOptions").innerHTML = variants.map(variant => `
-    <button type="button"
-            class="color-option ${variant.id === selectedVariant.id ? "active" : ""}"
-            data-color-id="${variant.id}">
+    <button
+      type="button"
+      class="color-option ${variant.id === selectedVariant.id ? "active" : ""}"
+      data-color-id="${variant.id}"
+    >
       ${escapeHTML(variant.color)}
     </button>
   `).join("");
@@ -218,6 +234,7 @@ function renderProductOptions() {
       selectedVariant = products.find(product =>
         product.id === Number(button.dataset.colorId)
       );
+
       renderProductOptions();
     });
   });
@@ -226,10 +243,13 @@ function renderProductOptions() {
 
   $("detailSize").innerHTML = sizes.length
     ? '<option value="">Selecione o tamanho</option>' +
-      sizes.map(size => `<option value="${escapeHTML(size)}">${escapeHTML(size)}</option>`).join("")
+      sizes.map(size =>
+        `<option value="${escapeHTML(size)}">${escapeHTML(size)}</option>`
+      ).join("")
     : '<option value="">Tamanho a confirmar pelo WhatsApp</option>';
 }
 
+// FECHAR DETALHES DO PRODUTO
 function closeProduct() {
   const modal = $("productModal");
   if (!modal) return;
@@ -242,7 +262,7 @@ function closeProduct() {
   }
 }
 
-// SACOLA
+// ADICIONAR PRODUTO À SACOLA
 function addProductToCart(product, size) {
   cart.push({
     key: `${Date.now()}-${Math.random()}`,
@@ -258,6 +278,7 @@ function addProductToCart(product, size) {
   renderCart();
 }
 
+// ADICIONAR PRODUTO A PARTIR DOS DETALHES
 function addDetailToCart() {
   if (!selectedVariant) return;
 
@@ -284,6 +305,7 @@ const looks = [
   { name: "Essencial do dia", items: [21, 10] }
 ];
 
+// MOSTRAR LOOKS PRONTOS
 function renderLooks() {
   const grid = $("lookGrid");
   if (!grid) return;
@@ -300,9 +322,11 @@ function renderLooks() {
       <article class="look-card">
         <div class="look-images">
           ${items.map(product => `
-            <img src="${escapeHTML(product.img)}"
-                 alt="${escapeHTML(product.name)}"
-                 loading="lazy">
+            <img
+              src="${escapeHTML(product.img)}"
+              alt="${escapeHTML(product.name)}"
+              loading="lazy"
+            >
           `).join("")}
         </div>
 
@@ -315,8 +339,11 @@ function renderLooks() {
           <span class="old-price">${money(total)}</span>
         </div>
 
-        <button class="btn btn-gold"
-                data-look="${index}" type="button">
+        <button
+          class="btn btn-gold"
+          data-look="${index}"
+          type="button"
+        >
           ESCOLHER LOOK ↗
         </button>
       </article>
@@ -330,6 +357,7 @@ function renderLooks() {
   });
 }
 
+// ADICIONAR LOOK PRONTO COM DESCONTO
 function addReadyLook(index) {
   const look = looks[index];
   if (!look) return;
@@ -342,11 +370,13 @@ function addReadyLook(index) {
   const discounted = Number((total * 0.95).toFixed(2));
   const factor = discounted / total;
   const lookKey = `look-${Date.now()}`;
+
   let subtotal = 0;
 
   items.forEach((product, itemIndex) => {
     let price = Number((product.price * factor).toFixed(2));
 
+    // Ajusta o último item para que o total bata exatamente com o desconto.
     if (itemIndex === items.length - 1) {
       price = Number((discounted - subtotal).toFixed(2));
     } else {
@@ -371,20 +401,24 @@ function addReadyLook(index) {
   showToast("Look adicionado! Confirme os tamanhos pelo WhatsApp.");
 }
 
-// MONTE SEU LOOK
+// MONTE SEU PRÓPRIO LOOK
 function renderBuilder() {
   const list = $("builderList");
   if (!list) return;
 
   list.innerHTML = products.map(product => `
     <label class="builder-item">
-      <input type="checkbox"
-             value="${product.id}"
-             ${builderSelection.has(product.id) ? "checked" : ""}>
+      <input
+        type="checkbox"
+        value="${product.id}"
+        ${builderSelection.has(product.id) ? "checked" : ""}
+      >
 
-      <img src="${escapeHTML(product.img)}"
-           alt="${escapeHTML(product.name)}"
-           loading="lazy">
+      <img
+        src="${escapeHTML(product.img)}"
+        alt="${escapeHTML(product.name)}"
+        loading="lazy"
+      >
 
       <span class="builder-item-copy">
         <strong>${escapeHTML(product.name)} — ${escapeHTML(product.color)}</strong>
@@ -399,8 +433,11 @@ function renderBuilder() {
     input.addEventListener("change", () => {
       const id = Number(input.value);
 
-      if (input.checked) builderSelection.add(id);
-      else builderSelection.delete(id);
+      if (input.checked) {
+        builderSelection.add(id);
+      } else {
+        builderSelection.delete(id);
+      }
 
       updateBuilderTotal();
     });
@@ -409,16 +446,28 @@ function renderBuilder() {
   updateBuilderTotal();
 }
 
+// ATUALIZAR TOTAL DO LOOK PERSONALIZADO
 function updateBuilderTotal() {
-  const chosen = products.filter(product => builderSelection.has(product.id));
+  const chosen = products.filter(product =>
+    builderSelection.has(product.id)
+  );
+
   const total = chosen.reduce((sum, product) => sum + product.price, 0);
 
-  if ($("builderCount")) $("builderCount").textContent = chosen.length;
-  if ($("builderTotal")) $("builderTotal").textContent = money(total);
+  if ($("builderCount")) {
+    $("builderCount").textContent = chosen.length;
+  }
+
+  if ($("builderTotal")) {
+    $("builderTotal").textContent = money(total);
+  }
 }
 
+// ADICIONAR LOOK PERSONALIZADO À SACOLA
 function addCustomLook() {
-  const chosen = products.filter(product => builderSelection.has(product.id));
+  const chosen = products.filter(product =>
+    builderSelection.has(product.id)
+  );
 
   if (!chosen.length) {
     showToast("Selecione pelo menos uma peça.");
@@ -446,21 +495,33 @@ function addCustomLook() {
   showToast("Seu look foi adicionado à sacola!");
 }
 
-// TOTAL DA SACOLA
+// CALCULAR TOTAL DA SACOLA
 function cartTotalValue() {
-  return cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  return cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
 }
 
-// ATUALIZA A SACOLA
+// ATUALIZAR A SACOLA NA TELA
 function renderCart() {
   const countElement = $("cartCount");
   const totalElement = $("cartTotal");
   const itemsElement = $("cartItems");
 
-  const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const count = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
-  if (countElement) countElement.textContent = count;
-  if (totalElement) totalElement.textContent = money(cartTotalValue());
+  if (countElement) {
+    countElement.textContent = count;
+  }
+
+  if (totalElement) {
+    totalElement.textContent = money(cartTotalValue());
+  }
+
   if (!itemsElement) return;
 
   if (!cart.length) {
@@ -474,19 +535,29 @@ function renderCart() {
 
   itemsElement.innerHTML = cart.map(item => `
     <article class="cart-item">
-      <img src="${escapeHTML(item.img)}" alt="${escapeHTML(item.name)}">
+      <img
+        src="${escapeHTML(item.img)}"
+        alt="${escapeHTML(item.name)}"
+      >
 
       <div>
         <h3>${escapeHTML(item.name)}</h3>
         <p>Cor: ${escapeHTML(item.color)}</p>
         <p>Tamanho: ${escapeHTML(item.size)}</p>
-        ${item.lookName ? `<p>${escapeHTML(item.lookName)}</p>` : ""}
+
+        ${item.lookName
+          ? `<p>${escapeHTML(item.lookName)}</p>`
+          : ""
+        }
+
         <strong>${money(item.price * item.quantity)}</strong>
       </div>
 
-      <button class="remove-item"
-              data-remove="${escapeHTML(item.key)}"
-              type="button">
+      <button
+        class="remove-item"
+        data-remove="${escapeHTML(item.key)}"
+        type="button"
+      >
         Remover
       </button>
     </article>
@@ -494,14 +565,17 @@ function renderCart() {
 
   itemsElement.querySelectorAll("[data-remove]").forEach(button => {
     button.addEventListener("click", () => {
-      cart = cart.filter(item => item.key !== button.dataset.remove);
+      cart = cart.filter(item =>
+        item.key !== button.dataset.remove
+      );
+
       renderCart();
       showToast("Item removido da sacola.");
     });
   });
 }
 
-// ABRIR E FECHAR SACOLA
+// ABRIR A SACOLA
 function openCart() {
   if (!$("cartDrawer") || !$("overlay")) return;
 
@@ -510,16 +584,22 @@ function openCart() {
   document.body.classList.add("locked");
 }
 
+// FECHAR A SACOLA
 function closeCart() {
-  if ($("cartDrawer")) $("cartDrawer").classList.remove("open");
-  if ($("overlay")) $("overlay").classList.remove("open");
+  if ($("cartDrawer")) {
+    $("cartDrawer").classList.remove("open");
+  }
+
+  if ($("overlay")) {
+    $("overlay").classList.remove("open");
+  }
 
   if (!$("productModal")?.classList.contains("open")) {
     document.body.classList.remove("locked");
   }
 }
 
-// PEDIDO PELO WHATSAPP
+// ENVIAR PEDIDO PELO WHATSAPP
 function sendOrder() {
   if (!cart.length) {
     showToast("Sua sacola está vazia.");
@@ -551,7 +631,9 @@ function sendOrder() {
     "Por favor, confirmem a disponibilidade das peças e os tamanhos."
   ].filter(Boolean).join("\n");
 
-  const url = `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
+  const url =
+    `https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`;
+
   window.open(url, "_blank");
 }
 
@@ -559,7 +641,11 @@ function sendOrder() {
 if ($("menuBtn") && $("nav")) {
   $("menuBtn").addEventListener("click", () => {
     const isOpen = $("nav").classList.toggle("open");
-    $("menuBtn").setAttribute("aria-expanded", String(isOpen));
+
+    $("menuBtn").setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
   });
 
   $("nav").querySelectorAll("a").forEach(link => {
@@ -570,14 +656,16 @@ if ($("menuBtn") && $("nav")) {
   });
 }
 
-// BOTÕES DO MODAL
+// BOTÕES DO MODAL DE PRODUTO
 if ($("closeProduct")) {
   $("closeProduct").addEventListener("click", closeProduct);
 }
 
 if ($("productModal")) {
   $("productModal").addEventListener("click", event => {
-    if (event.target === $("productModal")) closeProduct();
+    if (event.target === $("productModal")) {
+      closeProduct();
+    }
   });
 }
 
@@ -591,38 +679,4 @@ if ($("openCart")) {
 }
 
 if ($("closeCart")) {
-  $("closeCart").addEventListener("click", closeCart);
-}
-
-if ($("overlay")) {
-  $("overlay").addEventListener("click", closeCart);
-}
-
-// BOTÃO DE ADICIONAR LOOK PERSONALIZADO
-if ($("addLook")) {
-  $("addLook").addEventListener("click", addCustomLook);
-}
-
-// BOTÃO DE ENVIAR PEDIDO
-if ($("sendOrder")) {
-  $("sendOrder").addEventListener("click", sendOrder);
-}
-
-// INICIALIZAÇÃO DO SITE
-function initSite() {
-  renderProducts();
-  renderLooks();
-  renderBuilder();
-  renderCart();
-
-  if ($("year")) {
-    $("year").textContent = new Date().getFullYear();
-  }
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initSite);
-} else {
-  initSite();
-}
-   
+  $("closeCart").addEventListener("clic

@@ -36,18 +36,22 @@ const products = [
   // T-SHIRT TEXTURIZADA
   { id: 19, name: "T-shirt Texturizada", category: "T-shirts", color: "Preta", price: 119.90, sizes: "M, G, GG", img: "produto-19.jpg" },
 
-  // T-SHIRT TRICÔ
-  { id: 20, name: "T-shirt Tricô", category: "T-shirts", color: "Branca", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-25.jpg" },
-  { id: 23, name: "T-shirt Tricô", category: "T-shirts", color: "Azul-claro", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-23.jpg" },
+  // T-SHIRT TRICÔ — FOTOS CORRIGIDAS
+  { id: 20, name: "T-shirt Tricô", category: "T-shirts", color: "Branca", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-24.jpg" },
+  { id: 23, name: "T-shirt Tricô", category: "T-shirts", color: "Azul-claro", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-20.jpg" },
 
-  // T-SHIRT ALGODÃO
-  { id: 21, name: "T-shirt Algodão", category: "T-shirts", color: "Bege", price: 69.90, sizes: "P, M, G, GG", img: "produto-22.jpg" },
+  // T-SHIRT ALGODÃO — FOTOS CORRIGIDAS
+  { id: 21, name: "T-shirt Algodão", category: "T-shirts", color: "Bege", price: 69.90, sizes: "P, M, G, GG", img: "produto-25.jpg" },
   { id: 24, name: "T-shirt Algodão", category: "T-shirts", color: "Branca", price: 69.90, sizes: "P, M, G, GG", img: "produto-24.jpg" },
-  { id: 25, name: "T-shirt Algodão", category: "T-shirts", color: "Preta", price: 69.90, sizes: "P, M, G, GG", img: "produto-26.jpg" },
-  { id: 26, name: "T-shirt Algodão", category: "T-shirts", color: "Marrom-escuro", price: 69.90, sizes: "P, M, G, GG", img: "produto-20.jpg" },
+  { id: 25, name: "T-shirt Algodão", category: "T-shirts", color: "Preta", price: 69.90, sizes: "P, M, G, GG", img: "produto-23.jpg" },
+  { id: 26, name: "T-shirt Algodão", category: "T-shirts", color: "Marrom-escuro", price: 69.90, sizes: "P, M, G, GG", img: "produto-22.jpg" },
 
-  // REGATA
-  { id: 22, name: "Regata", category: "Regatas", color: "Preta", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-20.jpg" }
+  // REGATAS — FOTOS CORRIGIDAS
+  { id: 22, name: "Regata", category: "Regatas", color: "Preta", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-26.jpg" },
+  { id: 27, name: "Regata", category: "Regatas", color: "Branca", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-30.jpg" },
+  { id: 28, name: "Regata", category: "Regatas", color: "Verde", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-32.jpg" },
+  { id: 29, name: "Regata", category: "Regatas", color: "Laranja", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-34.jpg" },
+  { id: 30, name: "Regata", category: "Regatas", color: "Bege", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-28.jpg" }
 ];
 
 const whatsapp = "557588033637";
@@ -620,5 +624,5 @@ if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initSite);
 } else {
   initSite();
-     }
-     
+}
+   

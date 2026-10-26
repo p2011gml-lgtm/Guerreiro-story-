@@ -1,56 +1,52 @@
 /* ==========================================
    GUERREIRO STORY — SCRIPT COMPLETO
-   Catálogo, produtos, looks, sacola e WhatsApp
+   Catálogo, looks, sacola e WhatsApp
 ========================================== */
 
 const products = [
-  // CAMISAS DUBAI
   { id: 1, name: "Camisa Dubai", category: "Camisas", color: "Preta", price: 169.90, sizes: "P, M, G, GG", img: "produto-02.jpg" },
   { id: 2, name: "Camisa Dubai", category: "Camisas", color: "Branca", price: 169.90, sizes: "P, G, GG", img: "produto-01.jpg" },
   { id: 3, name: "Camisa Dubai", category: "Camisas", color: "Verde", price: 169.90, sizes: "P, G, GG", img: "produto-03.jpg" },
 
-  // SHORT LINHO
   { id: 4, name: "Short Linho", category: "Shorts", color: "Branco", price: 129.90, sizes: "P, G", img: "produto-04.jpg" },
   { id: 5, name: "Short Linho", category: "Shorts", color: "Preto", price: 129.90, sizes: "M, G", img: "produto-05.jpg" },
   { id: 6, name: "Short Linho", category: "Shorts", color: "Marrom", price: 129.90, sizes: "G", img: "produto-06.jpg" },
   { id: 7, name: "Short Linho", category: "Shorts", color: "Rosa", price: 129.90, sizes: "P", img: "produto-07.jpg" },
   { id: 8, name: "Short Linho", category: "Shorts", color: "Bege", price: 129.90, sizes: "P, M, G", img: "produto-08.jpg" },
 
-  // SHORT MAURICINHO
   { id: 9, name: "Short Mauricinho de Algodão", category: "Shorts", color: "Azul-água", price: 129.90, sizes: "M, G", img: "produto-09.jpg" },
 
-  // SHORT SARJA
   { id: 10, name: "Short Sarja", category: "Shorts", color: "Azul", price: 159.90, sizes: "P", img: "produto-10.jpg" },
   { id: 11, name: "Short Sarja", category: "Shorts", color: "Branco", price: 159.90, sizes: "G", img: "produto-11.jpg" },
   { id: 12, name: "Short Sarja", category: "Shorts", color: "Marrom", price: 159.90, sizes: "M", img: "produto-12.jpg" },
   { id: 13, name: "Short Sarja", category: "Shorts", color: "Azul-escuro", price: 159.90, sizes: "M", img: "produto-13.jpg" },
 
-  // BERMUDA BRIM
   { id: 14, name: "Bermuda Brim", category: "Bermudas", color: "Preta", price: 159.90, sizes: "38, 40, 42, 44, 46", img: "produto-14.jpg" },
   { id: 15, name: "Bermuda Brim", category: "Bermudas", color: "Cinza", price: 159.90, sizes: "42, 44", img: "produto-15.jpg" },
   { id: 16, name: "Bermuda Brim", category: "Bermudas", color: "Branca", price: 159.90, sizes: "42, 44", img: "produto-16.jpg" },
   { id: 17, name: "Bermuda Brim", category: "Bermudas", color: "Cinza-claro", price: 159.90, sizes: "38, 40", img: "produto-17.jpg" },
   { id: 18, name: "Bermuda Brim", category: "Bermudas", color: "Bege-claro", price: 159.90, sizes: "38, 40, 42, 44", img: "produto-18.jpg" },
 
-  // T-SHIRT TEXTURIZADA
   { id: 19, name: "T-shirt Texturizada", category: "T-shirts", color: "Preta", price: 119.90, sizes: "M, G, GG", img: "produto-19.jpg" },
 
-  // T-SHIRT TRICÔ
   { id: 20, name: "T-shirt Tricô", category: "T-shirts", color: "Branca", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-21.jpg" },
   { id: 23, name: "T-shirt Tricô", category: "T-shirts", color: "Azul-claro", price: 119.90, sizes: "Consultar disponibilidade", img: "produto-20.jpg" },
 
-  // T-SHIRT ALGODÃO
   { id: 21, name: "T-shirt Algodão", category: "T-shirts", color: "Bege", price: 69.90, sizes: "P, M, G, GG", img: "produto-25.jpg" },
   { id: 24, name: "T-shirt Algodão", category: "T-shirts", color: "Branca", price: 69.90, sizes: "P, M, G, GG", img: "produto-24.jpg" },
   { id: 25, name: "T-shirt Algodão", category: "T-shirts", color: "Preta", price: 69.90, sizes: "P, M, G, GG", img: "produto-23.jpg" },
   { id: 26, name: "T-shirt Algodão", category: "T-shirts", color: "Marrom-escuro", price: 69.90, sizes: "P, M, G, GG", img: "produto-22.jpg" },
 
-  // REGATAS
   { id: 22, name: "Regata", category: "Regatas", color: "Preta", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-26.jpg" },
   { id: 27, name: "Regata", category: "Regatas", color: "Branca", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-30.jpg" },
   { id: 28, name: "Regata", category: "Regatas", color: "Verde", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-32.jpg" },
   { id: 29, name: "Regata", category: "Regatas", color: "Laranja", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-34.jpg" },
-  { id: 30, name: "Regata", category: "Regatas", color: "Bege", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-28.jpg" }
+  { id: 30, name: "Regata", category: "Regatas", color: "Bege", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-28.jpg" },
+
+  // CAMISA CANELADA
+  { id: 31, name: "Camisa Canelada", category: "Camisas", color: "Marrom", price: 87.00, sizes: "M", img: "produto-36.jpg" },
+  { id: 32, name: "Camisa Canelada", category: "Camisas", color: "Branca", price: 87.00, sizes: "M", img: "produto-37.jpg" },
+  { id: 33, name: "Camisa Canelada", category: "Camisas", color: "Bege", price: 87.00, sizes: "M", img: "produto-38.jpg" }
 ];
 
 const whatsapp = "557588033637";
@@ -67,7 +63,6 @@ let selectedVariant = null;
 let builderSelection = new Set();
 let toastTimer;
 
-// ESCAPAR TEXTO PARA EVITAR INSERÇÃO DE HTML INDESEJADO
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({
     "&": "&amp;",
@@ -78,7 +73,6 @@ function escapeHTML(value) {
   })[char]);
 }
 
-// AVISOS NA TELA
 function showToast(message) {
   const toast = $("toast");
   if (!toast) return;
@@ -92,7 +86,6 @@ function showToast(message) {
   }, 2600);
 }
 
-// AGRUPA AS CORES DE CADA MODELO
 function productGroups() {
   const groups = new Map();
 
@@ -105,7 +98,8 @@ function productGroups() {
   return [...groups.values()];
 }
 
-// CATÁLOGO DE PRODUTOS
+/* CATÁLOGO */
+
 function renderProducts() {
   const grid = $("productGrid");
   if (!grid) return;
@@ -127,7 +121,6 @@ function renderProducts() {
             loading="lazy"
             onerror="this.style.display='none'"
           >
-
           <span class="product-tag">
             ${group.length === 1 ? "1 OPÇÃO" : `${group.length} CORES`}
           </span>
@@ -138,14 +131,9 @@ function renderProducts() {
           <h3>${escapeHTML(product.name)}</h3>
           <p class="product-color">${colors.map(escapeHTML).join(" · ")}</p>
           <p class="product-sizes">Consulte os tamanhos disponíveis</p>
-
           <div class="product-price">${money(product.price)}</div>
 
-          <button
-            class="btn btn-outline full"
-            data-detail="${product.id}"
-            type="button"
-          >
+          <button class="btn btn-outline full" data-detail="${product.id}" type="button">
             VER MAIS +
           </button>
         </div>
@@ -160,7 +148,6 @@ function renderProducts() {
   });
 }
 
-// FILTROS DE CATEGORIA
 function setFilter(filter) {
   activeFilter = filter;
 
@@ -173,26 +160,20 @@ function setFilter(filter) {
 
 if ($("filters")) {
   $("filters").querySelectorAll("[data-filter]").forEach(button => {
-    button.addEventListener("click", () => {
-      setFilter(button.dataset.filter);
-    });
+    button.addEventListener("click", () => setFilter(button.dataset.filter));
   });
 }
 
-// TAMANHOS DISPONÍVEIS
+/* DETALHES DO PRODUTO */
+
 function getAvailableSizes(product) {
   if (/consultar/i.test(product.sizes)) return [];
 
-  return product.sizes
-    .split(",")
-    .map(size => size.trim())
-    .filter(Boolean);
+  return product.sizes.split(",").map(size => size.trim()).filter(Boolean);
 }
 
-// ABRIR DETALHES DO PRODUTO
 function openProduct(id) {
   selectedVariant = products.find(product => product.id === id);
-
   if (!selectedVariant || !$("productModal")) return;
 
   $("detailCategory").textContent = selectedVariant.category.toUpperCase();
@@ -205,7 +186,6 @@ function openProduct(id) {
   document.body.classList.add("locked");
 }
 
-// RENDERIZAR CORES E TAMANHOS DO PRODUTO
 function renderProductOptions() {
   if (!selectedVariant) return;
 
@@ -234,7 +214,6 @@ function renderProductOptions() {
       selectedVariant = products.find(product =>
         product.id === Number(button.dataset.colorId)
       );
-
       renderProductOptions();
     });
   });
@@ -243,13 +222,10 @@ function renderProductOptions() {
 
   $("detailSize").innerHTML = sizes.length
     ? '<option value="">Selecione o tamanho</option>' +
-      sizes.map(size =>
-        `<option value="${escapeHTML(size)}">${escapeHTML(size)}</option>`
-      ).join("")
+      sizes.map(size => `<option value="${escapeHTML(size)}">${escapeHTML(size)}</option>`).join("")
     : '<option value="">Tamanho a confirmar pelo WhatsApp</option>';
 }
 
-// FECHAR DETALHES DO PRODUTO
 function closeProduct() {
   const modal = $("productModal");
   if (!modal) return;
@@ -262,7 +238,6 @@ function closeProduct() {
   }
 }
 
-// ADICIONAR PRODUTO À SACOLA
 function addProductToCart(product, size) {
   cart.push({
     key: `${Date.now()}-${Math.random()}`,
@@ -278,7 +253,6 @@ function addProductToCart(product, size) {
   renderCart();
 }
 
-// ADICIONAR PRODUTO A PARTIR DOS DETALHES
 function addDetailToCart() {
   if (!selectedVariant) return;
 
@@ -295,17 +269,53 @@ function addDetailToCart() {
   showToast("Produto adicionado à sacola!");
 }
 
-// LOOKS PRONTOS — 5% DE DESCONTO
+/* FIM DA PARTE 1 — continue com a Parte 2 abaixo */
+/* LOOKS PRONTOS */
+
 const looks = [
-  { name: "Clássico urbano", items: [1, 4] },
-  { name: "Minimalista claro", items: [2, 8] },
-  { name: "Contraste moderno", items: [1, 9] },
-  { name: "Casual elegante", items: [19, 14] },
-  { name: "Neutro sofisticado", items: [19, 18] },
-  { name: "Essencial do dia", items: [21, 10] }
+  {
+    name: "Camisa Dubai + Short Mauricinho",
+    items: [1, 9],
+    photos: [39, 40, 41, 42]
+  },
+  {
+    name: "Camisa Dubai + Short Linho",
+    items: [1, 4],
+    photos: [43, 44, 45]
+  },
+  {
+    name: "T-shirt Texturizada + Bermuda Brim",
+    items: [19, 14],
+    photos: [46, 47, 48, 49]
+  },
+  {
+    name: "T-shirt Tricô + Bermuda Brim",
+    items: [20, 14],
+    photos: [50, 51, 52, 53, 54, 55]
+  },
+  {
+    name: "T-shirt Algodão + Short Sarja",
+    items: [21, 10],
+    photos: [56, 57, 58, 59, 60, 61, 62, 63, 64, 65]
+  },
+  {
+    name: "Short Sarja + Camisa Canelada",
+    items: [10, 31],
+    photos: [66, 67, 68]
+  }
 ];
 
-// MOSTRAR LOOKS PRONTOS
+/* 5% DE DESCONTO E ARREDONDAMENTO PARA ,90 */
+
+function lookPrice(total) {
+  const discounted = total * 0.95;
+  const cents = Math.round(discounted * 100);
+
+  return (Math.round((cents - 90) / 100) * 100 + 90) / 100;
+}
+
+/* EXIBIR OS LOOKS PRONTOS */
+
 function renderLooks() {
   const grid = $("lookGrid");
   if (!grid) return;
@@ -316,39 +326,117 @@ function renderLooks() {
       .filter(Boolean);
 
     const total = items.reduce((sum, product) => sum + product.price, 0);
-    const discounted = Number((total * 0.95).toFixed(2));
+    const finalPrice = lookPrice(total);
+    const firstPhoto = look.photos[0];
 
     return `
-      <article class="look-card">
-        <div class="look-images">
-          ${items.map(product => `
-            <img
-              src="${escapeHTML(product.img)}"
-              alt="${escapeHTML(product.name)}"
-              loading="lazy"
+      <article class="look-card" data-look-card="${index}">
+        <div style="position:relative;background:#e8e3da;overflow:hidden;">
+          <img
+            class="look-cover-image"
+            src="produto-${String(firstPhoto).padStart(2, "0")}.jpg"
+            alt="${escapeHTML(look.name)}"
+            loading="lazy"
+            style="width:100%;aspect-ratio:3/4;object-fit:contain;"
+            onerror="this.onerror=null;this.src='${escapeHTML(items[0]?.img || "produto-01.jpg")}';"
+          >
+          <span class="product-tag">${look.photos.length} FOTOS</span>
+        </div>
+
+        <div
+          class="look-options"
+          id="lookOptions-${index}"
+          hidden
+          style="display:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:10px;"
+        >
+          ${look.photos.map((photo, photoIndex) => `
+            <button
+              class="look-thumb"
+              type="button"
+              data-look-photo="${photo}"
+              data-look-index="${index}"
+              aria-label="Ver foto ${photoIndex + 1}"
+              style="padding:3px;border:1px solid ${photoIndex === 0 ? "var(--gold)" : "var(--line)"};background:#e8e3da;"
             >
+              <img
+                src="produto-${String(photo).padStart(2, "0")}.jpg"
+                alt="Opção ${photoIndex + 1}"
+                loading="lazy"
+                style="width:100%;aspect-ratio:3/4;object-fit:contain;"
+              >
+            </button>
           `).join("")}
         </div>
+
+        <button
+          class="btn btn-outline look-more"
+          data-look-more="${index}"
+          type="button"
+          aria-expanded="false"
+          style="width:100%;margin:10px 0;"
+        >
+          VER MAIS + (${look.photos.length - 1} opções)
+        </button>
 
         <span class="discount">5% DE DESCONTO</span>
         <h3>${escapeHTML(look.name)}</h3>
         <p>${items.map(product => escapeHTML(product.name)).join(" + ")}</p>
 
         <div class="look-price">
-          <strong>${money(discounted)}</strong>
+          <strong>${money(finalPrice)}</strong>
           <span class="old-price">${money(total)}</span>
         </div>
 
-        <button
-          class="btn btn-gold"
-          data-look="${index}"
-          type="button"
-        >
+        <button class="btn btn-gold" data-look="${index}" type="button">
           ESCOLHER LOOK ↗
         </button>
       </article>
     `;
   }).join("");
+
+  /* ABRIR E OCULTAR AS FOTOS */
+
+  grid.querySelectorAll("[data-look-more]").forEach(button => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.lookMore);
+      const options = $("lookOptions-" + index);
+      const expanded = button.getAttribute("aria-expanded") === "true";
+
+      options.hidden = expanded;
+      options.style.display = expanded ? "none" : "grid";
+
+      button.setAttribute("aria-expanded", String(!expanded));
+
+      button.textContent = expanded
+        ? `VER MAIS + (${looks[index].photos.length - 1} opções)`
+        : "OCULTAR OPÇÕES −";
+    });
+  });
+
+  /* TROCAR A FOTO PRINCIPAL */
+
+  grid.querySelectorAll("[data-look-photo]").forEach(button => {
+    button.addEventListener("click", () => {
+      const index = Number(button.dataset.lookIndex);
+      const photo = Number(button.dataset.lookPhoto);
+      const card = grid.querySelector(`[data-look-card="${index}"]`);
+      const image = card?.querySelector(".look-cover-image");
+
+      if (!image) return;
+
+      image.src = `produto-${String(photo).padStart(2, "0")}.jpg`;
+
+      card.querySelectorAll("[data-look-photo]").forEach(thumb => {
+        const active = Number(thumb.dataset.lookPhoto) === photo;
+
+        thumb.style.borderColor = active
+          ? "var(--gold)"
+          : "var(--line)";
+      });
+    });
+  });
+
+  /* BOTÃO ESCOLHER LOOK */
 
   grid.querySelectorAll("[data-look]").forEach(button => {
     button.addEventListener("click", () => {
@@ -357,7 +445,8 @@ function renderLooks() {
   });
 }
 
-// ADICIONAR LOOK PRONTO COM DESCONTO
+/* ADICIONAR LOOK À SACOLA COM DESCONTO */
+
 function addReadyLook(index) {
   const look = looks[index];
   if (!look) return;
@@ -366,9 +455,14 @@ function addReadyLook(index) {
     .map(id => products.find(product => product.id === id))
     .filter(Boolean);
 
+  if (!items.length) {
+    showToast("Não foi possível carregar as peças deste look.");
+    return;
+  }
+
   const total = items.reduce((sum, product) => sum + product.price, 0);
-  const discounted = Number((total * 0.95).toFixed(2));
-  const factor = discounted / total;
+  const finalPrice = lookPrice(total);
+  const factor = finalPrice / total;
   const lookKey = `look-${Date.now()}`;
 
   let subtotal = 0;
@@ -376,9 +470,8 @@ function addReadyLook(index) {
   items.forEach((product, itemIndex) => {
     let price = Number((product.price * factor).toFixed(2));
 
-    // Ajusta o último item para que o total bata exatamente com o desconto.
     if (itemIndex === items.length - 1) {
-      price = Number((discounted - subtotal).toFixed(2));
+      price = Number((finalPrice - subtotal).toFixed(2));
     } else {
       subtotal += price;
     }
@@ -398,10 +491,11 @@ function addReadyLook(index) {
 
   renderCart();
   openCart();
-  showToast("Look adicionado! Confirme os tamanhos pelo WhatsApp.");
+  showToast("Look adicionado à sacola!");
 }
 
-// MONTE SEU PRÓPRIO LOOK
+/* MONTE SEU LOOK */
+
 function renderBuilder() {
   const list = $("builderList");
   if (!list) return;
@@ -446,7 +540,6 @@ function renderBuilder() {
   updateBuilderTotal();
 }
 
-// ATUALIZAR TOTAL DO LOOK PERSONALIZADO
 function updateBuilderTotal() {
   const chosen = products.filter(product =>
     builderSelection.has(product.id)
@@ -463,7 +556,6 @@ function updateBuilderTotal() {
   }
 }
 
-// ADICIONAR LOOK PERSONALIZADO À SACOLA
 function addCustomLook() {
   const chosen = products.filter(product =>
     builderSelection.has(product.id)
@@ -495,7 +587,8 @@ function addCustomLook() {
   showToast("Seu look foi adicionado à sacola!");
 }
 
-// CALCULAR TOTAL DA SACOLA
+/* SACOLA */
+
 function cartTotalValue() {
   return cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -503,7 +596,6 @@ function cartTotalValue() {
   );
 }
 
-// ATUALIZAR A SACOLA NA TELA
 function renderCart() {
   const countElement = $("cartCount");
   const totalElement = $("cartTotal");
@@ -575,7 +667,6 @@ function renderCart() {
   });
 }
 
-// ABRIR A SACOLA
 function openCart() {
   if (!$("cartDrawer") || !$("overlay")) return;
 
@@ -584,7 +675,6 @@ function openCart() {
   document.body.classList.add("locked");
 }
 
-// FECHAR A SACOLA
 function closeCart() {
   if ($("cartDrawer")) {
     $("cartDrawer").classList.remove("open");
@@ -599,7 +689,8 @@ function closeCart() {
   }
 }
 
-// ENVIAR PEDIDO PELO WHATSAPP
+/* PEDIDO PELO WHATSAPP */
+
 function sendOrder() {
   if (!cart.length) {
     showToast("Sua sacola está vazia.");
@@ -637,7 +728,8 @@ function sendOrder() {
   window.open(url, "_blank");
 }
 
-// MENU PARA CELULAR
+/* MENU DO CELULAR */
+
 if ($("menuBtn") && $("nav")) {
   $("menuBtn").addEventListener("click", () => {
     const isOpen = $("nav").classList.toggle("open");
@@ -656,7 +748,8 @@ if ($("menuBtn") && $("nav")) {
   });
 }
 
-// BOTÕES DO MODAL DE PRODUTO
+/* EVENTOS DOS MODAIS E BOTÕES */
+
 if ($("closeProduct")) {
   $("closeProduct").addEventListener("click", closeProduct);
 }
@@ -673,8 +766,6 @@ if ($("addDetail")) {
   $("addDetail").addEventListener("click", addDetailToCart);
 }
 
-
- // BOTÕES DA SACOLA
 if ($("openCart")) {
   $("openCart").addEventListener("click", openCart);
 }
@@ -691,17 +782,18 @@ if ($("sendOrder")) {
   $("sendOrder").addEventListener("click", sendOrder);
 }
 
-// BOTÃO PARA ADICIONAR O LOOK PERSONALIZADO
 if ($("addLook")) {
   $("addLook").addEventListener("click", addCustomLook);
 }
 
-// ATUALIZAR O ANO NO RODAPÉ
+/* ANO DO RODAPÉ */
+
 if ($("year")) {
   $("year").textContent = new Date().getFullYear();
 }
 
-// INICIALIZAR A LOJA
+/* INICIALIZAÇÃO DA LOJA */
+
 function initializeStore() {
   renderProducts();
   renderLooks();
@@ -709,7 +801,6 @@ function initializeStore() {
   renderCart();
 }
 
-// GARANTIR QUE O HTML ESTEJA PRONTO
 if (document.readyState === "loading") {
   document.addEventListener(
     "DOMContentLoaded",
@@ -718,5 +809,4 @@ if (document.readyState === "loading") {
   );
 } else {
   initializeStore();
-}
-
+                              }

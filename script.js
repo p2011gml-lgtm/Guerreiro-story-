@@ -673,10 +673,50 @@ if ($("addDetail")) {
   $("addDetail").addEventListener("click", addDetailToCart);
 }
 
-// BOTÕES DA SACOLA
+
+ // BOTÕES DA SACOLA
 if ($("openCart")) {
   $("openCart").addEventListener("click", openCart);
 }
 
 if ($("closeCart")) {
-  $("closeCart").addEventListener("clic
+  $("closeCart").addEventListener("click", closeCart);
+}
+
+if ($("overlay")) {
+  $("overlay").addEventListener("click", closeCart);
+}
+
+if ($("sendOrder")) {
+  $("sendOrder").addEventListener("click", sendOrder);
+}
+
+// BOTÃO PARA ADICIONAR O LOOK PERSONALIZADO
+if ($("addLook")) {
+  $("addLook").addEventListener("click", addCustomLook);
+}
+
+// ATUALIZAR O ANO NO RODAPÉ
+if ($("year")) {
+  $("year").textContent = new Date().getFullYear();
+}
+
+// INICIALIZAR A LOJA
+function initializeStore() {
+  renderProducts();
+  renderLooks();
+  renderBuilder();
+  renderCart();
+}
+
+// GARANTIR QUE O HTML ESTEJA PRONTO
+if (document.readyState === "loading") {
+  document.addEventListener(
+    "DOMContentLoaded",
+    initializeStore,
+    { once: true }
+  );
+} else {
+  initializeStore();
+}
+

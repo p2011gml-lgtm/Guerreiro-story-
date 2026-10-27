@@ -1,896 +1,657 @@
 "use strict";
 
-const $ = id => document.getElementById(id);
 const WHATSAPP = "557588033637";
 
-const money = value => Number(value).toLocaleString("pt-BR", {
-  style: "currency",
-  currency: "BRL"
+const produtos = [
+  {
+    id: "dubai-branca", nome: "Camisa Dubai", categoria: "camisas",
+    cor: "Branca", preco: 169.90, imagem: "02_1000073883_peca_02.jpg",
+    tamanhos: ["P", "G", "GG"]
+  },
+  {
+    id: "dubai-preta", nome: "Camisa Dubai", categoria: "camisas",
+    cor: "Preta", preco: 169.90, imagem: "01_1000073883_peca_01.jpg",
+    tamanhos: ["P", "M", "G", "GG"]
+  },
+  {
+    id: "dubai-azul", nome: "Camisa Dubai", categoria: "camisas",
+    cor: "Azul", preco: 169.90, imagem: "03_1000073883_peca_03.jpg",
+    tamanhos: ["P", "M", "G", "GG"]
+  },
+  {
+    id: "linho-branco", nome: "Short Linho", categoria: "shorts",
+    cor: "Branco", preco: 129.90, imagem: "01_Short_Linho_Branco.png",
+    tamanhos: ["P", "G"]
+  },
+  {
+    id: "linho-preto", nome: "Short Linho", categoria: "shorts",
+    cor: "Preto", preco: 129.90, imagem: "02_Short_Linho_Preto.png",
+    tamanhos: ["M", "G"]
+  },
+  {
+    id: "linho-marrom", nome: "Short Linho", categoria: "shorts",
+    cor: "Marrom", preco: 129.90, imagem: "03_Short_Linho_Marrom.png",
+    tamanhos: ["G"]
+  },
+  {
+    id: "linho-bege", nome: "Short Linho", categoria: "shorts",
+    cor: "Bege", preco: 129.90, imagem: "04_Short_Linho_Verdeclaro.png",
+    tamanhos: ["P", "M", "G"]
+  },
+  {
+    id: "linho-rosa", nome: "Short Linho", categoria: "shorts",
+    cor: "Rosa", preco: 129.90, imagem: "06_Short_Linho_Rosa.png",
+    tamanhos: ["P"]
+  },
+  {
+    id: "mauricinho-azul", nome: "Short Mauricinho", categoria: "shorts",
+    cor: "Azul-água", preco: 129.90, imagem: "05_1000073884_individual.jpg",
+    tamanhos: ["M", "G"]
+  },
+  {
+    id: "sarja-azul", nome: "Short Sarja", categoria: "shorts",
+    cor: "Azul", preco: 159.90, imagem: "06_1000073885_peca_01.jpg",
+    tamanhos: ["P"]
+  },
+  {
+    id: "sarja-branco", nome: "Short Sarja", categoria: "shorts",
+    cor: "Branco", preco: 159.90, imagem: "07_1000073885_peca_02.jpg",
+    tamanhos: ["G"]
+  },
+  {
+    id: "sarja-marrom", nome: "Short Sarja", categoria: "shorts",
+    cor: "Marrom", preco: 159.90, imagem: "08_1000073885_peca_03.jpg",
+    tamanhos: ["M"]
+  },
+  {
+    id: "sarja-marinho", nome: "Short Sarja", categoria: "shorts",
+    cor: "Azul-marinho", preco: 159.90, imagem: "09_1000073885_peca_04.jpg",
+    tamanhos: ["M"]
+  },
+  {
+    id: "brim-preto", nome: "Bermuda Brim", categoria: "shorts",
+    cor: "Preta", preco: 159.90, imagem: "12_1000073887_peca_01.jpg",
+    tamanhos: ["38", "40", "42", "44", "46"]
+  },
+  {
+    id: "brim-cinza", nome: "Bermuda Brim", categoria: "shorts",
+    cor: "Cinza", preco: 159.90, imagem: "13_1000073887_peca_02.jpg",
+    tamanhos: ["42", "44"]
+  },
+  {
+    id: "brim-branca", nome: "Bermuda Brim", categoria: "shorts",
+    cor: "Branca", preco: 159.90, imagem: "14_1000073887_peca_03.jpg",
+    tamanhos: ["42", "44"]
+  },
+  {
+    id: "brim-cinza-claro", nome: "Bermuda Brim", categoria: "shorts",
+    cor: "Cinza-claro", preco: 159.90, imagem: "15_1000073887_peca_04.jpg",
+    tamanhos: ["38", "40"]
+  },
+  {
+    id: "brim-bege", nome: "Bermuda Brim", categoria: "shorts",
+    cor: "Bege-claro", preco: 159.90, imagem: "16_1000073887_peca_05.jpg",
+    tamanhos: ["38", "40", "42", "44"]
+  },
+  {
+    id: "texturizada-preta", nome: "T-shirt Texturizada", categoria: "camisetas",
+    cor: "Preta", preco: 119.90, imagem: "17_1000073888_peca_01.jpg",
+    tamanhos: ["M", "G", "GG"]
+  },
+  {
+    id: "trico-branca", nome: "T-shirt Tricô", categoria: "camisetas",
+    cor: "Branca", preco: 119.90, imagem: "trico_branca_01.jpg",
+    tamanhos: ["Consultar"]
+  },
+  {
+    id: "trico-azul", nome: "T-shirt Tricô", categoria: "camisetas",
+    cor: "Azul-claro", preco: 119.90, imagem: "trico_azulclaro_02.jpg",
+    tamanhos: ["Consultar"]
+  },
+  {
+    id: "algodao-bege", nome: "T-shirt Algodão", categoria: "camisetas",
+    cor: "Bege", preco: 69.90, imagem: "28_1000073891_individual.jpg",
+    tamanhos: ["P", "M", "G", "GG"]
+  },
+  {
+    id: "algodao-branca", nome: "T-shirt Algodão", categoria: "camisetas",
+    cor: "Branca", preco: 69.90, imagem: "24_1000073889_peca_02.jpg",
+    tamanhos: ["P", "M", "G", "GG"]
+  },
+  {
+    id: "algodao-preta", nome: "T-shirt Algodão", categoria: "camisetas",
+    cor: "Preta", preco: 69.90, imagem: "25_1000073889_peca_03.jpg",
+    tamanhos: ["P", "M", "G", "GG"]
+  },
+  {
+    id: "algodao-marrom", nome: "T-shirt Algodão", categoria: "camisetas",
+    cor: "Marrom-escuro", preco: 69.90, imagem: "26_1000073889_peca_04.jpg",
+    tamanhos: ["P", "M", "G", "GG"]
+  },
+  {
+    id: "regata-preta", nome: "Regata", categoria: "regatas",
+    cor: "Preta", preco: 87.00, imagem: "29_1000073892_peca_01.jpg",
+    tamanhos: ["Consultar"]
+  },
+  {
+    id: "regata-branca", nome: "Regata", categoria: "regatas",
+    cor: "Branca", preco: 87.00, imagem: "30_1000073892_peca_02.jpg",
+    tamanhos: ["Consultar"]
+  },
+  {
+    id: "regata-verde", nome: "Regata", categoria: "regatas",
+    cor: "Verde", preco: 87.00, imagem: "31_1000073892_peca_03.jpg",
+    tamanhos: ["Consultar"]
+  },
+  {
+    id: "regata-laranja", nome: "Regata", categoria: "regatas",
+    cor: "Laranja", preco: 87.00, imagem: "32_1000073931_peca_01.jpg",
+    tamanhos: ["Consultar"]
+  },
+  {
+    id: "regata-bege", nome: "Regata", categoria: "regatas",
+    cor: "Bege", preco: 87.00, imagem: "33_1000073931_peca_02.jpg",
+    tamanhos: ["Consultar"]
+  },
+  {
+    id: "canelada-marrom", nome: "Camisa Canelada", categoria: "camisetas",
+    cor: "Marrom", preco: 87.00,
+    imagem: "camiseta-canelada-marrom-short-sarja-branco.jpg",
+    tamanhos: ["M"]
+  },
+  {
+    id: "canelada-branca", nome: "Camisa Canelada", categoria: "camisetas",
+    cor: "Branca", preco: 87.00,
+    imagem: "camiseta-canelada-branca-marrom-short-sarja-marrom.jpg",
+    tamanhos: ["M"]
+  },
+  {
+    id: "canelada-bege", nome: "Camisa Canelada", categoria: "camisetas",
+    cor: "Bege", preco: 87.00,
+    imagem: "camiseta-canelada-bege-marinho-short-sarja-azul.jpg",
+    tamanhos: ["M"]
+  }
+];
+
+let sacola = [];
+let categoriaAtual = "todos";
+let produtoAtual = null;
+let lookSelecionado = null;
+
+const dinheiro = valor => valor.toLocaleString("pt-BR", {
+  style: "currency", currency: "BRL"
 });
 
-const safe = value => String(value ?? "").replace(/[&<>"']/g, char => ({
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-  '"': "&quot;",
-  "'": "&#39;"
-})[char]);
+const buscarProduto = id => produtos.find(p => p.id === id);
 
-let cart = [];
-let activeFilter = "Todos";
-let searchTerm = "";
-let sortMode = "default";
-let selectedProduct = null;
-let modalQuantity = 1;
-let toastTimer = null;
-let builderSelection = new Map();
+const imagemHTML = (produto, classe = "") => `
+  <img class="${classe}" src="${produto.imagem}"
+       alt="${produto.nome} ${produto.cor}"
+       onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+  <div class="sem-foto" style="display:none">GUERREIRO<br>STORY</div>
+`;
 
-const products = [
-  {id:1,name:"Camisa Dubai",category:"Camisas Dubai",color:"Preta",price:169.90,sizes:["P","M","G","GG"],img:"01_1000073883_peca_01.jpg"},
-  {id:2,name:"Camisa Dubai",category:"Camisas Dubai",color:"Branca",price:169.90,sizes:["P","G","GG"],img:"02_1000073883_peca_02.jpg"},
-  {id:3,name:"Camisa Dubai",category:"Camisas Dubai",color:"Verde",price:169.90,sizes:["P","G","GG"],img:"03_1000073883_peca_03.jpg"},
-
-  {id:4,name:"Short Linho",category:"Shorts de Linho",color:"Branco",price:129.90,sizes:["P","G"],img:"01_Short_Linho_Branco.png"},
-  {id:5,name:"Short Linho",category:"Shorts de Linho",color:"Preto",price:129.90,sizes:["M","G"],img:"02_Short_Linho_Preto.png"},
-  {id:6,name:"Short Linho",category:"Shorts de Linho",color:"Marrom",price:129.90,sizes:["G"],img:"03_Short_Linho_Marrom.png"},
-  {id:7,name:"Short Linho",category:"Shorts de Linho",color:"Rosa",price:129.90,sizes:["P"],img:"06_Short_Linho_Rosa.png"},
-  {id:8,name:"Short Linho",category:"Shorts de Linho",color:"Verde-claro",price:129.90,sizes:["P","M","G"],img:"04_Short_Linho_Verdeclaro.png"},
-
-  {id:9,name:"Short Mauricinho",category:"Outras peças",color:"Azul-água",price:129.90,sizes:["M","G"],img:"05_1000073884_individual.jpg"},
-  {id:10,name:"Short Sarja",category:"Outras peças",color:"Azul",price:159.90,sizes:["P"],img:"06_1000073885_peca_01.jpg"},
-  {id:11,name:"Short Sarja",category:"Outras peças",color:"Branco",price:159.90,sizes:["G"],img:"07_1000073885_peca_02.jpg"},
-  {id:12,name:"Short Sarja",category:"Outras peças",color:"Marrom",price:159.90,sizes:["M"],img:"08_1000073885_peca_03.jpg"},
-  {id:13,name:"Short Sarja",category:"Outras peças",color:"Azul-escuro",price:159.90,sizes:["M"],img:"09_1000073885_peca_04.jpg"},
-
-  {id:14,name:"Bermuda Brim",category:"Bermudas de Brim",color:"Preta",price:159.90,sizes:["38","40","42","44","46"],img:"12_1000073887_peca_01.jpg"},
-  {id:15,name:"Bermuda Brim",category:"Bermudas de Brim",color:"Cinza",price:159.90,sizes:["42","44"],img:"13_1000073887_peca_02.jpg"},
-  {id:16,name:"Bermuda Brim",category:"Bermudas de Brim",color:"Branca",price:159.90,sizes:["42","44"],img:"14_1000073887_peca_03.jpg"},
-  {id:17,name:"Bermuda Brim",category:"Bermudas de Brim",color:"Cinza-claro",price:159.90,sizes:["38","40"],img:"15_1000073887_peca_04.jpg"},
-  {id:18,name:"Bermuda Brim",category:"Bermudas de Brim",color:"Bege clarinho",price:159.90,sizes:["38","40","42","44"],img:"16_1000073887_peca_05.jpg"},
-
-  {id:19,name:"T-shirt Texturizada",category:"T-shirt Texturizada",color:"Preta",price:119.90,sizes:["M","G","GG"],img:"17_1000073888_peca_01.jpg"},
-  {id:20,name:"T-shirt Tricô",category:"T-shirts de Tricô",color:"Branca",price:119.90,sizes:["Consultar"],img:"trico_branca_01.jpg"},
-  {id:23,name:"T-shirt Tricô",category:"T-shirts de Tricô",color:"Azul-claro",price:119.90,sizes:["Consultar"],img:"trico_azulclaro_02.jpg"},
-
-  {id:21,name:"T-shirt Algodão",category:"T-shirts de Algodão",color:"Bege",price:69.90,sizes:["P","M","G","GG"],img:"28_1000073891_individual.jpg"},
-  {id:24,name:"T-shirt Algodão",category:"T-shirts de Algodão",color:"Branca",price:69.90,sizes:["P","M","G","GG"],img:"24_1000073889_peca_02.jpg"},
-  {id:25,name:"T-shirt Algodão",category:"T-shirts de Algodão",color:"Preta",price:69.90,sizes:["P","M","G","GG"],img:"25_1000073889_peca_03.jpg"},
-  {id:26,name:"T-shirt Algodão",category:"T-shirts de Algodão",color:"Marrom-escuro",price:69.90,sizes:["P","M","G","GG"],img:"26_1000073889_peca_04.jpg"},
-
-  {id:22,name:"Regata",category:"Regatas",color:"Preta",price:87.00,sizes:["Consultar"],img:"29_1000073892_peca_01.jpg"},
-  {id:27,name:"Regata",category:"Regatas",color:"Branca",price:87.00,sizes:["Consultar"],img:"30_1000073892_peca_02.jpg"},
-  {id:28,name:"Regata",category:"Regatas",color:"Verde",price:87.00,sizes:["Consultar"],img:"31_1000073892_peca_03.jpg"},
-  {id:29,name:"Regata",category:"Regatas",color:"Laranja",price:87.00,sizes:["Consultar"],img:"32_1000073931_peca_01.jpg"},
-  {id:30,name:"Regata",category:"Regatas",color:"Bege",price:87.00,sizes:["Consultar"],img:"33_1000073931_peca_02.jpg"},
-
-  {id:31,name:"Camisa Canelada",category:"Outras peças",color:"Marrom",price:87.00,sizes:["M"],img:"camiseta-canelada-marrom-short-sarja-branco.jpg"},
-  {id:32,name:"Camisa Canelada",category:"Outras peças",color:"Branca",price:87.00,sizes:["M"],img:"camiseta-canelada-branca-marrom-short-sarja-marrom.jpg"},
-  {id:33,name:"Camisa Canelada",category:"Outras peças",color:"Bege",price:87.00,sizes:["M"],img:"camiseta-canelada-bege-marinho-short-sarja-azul.jpg"}
-];
-
-function showToast(message) {
-  const toast = $("toast");
-  const text = $("toastMessage");
-  if (!toast || !text) return;
-  text.textContent = message;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
-}
-
-function findProduct(id) {
-  return products.find(product => product.id === Number(id));
-}
-
-function getVariants(product) {
-  return products.filter(item =>
-    item.name === product.name && item.category === product.category
+function renderProdutos() {
+  const grade = document.getElementById("gradeProdutos");
+  const lista = produtos.filter(p =>
+    categoriaAtual === "todos" || p.categoria === categoriaAtual
   );
-}
 
-function isSizeConfirmRequired(product) {
-  return product.sizes.length === 1 &&
-    product.sizes[0].toLowerCase() === "consultar";
-}
-
-function imageMarkup(product, extraClass = "") {
-  return `<img class="${safe(extraClass)}"
-    src="${safe(product.img)}"
-    alt="${safe(`${product.name} ${product.color}`)}"
-    loading="lazy"
-    onerror="this.style.opacity='.25'">`;
-     }
-function renderProducts() {
-  const grid = $("productGrid");
-  if (!grid) return;
-
-  let groups = [];
-
-  products.forEach(product => {
-    const key = `${product.category}::${product.name}`;
-    let group = groups.find(item => item.key === key);
-
-    if (!group) {
-      group = {
-        key,
-        category: product.category,
-        name: product.name,
-        variants: []
-      };
-      groups.push(group);
-    }
-    group.variants.push(product);
-  });
-
-  groups = groups.filter(group => {
-    const categoryMatch = activeFilter === "Todos" ||
-      group.category === activeFilter;
-    const text = `${group.name} ${group.category} ${
-      group.variants.map(item => item.color).join(" ")
-    }`.toLocaleLowerCase("pt-BR");
-    return categoryMatch && text.includes(searchTerm);
-  });
-
-  if (sortMode === "price-asc") {
-    groups.sort((a, b) => a.variants[0].price - b.variants[0].price);
-  } else if (sortMode === "price-desc") {
-    groups.sort((a, b) => b.variants[0].price - a.variants[0].price);
-  } else if (sortMode === "name") {
-    groups.sort((a, b) => a.name.localeCompare(b.name, "pt-BR"));
-  }
-
-  grid.innerHTML = groups.map(group => {
-    const product = group.variants[0];
-    const colors = group.variants.map(item => item.color).join(" · ");
-
-    return `
-      <article class="product-card">
-        <div class="product-image">
-          ${imageMarkup(product)}
-          <span class="product-tag">
-            ${group.variants.length > 1
-              ? `${group.variants.length} CORES` : "PEÇA"}
-          </span>
+  grade.innerHTML = lista.map(p => `
+    <article class="produto-card">
+      <div class="produto-imagem">
+        ${imagemHTML(p)}
+      </div>
+      <div class="produto-info">
+        <div class="categoria-texto">${p.cor}</div>
+        <h3>${p.nome}</h3>
+        <div class="preco">${dinheiro(p.preco)}</div>
+        <div class="cores">
+          ${produtos.filter(v => v.nome === p.nome).map(v => `
+            <button class="cor ${v.id === p.id ? "selecionada" : ""}"
+              title="${v.cor}" aria-label="${v.cor}"
+              style="background:${corCSS(v.cor)}"
+              onclick="abrirProduto('${v.id}')"></button>
+          `).join("")}
         </div>
-        <div class="product-info">
-          <span class="product-category">${safe(group.category)}</span>
-          <h3>${safe(group.name)}</h3>
-          <p class="product-color">${safe(colors)}</p>
-          <p class="product-sizes">Consulte as opções disponíveis</p>
-          <div class="product-price">${money(product.price)}</div>
-          <button class="btn btn-outline" type="button"
-            data-open-product="${product.id}">VER OPÇÕES +</button>
-        </div>
-      </article>`;
-  }).join("");
-
-  const empty = $("productEmpty");
-  if (empty) empty.hidden = groups.length > 0;
-
-  const count = $("productResultCount");
-  if (count) count.textContent =
-    `${groups.length} ${groups.length === 1 ? "modelo encontrado" : "modelos encontrados"}`;
-
-  grid.querySelectorAll("[data-open-product]").forEach(button => {
-    button.addEventListener("click", () =>
-      openProduct(Number(button.dataset.openProduct)));
-  });
+        <button class="botao-card" onclick="abrirProduto('${p.id}')">
+          ESCOLHER TAMANHO
+        </button>
+      </div>
+    </article>
+  `).join("");
 }
 
-function updateActiveFilterButtons() {
-  document.querySelectorAll("#categoryFilters [data-category]").forEach(button => {
-    const active = button.dataset.category === activeFilter;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
+function corCSS(nome) {
+  const cores = {
+    "Branca": "#eee9df", "Branco": "#eee9df",
+    "Preta": "#151515", "Preto": "#151515",
+    "Azul": "#345f9c", "Azul-marinho": "#1c2c48",
+    "Azul-claro": "#a7c9e4", "Azul-água": "#8ecbc7",
+    "Marrom": "#68442f", "Marrom-escuro": "#38251e",
+    "Bege": "#c8b28c", "Bege-claro": "#d9c7a6",
+    "Cinza": "#858585", "Cinza-claro": "#b7b7b7",
+    "Rosa": "#dba5b6", "Verde": "#3f6545", "Laranja": "#d77a35"
+  };
+  return cores[nome] || "#c99b58";
 }
 
-function setupCatalog() {
-  $("categoryFilters")?.querySelectorAll("[data-category]").forEach(button => {
-    button.addEventListener("click", () => {
-      activeFilter = button.dataset.category;
-      updateActiveFilterButtons();
-      renderProducts();
-    });
+function abrirProduto(id) {
+  produtoAtual = buscarProduto(id);
+  if (!produtoAtual) return;
+
+  const modal = document.getElementById("fundoProduto");
+  document.getElementById("detalhesProduto").innerHTML = `
+    <div class="detalhe-grid">
+      <div>${imagemHTML(produtoAtual)}</div>
+      <div>
+        <span class="sobrelinha">${produtoAtual.cor}</span>
+        <h2>${produtoAtual.nome}</h2>
+        <p class="preco">${dinheiro(produtoAtual.preco)}</p>
+        <p style="color:var(--muted);font-size:12px;line-height:1.8">
+          Escolha o tamanho desejado para adicionar esta peça à sua sacola.
+        </p>
+        <form class="form-produto" id="formProduto">
+          <label>Cor
+            <select id="corProduto">
+              ${produtos.filter(p => p.nome === produtoAtual.nome).map(p =>
+                `<option value="${p.id}" ${p.id === produtoAtual.id ? "selected" : ""}>${p.cor}</option>`
+              ).join("")}
+            </select>
+          </label>
+          <label>Tamanho
+            <select id="tamanhoProduto" required>
+              ${produtoAtual.tamanhos.map(t =>
+                `<option value="${t}">${t}</option>`
+              ).join("")}
+            </select>
+          </label>
+          <button class="botao dourado largura-total" type="submit">
+            ADICIONAR À SACOLA
+          </button>
+        </form>
+      </div>
+    </div>
+  `;
+
+  modal.classList.add("aberto");
+  document.body.classList.add("modal-aberto");
+
+  document.getElementById("corProduto").addEventListener("change", e => {
+    abrirProduto(e.target.value);
   });
 
-  $("productSearch")?.addEventListener("input", event => {
-    searchTerm = event.target.value.trim().toLocaleLowerCase("pt-BR");
-    renderProducts();
+  document.getElementById("formProduto").addEventListener("submit", e => {
+    e.preventDefault();
+    const tamanho = document.getElementById("tamanhoProduto").value;
+    adicionarItem(produtoAtual.id, tamanho, false);
+    fecharModal("fundoProduto");
+    abrirSacola();
   });
-
-  $("productSort")?.addEventListener("change", event => {
-    sortMode = event.target.value;
-    renderProducts();
-  });
-
-  $("clearProductFilters")?.addEventListener("click", () => {
-    activeFilter = "Todos";
-    searchTerm = "";
-    sortMode = "default";
-    if ($("productSearch")) $("productSearch").value = "";
-    if ($("productSort")) $("productSort").value = "default";
-    updateActiveFilterButtons();
-    renderProducts();
-  });
-
-  updateActiveFilterButtons();
-}
-
-function openProduct(id) {
-  selectedProduct = findProduct(id);
-  if (!selectedProduct || !$("productModal")) return;
-  modalQuantity = 1;
-  renderProductModal();
-  $("productModal").classList.add("open");
-  $("productModal").setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-}
-
-function renderProductModal() {
-  if (!selectedProduct) return;
-  const product = selectedProduct;
-  const image = $("modalProductImage");
-
-  if (image) {
-    image.src = product.img;
-    image.alt = `${product.name} — ${product.color}`;
-    image.onerror = () => image.alt = "Imagem indisponível";
-  }
-
-  if ($("modalProductCategory"))
-    $("modalProductCategory").textContent = product.category.toUpperCase();
-  if ($("modalProductName"))
-    $("modalProductName").textContent = product.name;
-  if ($("modalProductPrice"))
-    $("modalProductPrice").textContent = money(product.price);
-  if ($("modalProductDescription"))
-    $("modalProductDescription").textContent =
-      `Cor: ${product.color}. Escolha o tamanho antes de adicionar à sacola.`;
-
-  const colorSelect = $("modalProductColor");
-  if (colorSelect) {
-    colorSelect.innerHTML = getVariants(product).map(variant => `
-      <option value="${variant.id}" ${variant.id === product.id ? "selected" : ""}>
-        ${safe(variant.color)}
-      </option>`).join("");
-  }
-
-  renderModalSizes();
-  if ($("modalProductQuantity"))
-    $("modalProductQuantity").value = String(modalQuantity);
-  if ($("productModalFeedback"))
-    $("productModalFeedback").textContent = "";
-}
-
-function renderModalSizes() {
-  const select = $("modalProductSize");
-  if (!select || !selectedProduct) return;
-
-  if (isSizeConfirmRequired(selectedProduct)) {
-    select.innerHTML = '<option value="A confirmar">Tamanho a confirmar</option>';
-    select.value = "A confirmar";
-    select.disabled = true;
-    return;
-  }
-
-  select.disabled = false;
-  select.innerHTML = '<option value="">Selecione um tamanho</option>' +
-    selectedProduct.sizes.map(size =>
-      `<option value="${safe(size)}">${safe(size)}</option>`
-    ).join("");
-}
-
-function closeProduct() {
-  $("productModal")?.classList.remove("open");
-  $("productModal")?.setAttribute("aria-hidden", "true");
-  if (!$("cartOverlay")?.classList.contains("open"))
-    document.body.classList.remove("modal-open");
-}
-
-function setupProductModal() {
-  $("modalProductColor")?.addEventListener("change", event => {
-    selectedProduct = findProduct(event.target.value);
-    renderProductModal();
-  });
-
-  document.querySelectorAll("[data-close-product-modal]").forEach(element =>
-    element.addEventListener("click", closeProduct));
-
-  $("modalQuantityMinus")?.addEventListener("click", () => {
-    modalQuantity = Math.max(1, modalQuantity - 1);
-    if ($("modalProductQuantity"))
-      $("modalProductQuantity").value = String(modalQuantity);
-  });
-
-  $("modalQuantityPlus")?.addEventListener("click", () => {
-    modalQuantity = Math.min(20, modalQuantity + 1);
-    if ($("modalProductQuantity"))
-      $("modalProductQuantity").value = String(modalQuantity);
-  });
-
-  $("modalProductQuantity")?.addEventListener("change", event => {
-    const value = Number(event.target.value);
-    modalQuantity = Number.isFinite(value)
-      ? Math.min(20, Math.max(1, Math.floor(value))) : 1;
-    event.target.value = String(modalQuantity);
-  });
-
-  $("addProductToCart")?.addEventListener("click", addDetailToCart);
-}
-
-function addDetailToCart() {
-  if (!selectedProduct) return;
-  const size = $("modalProductSize")?.value || "";
-
-  if (!isSizeConfirmRequired(selectedProduct) && !size) {
-    if ($("productModalFeedback"))
-      $("productModalFeedback").textContent =
-        "Selecione um tamanho antes de continuar.";
-    return;
-  }
-
-  cart.push({
-    key: `item-${Date.now()}-${Math.random()}`,
-    productId: selectedProduct.id,
-    name: selectedProduct.name,
-    color: selectedProduct.color,
-    size: size || "A confirmar",
-    price: selectedProduct.price,
-    quantity: modalQuantity,
-    img: selectedProduct.img,
-    lookName: ""
-  });
-
-  renderCart();
-  closeProduct();
-  showToast("Produto adicionado à sacola!");
-                         }
-const readyLooks = [
+                       }
+const looks = [
   {
-    name: "Dubai preta + Short Linho",
-    productIds: [1, 4],
-    photos: [
-      "look_dubai_preta_linho_azulclaro_01.jpg",
-      "look_dubai_preta_linho_marrom_02.jpg"
+    nome: "Dubai + Sarja",
+    descricao: "Camisa Dubai branca com short Sarja azul.",
+    ids: ["dubai-branca", "sarja-azul"],
+    opcoes: [
+      { ids: ["dubai-branca", "sarja-azul"], imagem: "02_1000073883_peca_02.jpg" },
+      { ids: ["dubai-preta", "sarja-branco"], imagem: "01_1000073883_peca_01.jpg" },
+      { ids: ["dubai-azul", "sarja-marrom"], imagem: "03_1000073883_peca_03.jpg" }
     ]
   },
   {
-    name: "Dubai verde + Short Linho",
-    productIds: [3, 5],
-    photos: ["look_dubai_verde_linho_preto_03.jpg"]
-  },
-  {
-    name: "Dubai branca + Short Linho",
-    productIds: [2, 4],
-    photos: [
-      "dubai_branca_short_linho_rosa_look.jpg",
-      "dubai_branca_short_linho_verde_look.jpg",
-      "dubai_branca_short_linho_marrom_look.jpg",
-      "dubai_branca_short_linho_azulclaro_look.jpg"
+    nome: "Dubai + Linho",
+    descricao: "Camisa Dubai com short de linho.",
+    ids: ["dubai-preta", "linho-branco"],
+    opcoes: [
+      { ids: ["dubai-preta", "linho-branco"], imagem: "01_1000073883_peca_01.jpg" },
+      { ids: ["dubai-branca", "linho-preto"], imagem: "02_1000073883_peca_02.jpg" },
+      { ids: ["dubai-azul", "linho-bege"], imagem: "03_1000073883_peca_03.jpg" }
     ]
   },
   {
-    name: "Texturizada preta + Bermuda Brim",
-    productIds: [19, 18],
-    photos: [
-      "texturizada_preta_bermuda_brim_begeclarinho_look.jpg",
-      "texturizada_preta_bermuda_brim_marrom_look.jpg",
-      "texturizada_preta_bermuda_brim_marrom_acinzentado_look.jpg",
-      "texturizada_preta_bermuda_brim_begeclaro_look.jpg"
-    ]
-  },
-  {
-    name: "Tricô branca + Bermuda Brim",
-    productIds: [20, 14],
-    photos: [
-      "trico_branca_bermuda_brim_preta_look.jpg",
-      "trico_branca_bermuda_brim_marrom_look.jpg"
-    ]
-  },
-  {
-    name: "Tricô azul-claro + Bermuda Brim",
-    productIds: [23, 15],
-    photos: [
-      "trico_azulclaro_bermuda_brim_cinza_look.jpg",
-      "trico_azulclaro_bermuda_brim_bege_look.jpg",
-      "trico_azulclaro_bermuda_brim_caqui_look.jpg",
-      "trico_azulclaro_bermuda_brim_preta_look.jpg"
-    ]
-  },
-  {
-    name: "Algodão + Short Sarja",
-    productIds: [21, 10],
-    photos: [
-      "algodao_bege_short_sarja_branco_look.jpg",
-      "algodao_bege_short_sarja_marrom_look.jpg",
-      "algodao_bege_short_sarja_preto_look.jpg",
-      "algodao_branca_short_sarja_azul_look.jpg",
-      "algodao_branca_short_sarja_verde_look.jpg",
-      "algodao_marrom_short_sarja_amarelo_look.jpg",
-      "algodao_marrom_short_sarja_branco_look.jpg",
-      "algodao_preta_short_sarja_amarelo_look.jpg",
-      "algodao_preta_short_sarja_branco_look.jpg",
-      "algodao_preta_short_sarja_cinza_look.jpg"
-    ]
-  },
-  {
-    name: "Canelada + Short Sarja",
-    productIds: [31, 10],
-    photos: [
-      "camiseta-canelada-bege-marinho-short-sarja-azul.jpg",
-      "camiseta-canelada-branca-marrom-short-sarja-marrom.jpg",
-      "camiseta-canelada-marrom-short-sarja-branco.jpg"
+    nome: "Algodão + Brim",
+    descricao: "T-shirt de algodão com bermuda Brim.",
+    ids: ["algodao-preta", "brim-bege"],
+    opcoes: [
+      { ids: ["algodao-preta", "brim-bege"], imagem: "25_1000073889_peca_03.jpg" },
+      { ids: ["algodao-branca", "brim-preto"], imagem: "24_1000073889_peca_02.jpg" },
+      { ids: ["algodao-bege", "brim-cinza"], imagem: "28_1000073891_individual.jpg" }
     ]
   }
 ];
 
-function getLookProducts(look) {
-  return look.productIds.map(findProduct).filter(Boolean);
-}
-
-function getLookSubtotal(look) {
-  return getLookProducts(look).reduce((sum, product) => sum + product.price, 0);
-}
-
-function getLookDiscountedPrice(look) {
-  return Math.round(getLookSubtotal(look) * 0.95 * 100) / 100;
+function precoLook(look) {
+  return look.ids.reduce((total, id) => {
+    const p = buscarProduto(id);
+    return total + (p ? p.preco : 0);
+  }, 0);
 }
 
 function renderLooks() {
-  const grid = $("lookGrid");
-  if (!grid) return;
+  const grade = document.getElementById("gradeLooks");
 
-  grid.innerHTML = readyLooks.map((look, index) => {
-    const items = getLookProducts(look);
-    const subtotal = getLookSubtotal(look);
-    const photos = look.photos || [];
-    const firstPhoto = photos[0] || "";
-    const discounted = getLookDiscountedPrice(look);
+  grade.innerHTML = looks.map((look, index) => {
+    const opcao = look.opcoes[0];
+    const total = precoLook(look);
+    const promocional = total * 0.95;
 
     return `
-      <article class="look-card" data-ready-look="${index}">
-        <div class="look-images">
-          <img class="look-cover-image" src="${safe(firstPhoto)}"
-            alt="${safe(look.name)}" loading="lazy"
-            onerror="this.style.opacity='.25'">
+      <article class="look-card">
+        <div class="look-foto">
+          <img id="lookImagem${index}" src="${opcao.imagem}"
+               alt="${look.nome}"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+          <div class="sem-foto" style="display:none">LOOK<br>GUERREIRO</div>
         </div>
-
-        <div class="look-options" hidden>
-          ${photos.map((photo, photoIndex) => `
-            <button type="button" class="look-thumb"
-              data-look-photo-index="${photoIndex}"
-              aria-label="Ver foto ${photoIndex + 1} de ${safe(look.name)}">
-              <img src="${safe(photo)}" alt="" loading="lazy">
-            </button>`).join("")}
-        </div>
-
-        ${photos.length > 1 ? `
-          <button class="btn btn-outline look-more" type="button"
-            data-toggle-look-photos aria-expanded="false">
-            VER OUTRAS FOTOS +
-          </button>` : ""}
-
         <div class="look-info">
-          <span class="discount">5% DE DESCONTO</span>
-          <h3>${safe(look.name)}</h3>
-          <p>${items.map(item => safe(`${item.name} ${item.color}`)).join(" + ")}</p>
-          <div class="look-price">
-            <strong>${money(discounted)}</strong>
-            <span class="old-price">${money(subtotal)}</span>
+          <span class="sobrelinha">LOOK EXCLUSIVO</span>
+          <h3>${look.nome}</h3>
+          <p>${look.descricao}</p>
+          <div class="look-opcoes">
+            ${look.opcoes.map((o, oi) => `
+              <button class="look-opcao ${oi === 0 ? "ativo" : ""}"
+                title="Ver combinação ${oi + 1}"
+                onclick="selecionarOpcaoLook(${index},${oi},this)">
+                <img src="${o.imagem}" alt="Opção ${oi + 1}"
+                     onerror="this.style.opacity='.2'">
+              </button>
+            `).join("")}
           </div>
-          <button class="btn btn-primary" type="button"
-            data-add-ready-look="${index}">ESCOLHER LOOK</button>
+          <p><s>${dinheiro(total)}</s></p>
+          <div class="look-preco">${dinheiro(promocional)} <small>com 5% OFF</small></div>
+          <button class="botao dourado largura-total"
+            onclick="adicionarLookPronto(${index})">
+            ESCOLHER ESTE LOOK
+          </button>
         </div>
-      </article>`;
+      </article>
+    `;
   }).join("");
-
-  grid.querySelectorAll("[data-ready-look]").forEach(card => {
-    const look = readyLooks[Number(card.dataset.readyLook)];
-    const mainImage = card.querySelector(".look-cover-image");
-    const options = card.querySelector(".look-options");
-    const toggle = card.querySelector("[data-toggle-look-photos]");
-
-    toggle?.addEventListener("click", () => {
-      const opening = options.hidden;
-      options.hidden = !opening;
-      toggle.setAttribute("aria-expanded", String(opening));
-      toggle.textContent = opening ? "OCULTAR FOTOS −" : "VER OUTRAS FOTOS +";
-    });
-
-    card.querySelectorAll("[data-look-photo-index]").forEach(button => {
-      button.addEventListener("click", () => {
-        const photo = look.photos[Number(button.dataset.lookPhotoIndex)];
-        if (mainImage) mainImage.src = photo;
-
-        card.querySelectorAll("[data-look-photo-index]").forEach(thumb =>
-          thumb.classList.toggle("active", thumb === button));
-      });
-    });
-  });
-
-  grid.querySelectorAll("[data-add-ready-look]").forEach(button => {
-    button.addEventListener("click", () =>
-      addReadyLook(Number(button.dataset.addReadyLook)));
-  });
-
-  if ($("lookEmpty")) $("lookEmpty").hidden = readyLooks.length > 0;
 }
 
-function addReadyLook(index) {
-  const look = readyLooks[index];
-  if (!look) return;
+function selecionarOpcaoLook(index, opcaoIndex, botao) {
+  const look = looks[index];
+  const opcao = look.opcoes[opcaoIndex];
 
-  const items = getLookProducts(look);
-  if (!items.length) {
-    showToast("Não foi possível carregar esse look.");
+  lookSelecionado = { index, opcaoIndex };
+
+  document.getElementById(`lookImagem${index}`).src = opcao.imagem;
+
+  botao.parentElement.querySelectorAll(".look-opcao").forEach(b => {
+    b.classList.remove("ativo");
+  });
+  botao.classList.add("ativo");
+}
+
+function adicionarLookPronto(index) {
+  const look = looks[index];
+  const opcaoIndex = lookSelecionado?.index === index
+    ? lookSelecionado.opcaoIndex : 0;
+  const opcao = look.opcoes[opcaoIndex];
+
+  const itens = opcao.ids.map(id => buscarProduto(id)).filter(Boolean);
+
+  if (!itens.length) {
+    alert("Não foi possível carregar as peças deste look.");
     return;
   }
 
-  const original = getLookSubtotal(look);
-  const discounted = getLookDiscountedPrice(look);
-  const ratio = discounted / original;
-  const groupKey = `look-${Date.now()}-${index}`;
-  let accumulated = 0;
+  const subtotal = itens.reduce((soma, p) => soma + p.preco, 0);
+  const desconto = subtotal * 0.05;
 
-  items.forEach((product, itemIndex) => {
-    let price;
+  sacola.push({
+    tipo: "look",
+    id: `look-${Date.now()}`,
+    nome: look.nome,
+    itens: itens.map(p => ({ ...p, tamanho: p.tamanhos[0] })),
+    total: subtotal - desconto,
+    desconto
+  });
 
-    if (itemIndex === items.length - 1) {
-      price = Math.round((discounted - accumulated) * 100) / 100;
-    } else {
-      price = Math.round(product.price * ratio * 100) / 100;
-      accumulated += price;
+  atualizarSacola();
+  abrirSacola();
+}
+
+function adicionarItem(id, tamanho, comDesconto) {
+  const produto = buscarProduto(id);
+  if (!produto) return;
+
+  sacola.push({
+    tipo: "produto",
+    id: `item-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+    produto,
+    tamanho,
+    total: produto.preco,
+    desconto: 0
+  });
+
+  atualizarSacola();
+}
+
+function removerItem(id) {
+  sacola = sacola.filter(item => item.id !== id);
+  atualizarSacola();
+}
+
+function atualizarSacola() {
+  const quantidade = sacola.reduce((total, item) => {
+    return total + (item.tipo === "look" ? item.itens.length : 1);
+  }, 0);
+
+  document.getElementById("contadorSacola").textContent = quantidade;
+
+  const total = sacola.reduce((soma, item) => soma + item.total, 0);
+  document.getElementById("totalSacola").textContent = dinheiro(total);
+
+  const container = document.getElementById("itensSacola");
+
+  if (!sacola.length) {
+    container.innerHTML = `<p class="vazio">Sua sacola está vazia. Escolha suas peças no catálogo.</p>`;
+    return;
+  }
+
+  container.innerHTML = sacola.map(item => {
+    if (item.tipo === "look") {
+      return `
+        <div class="item-sacola">
+          <div>
+            <strong>${item.nome}</strong>
+            <small>${item.itens.map(p => `${p.nome} (${p.cor})`).join(" + ")}</small>
+            <small>Desconto de 5%: ${dinheiro(item.desconto)}</small>
+            <strong>${dinheiro(item.total)}</strong>
+          </div>
+          <button class="remover-item" onclick="removerItem('${item.id}')">Remover</button>
+        </div>
+      `;
     }
 
-    cart.push({
-      key: `${groupKey}-${product.id}`,
-      productId: product.id,
-      name: product.name,
-      color: product.color,
-      size: "A confirmar",
-      price,
-      quantity: 1,
-      img: product.img,
-      lookName: look.name
+    return `
+      <div class="item-sacola">
+        <div>
+          <strong>${item.produto.nome}</strong>
+          <small>Cor: ${item.produto.cor} • Tamanho: ${item.tamanho}</small>
+          <strong>${dinheiro(item.total)}</strong>
+        </div>
+        <button class="remover-item" onclick="removerItem('${item.id}')">Remover</button>
+      </div>
+    `;
+  }).join("");
+}
+
+function abrirSacola() {
+  document.getElementById("fundoModal").classList.add("aberto");
+  document.body.classList.add("modal-aberto");
+}
+
+function fecharModal(id) {
+  document.getElementById(id).classList.remove("aberto");
+
+  if (!document.querySelector(".fundo-modal.aberto")) {
+    document.body.classList.remove("modal-aberto");
+  }
+}
+
+function finalizarWhatsApp() {
+  if (!sacola.length) {
+    alert("Sua sacola está vazia. Escolha uma peça ou um look primeiro.");
+    return;
+  }
+
+  let mensagem = "Olá! Gostaria de fazer este pedido na Guerreiro Story:\n\n";
+
+  sacola.forEach((item, index) => {
+    mensagem += `${index + 1}. `;
+
+    if (item.tipo === "look") {
+      mensagem += `${item.nome}\n`;
+      item.itens.forEach(p => {
+        mensagem += `   - ${p.nome} | ${p.cor} | Tamanho: ${p.tamanho}\n`;
+      });
+      mensagem += `   Desconto de 5%: ${dinheiro(item.desconto)}\n`;
+      mensagem += `   Subtotal: ${dinheiro(item.total)}\n\n`;
+    } else {
+      mensagem += `${item.produto.nome} | ${item.produto.cor}`;
+      mensagem += ` | Tamanho: ${item.tamanho}`;
+      mensagem += ` | ${dinheiro(item.total)}\n\n`;
+    }
+  });
+
+  const total = sacola.reduce((soma, item) => soma + item.total, 0);
+  mensagem += `TOTAL DO PEDIDO: ${dinheiro(total)}\n\n`;
+  mensagem += "Poderiam confirmar a disponibilidade e as informações para concluir o pedido?";
+
+  const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
+  window.open(url, "_blank");
+}
+
+document.getElementById("filtros").addEventListener("click", event => {
+  const botao = event.target.closest("[data-categoria]");
+  if (!botao) return;
+
+  categoriaAtual = botao.dataset.categoria;
+
+  document.querySelectorAll(".filtro").forEach(f => f.classList.remove("ativo"));
+  botao.classList.add("ativo");
+
+  renderProdutos();
+});
+
+document.getElementById("abrirSacola").addEventListener("click", abrirSacola);
+document.getElementById("fecharSacola").addEventListener("click", () => fecharModal("fundoModal"));
+document.getElementById("fecharProduto").addEventListener("click", () => fecharModal("fundoProduto"));
+document.getElementById("continuarComprando").addEventListener("click", () => fecharModal("fundoModal"));
+document.getElementById("enviarPedido").addEventListener("click", finalizarWhatsApp);
+
+document.getElementById("adicionarLook").addEventListener("click", () => {
+  const selecionados = [...document.querySelectorAll(".montagem-check:checked")];
+
+  if (!selecionados.length) {
+    alert("Selecione pelo menos uma peça para montar seu look.");
+    return;
+  }
+
+  selecionados.forEach(check => {
+    adicionarItem(check.value, check.dataset.tamanho, false);
+  });
+
+  document.querySelectorAll(".montagem-check").forEach(check => {
+    check.checked = false;
+  });
+
+  renderResumoMontagem();
+  abrirSacola();
+});
+
+document.getElementById("fundoModal").addEventListener("click", event => {
+  if (event.target.id === "fundoModal") fecharModal("fundoModal");
+});
+
+document.getElementById("fundoProduto").addEventListener("click", event => {
+  if (event.target.id === "fundoProduto") fecharModal("fundoProduto");
+});
+
+document.getElementById("menuBtn").addEventListener("click", () => {
+  document.getElementById("menu").classList.toggle("aberto");
+});
+
+document.querySelectorAll("#menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("menu").classList.remove("aberto");
+  });
+});
+
+document.getElementById("whatsappFlutuante").addEventListener("click", () => {
+  window.open(`https://wa.me/${WHATSAPP}`, "_blank");
+});
+
+function renderMontagem() {
+  const container = document.getElementById("opcoesMontagem");
+
+  container.innerHTML = produtos.map(p => `
+    <label class="opcao-montagem">
+      ${imagemHTML(p)}
+      <span>
+        <strong>${p.nome} — ${p.cor}</strong>
+        <small>${dinheiro(p.preco)}</small>
+        <select class="tamanho-montagem" data-id="${p.id}"
+          aria-label="Tamanho de ${p.nome}">
+          ${p.tamanhos.map(t => `<option value="${t}">${t}</option>`).join("")}
+        </select>
+      </span>
+      <input class="montagem-check" type="checkbox" value="${p.id}"
+        data-tamanho="${p.tamanhos[0]}" aria-label="Selecionar ${p.nome}">
+    </label>
+  `).join("");
+
+  container.querySelectorAll(".tamanho-montagem").forEach(select => {
+    select.addEventListener("change", () => {
+      const check = container.querySelector(
+        `.montagem-check[value="${select.dataset.id}"]`
+      );
+      check.dataset.tamanho = select.value;
     });
   });
 
-  renderCart();
-  openCart();
-  showToast("Look pronto adicionado com 5% de desconto!");
+  renderResumoMontagem();
 }
 
-function renderBuilderProducts() {
-  const container = $("builderProductList");
-  if (!container) return;
+function renderResumoMontagem() {
+  const selecionados = [...document.querySelectorAll(".montagem-check:checked")];
+  const resumo = document.getElementById("resumoMontagem");
 
-  container.innerHTML = products.map(product => {
-    const selected = builderSelection.has(product.id);
-    const sizes = isSizeConfirmRequired(product)
-      ? ["A confirmar"] : product.sizes;
-    const saved = builderSelection.get(product.id);
+  if (!selecionados.length) {
+    resumo.innerHTML = `<p class="vazio">Selecione uma ou mais peças para começar.</p>`;
+    document.getElementById("totalMontagem").textContent = dinheiro(0);
+    return;
+  }
+
+  let total = 0;
+
+  resumo.innerHTML = selecionados.map(check => {
+    const p = buscarProduto(check.value);
+    if (!p) return "";
+    total += p.preco;
 
     return `
-      <article class="builder-choice">
-        <label class="builder-choice-main">
-          <input type="checkbox" data-builder-check="${product.id}"
-            ${selected ? "checked" : ""}>
-          ${imageMarkup(product, "builder-choice-image")}
-          <span class="builder-choice-copy">
-            <strong>${safe(product.name)}</strong>
-            <span>${safe(product.color)}</span>
-            <b>${money(product.price)}</b>
-          </span>
-        </label>
-        <label class="builder-size-label">
-          Tamanho
-          <select data-builder-size="${product.id}" ${selected ? "" : "disabled"}>
-            ${sizes.map(size => `
-              <option value="${safe(size)}"
-                ${saved?.size === size ? "selected" : ""}>
-                ${safe(size)}
-              </option>`).join("")}
-          </select>
-        </label>
-      </article>`;
+      <div class="resumo-item">
+        <span>${p.nome} • ${p.cor} • ${check.dataset.tamanho}</span>
+        <strong>${dinheiro(p.preco)}</strong>
+      </div>
+    `;
   }).join("");
 
-  container.querySelectorAll("[data-builder-check]").forEach(input => {
-    input.addEventListener("change", () => {
-      const id = Number(input.dataset.builderCheck);
-      const product = findProduct(id);
-      const select = container.querySelector(`[data-builder-size="${id}"]`);
-
-      if (input.checked && product) {
-        builderSelection.set(id, {
-          productId: id,
-          size: select?.value || (
-            isSizeConfirmRequired(product) ? "A confirmar" : product.sizes[0]
-          )
-        });
-        if (select) select.disabled = false;
-      } else {
-        builderSelection.delete(id);
-        if (select) select.disabled = true;
-      }
-      updateBuilderTotal();
-    });
-  });
-
-  container.querySelectorAll("[data-builder-size]").forEach(select => {
-    select.addEventListener("change", () => {
-      const id = Number(select.dataset.builderSize);
-      if (builderSelection.has(id))
-        builderSelection.get(id).size = select.value;
-    });
-  });
-
-  updateBuilderTotal();
+  document.getElementById("totalMontagem").textContent = dinheiro(total);
 }
 
-function updateBuilderTotal() {
-  const selected = [...builderSelection.keys()].map(findProduct).filter(Boolean);
-  const total = selected.reduce((sum, product) => sum + product.price, 0);
-  const count = selected.length;
-
-  if ($("builderCount"))
-    $("builderCount").textContent = `${count} ${count === 1 ? "peça" : "peças"}`;
-  if ($("builderTotal")) $("builderTotal").textContent = money(total);
-  if ($("builderEmpty")) $("builderEmpty").hidden = count > 0;
-  if ($("addLookToCart")) $("addLookToCart").disabled = count === 0;
-
-  if ($("builderList")) {
-    $("builderList").innerHTML = selected.map(product => {
-      const selection = builderSelection.get(product.id);
-      return `
-        <div class="builder-selected-item">
-          <span>${safe(product.name)} — ${safe(product.color)}</span>
-          <span>Tam. ${safe(selection?.size || "A confirmar")}</span>
-          <strong>${money(product.price)}</strong>
-          <button type="button" data-remove-builder="${product.id}">Remover</button>
-        </div>`;
-    }).join("");
-
-    $("builderList").querySelectorAll("[data-remove-builder]").forEach(button => {
-      button.addEventListener("click", () => {
-        builderSelection.delete(Number(button.dataset.removeBuilder));
-        renderBuilderProducts();
-      });
-    });
+document.getElementById("opcoesMontagem").addEventListener("change", event => {
+  if (event.target.classList.contains("montagem-check")) {
+    renderResumoMontagem();
   }
-}
+});
 
-function addCustomLook() {
-  if (!builderSelection.size) {
-    showToast("Escolha pelo menos uma peça para montar seu look.");
-    return;
-  }
-
-  const groupKey = `custom-${Date.now()}`;
-
-  builderSelection.forEach(selection => {
-    const product = findProduct(selection.productId);
-    if (!product) return;
-
-    cart.push({
-      key: `${groupKey}-${product.id}`,
-      productId: product.id,
-      name: product.name,
-      color: product.color,
-      size: selection.size || "A confirmar",
-      price: product.price,
-      quantity: 1,
-      img: product.img,
-      lookName: "Look personalizado"
-    });
-  });
-
-  renderCart();
-  openCart();
-  showToast("Seu look personalizado foi adicionado!");
-}
-function getCartTotal() {
-  return cart.reduce((total, item) =>
-    total + item.price * item.quantity, 0);
-}
-
-function getCartCount() {
-  return cart.reduce((total, item) => total + item.quantity, 0);
-}
-
-function renderCart() {
-  const count = $("cartCount");
-  const itemsContainer = $("cartItems");
-  const empty = $("cartEmpty");
-  const footer = $("cartFooter");
-
-  if (count) count.textContent = String(getCartCount());
-  if ($("cartSubtotal")) $("cartSubtotal").textContent = money(getCartTotal());
-
-  if (itemsContainer) {
-    itemsContainer.innerHTML = cart.map(item => `
-      <article class="cart-item">
-        <img src="${safe(item.img)}"
-          alt="${safe(item.name)} — ${safe(item.color)}" loading="lazy">
-        <div class="cart-item-info">
-          <h3>${safe(item.name)}</h3>
-          <p>Cor: ${safe(item.color)}</p>
-          <p>Tamanho: ${safe(item.size)}</p>
-          ${item.lookName ? `<p>${safe(item.lookName)}</p>` : ""}
-          <strong>${money(item.price * item.quantity)}</strong>
-
-          <div class="cart-item-quantity">
-            <button type="button" data-cart-quantity="${safe(item.key)}"
-              data-change="-1" aria-label="Diminuir quantidade">−</button>
-            <span>${item.quantity}</span>
-            <button type="button" data-cart-quantity="${safe(item.key)}"
-              data-change="1" aria-label="Aumentar quantidade">+</button>
-          </div>
-
-          <button class="remove-item" type="button"
-            data-remove-cart-item="${safe(item.key)}">Remover</button>
-        </div>
-      </article>`).join("");
-  }
-
-  if (empty) {
-    empty.hidden = cart.length > 0;
-    empty.style.display = cart.length ? "none" : "";
-  }
-
-  if (footer) {
-    footer.hidden = cart.length === 0;
-    footer.style.display = cart.length ? "" : "none";
-  }
-
-  if (!itemsContainer) return;
-
-  itemsContainer.querySelectorAll("[data-cart-quantity]").forEach(button => {
-    button.addEventListener("click", () => {
-      const item = cart.find(entry => entry.key === button.dataset.cartQuantity);
-      if (!item) return;
-
-      item.quantity = Math.max(
-        1,
-        Math.min(20, item.quantity + Number(button.dataset.change))
-      );
-      renderCart();
-    });
-  });
-
-  itemsContainer.querySelectorAll("[data-remove-cart-item]").forEach(button => {
-    button.addEventListener("click", () => {
-      cart = cart.filter(item => item.key !== button.dataset.removeCartItem);
-      renderCart();
-      showToast("Item removido da sacola.");
-    });
-  });
-}
-
-function openCart() {
-  const overlay = $("cartOverlay");
-  const drawer = $("cartDrawer");
-  if (!overlay || !drawer) return;
-
-  overlay.classList.add("open");
-  overlay.setAttribute("aria-hidden", "false");
-  drawer.setAttribute("aria-hidden", "false");
-  document.body.classList.add("modal-open");
-}
-
-function closeCart() {
-  $("cartOverlay")?.classList.remove("open");
-  $("cartOverlay")?.setAttribute("aria-hidden", "true");
-  $("cartDrawer")?.setAttribute("aria-hidden", "true");
-
-  if (!$("productModal")?.classList.contains("open"))
-    document.body.classList.remove("modal-open");
-}
-
-function setupCart() {
-  ["openCart", "footerOpenCart"].forEach(id =>
-    $(id)?.addEventListener("click", openCart));
-
-  [
-    "closeCart",
-    "closeCartBackdrop",
-    "continueShopping",
-    "continueShoppingFooter"
-  ].forEach(id => $(id)?.addEventListener("click", closeCart));
-
-  $("sendOrder")?.addEventListener("click", sendOrder);
-  renderCart();
-}
-
-function sendOrder() {
-  if (!cart.length) {
-    showToast("Sua sacola está vazia.");
-    return;
-  }
-
-  const lines = cart.map((item, index) => {
-    const itemTotal = item.price * item.quantity;
-    return [
-      `${index + 1}. ${item.name}`,
-      `   Cor: ${item.color}`,
-      `   Tamanho: ${item.size}`,
-      `   Quantidade: ${item.quantity}`,
-      `   Valor: ${money(itemTotal)}`,
-      item.lookName ? `   Combinação: ${item.lookName}` : ""
-    ].filter(Boolean).join("\n");
-  });
-
-  const message = [
-    "Olá! Quero fazer um pedido na Guerreiro Store.",
-    "",
-    "MEU PEDIDO:",
-    "",
-    ...lines,
-    "",
-    `TOTAL: ${money(getCartTotal())}`,
-    "",
-    "Por favor, confirmem a disponibilidade das peças."
-  ].join("\n");
-
-  const url = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
-  window.open(url, "_blank", "noopener,noreferrer");
-}
-
-function setupMobileMenu() {
-  const button = $("menuToggle");
-  const nav = $("mainNav");
-  if (!button || !nav) return;
-
-  button.addEventListener("click", () => {
-    const opening = !nav.classList.contains("open");
-    nav.classList.toggle("open", opening);
-    button.setAttribute("aria-expanded", String(opening));
-    button.setAttribute("aria-label", opening ? "Fechar menu" : "Abrir menu");
-  });
-
-  nav.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      nav.classList.remove("open");
-      button.setAttribute("aria-expanded", "false");
-      button.setAttribute("aria-label", "Abrir menu");
-    });
-  });
-}
-
-function setupBackToTop() {
-  const button = $("backToTop");
-  if (!button) return;
-
-  const updateVisibility = () => {
-    button.classList.toggle("show", window.scrollY > 450);
-  };
-
-  window.addEventListener("scroll", updateVisibility, { passive: true });
-  updateVisibility();
-
-  button.addEventListener("click", () =>
-    window.scrollTo({ top: 0, behavior: "smooth" }));
-}
-
-function setupPage() {
-  if ($("year")) $("year").textContent = String(new Date().getFullYear());
-
-  setupCatalog();
-  setupProductModal();
-  setupCart();
-  setupMobileMenu();
-  setupBackToTop();
-
-  $("addLookToCart")?.addEventListener("click", addCustomLook);
-
-  renderProducts();
-  renderLooks();
-  renderBuilderProducts();
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", setupPage);
-} else {
-  setupPage();
-             }
+renderProdutos();
+renderLooks();
+renderMontagem();
+atualizarSacola();

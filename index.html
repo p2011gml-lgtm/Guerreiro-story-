@@ -13,39 +13,81 @@
   <header class="topo">
     <a class="logo" href="#inicio">GUERREIRO <span>STORY</span></a>
     <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+
     <nav id="menu">
       <a href="#inicio">Início</a>
       <a href="#produtos">Produtos</a>
       <a href="#looks">Looks prontos</a>
       <a href="#montar">Monte seu look</a>
     </nav>
-    <button class="sacola-btn" id="abrirSacola">Sacola (<span id="contadorSacola">0</span>)</button>
+
+    <button class="sacola-btn" id="abrirSacola">
+      Sacola (<span id="contadorSacola">0</span>)
+    </button>
   </header>
 
   <main>
-    <section class="hero" id="inicio">
+    <section class="hero hero-inicial" id="inicio">
       <div class="hero-texto">
         <p class="etiqueta">MODA MASCULINA • GUERREIRO STORY</p>
         <h1>Vista sua <em>melhor versão.</em></h1>
         <p>Estilo, presença e personalidade em cada detalhe.</p>
-        <a class="botao dourado" href="#produtos">EXPLORAR COLEÇÃO</a>
+
+        <a class="botao dourado" href="#produtos" id="verMais">
+          VER MAIS
+        </a>
+
+        <div class="paleta-capa" aria-label="Escolha a cor da Camisa Dubai">
+          <span>ESCOLHA A COR</span>
+
+          <button type="button"
+            class="cor-capa selecionada"
+            data-capa="01_1000073883_peca_01.jpg"
+            style="--cor-capa:#171717"
+            aria-label="Preta"
+            title="Preta"></button>
+
+          <button type="button"
+            class="cor-capa"
+            data-capa="02_1000073883_peca_02.jpg"
+            style="--cor-capa:#f3f0e9"
+            aria-label="Branca"
+            title="Branca"></button>
+
+          <button type="button"
+            class="cor-capa"
+            data-capa="03_1000073883_peca_03.jpg"
+            style="--cor-capa:#41658a"
+            aria-label="Azul"
+            title="Azul"></button>
+        </div>
       </div>
+
       <div class="hero-foto">
-        <img src="./produto-01.jpg" alt="Peça da coleção Guerreiro Story">
+        <img id="capaDestaque"
+          src="./01_1000073883_peca_01.jpg"
+          alt="Camisa Dubai preta da Guerreiro Story">
+
         <span>ESTILO QUE MARCA PRESENÇA</span>
       </div>
     </section>
 
     <div class="faixa">
-      <span>ESTILO</span> ✦ <span>QUALIDADE</span> ✦
-      <span>PERSONALIDADE</span> ✦ <span>GUERREIRO STORY</span>
+      <span>ESTILO</span> ✦
+      <span>QUALIDADE</span> ✦
+      <span>PERSONALIDADE</span> ✦
+      <span>GUERREIRO STORY</span>
     </div>
 
-    <section class="secao" id="produtos">
+    <section class="secao catalogo-escondido" id="produtos">
       <div class="cabecalho">
-        <div><p class="etiqueta">ESCOLHA SUA PEÇA</p><h2>Nosso catálogo</h2></div>
+        <div>
+          <p class="etiqueta">ESCOLHA SUA PEÇA</p>
+          <h2>Nosso catálogo</h2>
+        </div>
         <p>Encontre as peças que combinam com você.</p>
       </div>
+
       <div class="filtros" id="filtros">
         <button class="filtro ativo" data-categoria="todos">Todos</button>
         <button class="filtro" data-categoria="camisas">Camisas</button>
@@ -53,33 +95,50 @@
         <button class="filtro" data-categoria="shorts">Shorts e bermudas</button>
         <button class="filtro" data-categoria="regatas">Regatas</button>
       </div>
+
       <div class="grade-produtos" id="gradeProdutos"></div>
     </section>
 
     <section class="secao secao-escura" id="looks">
       <div class="cabecalho">
-        <div><p class="etiqueta">COMBINAÇÕES ESPECIAIS</p><h2>Looks prontos</h2></div>
+        <div>
+          <p class="etiqueta">COMBINAÇÕES ESPECIAIS</p>
+          <h2>Looks prontos</h2>
+        </div>
         <p>Combinações selecionadas com 5% de desconto.</p>
       </div>
+
       <div class="grade-looks" id="gradeLooks"></div>
     </section>
 
     <section class="secao" id="montar">
       <div class="cabecalho">
-        <div><p class="etiqueta">SEU ESTILO, SUAS REGRAS</p><h2>Monte seu look</h2></div>
+        <div>
+          <p class="etiqueta">SEU ESTILO, SUAS REGRAS</p>
+          <h2>Monte seu look</h2>
+        </div>
         <p>Selecione as peças e veja o total atualizar.</p>
       </div>
+
       <div class="montador">
         <div>
           <h3>Escolha as peças</h3>
           <div id="opcoesMontagem" class="opcoes-montagem"></div>
         </div>
+
         <aside class="resumo">
           <p class="etiqueta">SUA COMBINAÇÃO</p>
           <h3>Resumo do look</h3>
           <div id="resumoMontagem">Selecione uma ou mais peças.</div>
-          <div class="total"><span>Total</span><strong id="totalMontagem">R$ 0,00</strong></div>
-          <button class="botao dourado largura" id="adicionarLook">ADICIONAR À SACOLA</button>
+
+          <div class="total">
+            <span>Total</span>
+            <strong id="totalMontagem">R$ 0,00</strong>
+          </div>
+
+          <button class="botao dourado largura" id="adicionarLook">
+            ADICIONAR À SACOLA
+          </button>
         </aside>
       </div>
     </section>
@@ -91,18 +150,35 @@
     <small>© 2026 Guerreiro Story</small>
   </footer>
 
-  <button class="whatsapp-flutuante" id="whatsappFlutuante" aria-label="WhatsApp">✆</button>
+  <button class="whatsapp-flutuante"
+    id="whatsappFlutuante"
+    aria-label="WhatsApp">✆</button>
 
   <div class="fundo-modal" id="fundoModal">
-    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloSacola">
+    <section class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="tituloSacola">
+
       <div class="modal-topo">
         <h2 id="tituloSacola">Minha sacola</h2>
         <button class="fechar" id="fecharSacola" aria-label="Fechar">×</button>
       </div>
+
       <div id="itensSacola"></div>
-      <div class="total"><span>Total do pedido</span><strong id="totalSacola">R$ 0,00</strong></div>
-      <button class="botao dourado largura" id="enviarPedido">FINALIZAR PELO WHATSAPP</button>
-      <button class="botao contorno largura" id="continuarComprando">CONTINUAR COMPRANDO</button>
+
+      <div class="total">
+        <span>Total do pedido</span>
+        <strong id="totalSacola">R$ 0,00</strong>
+      </div>
+
+      <button class="botao dourado largura" id="enviarPedido">
+        FINALIZAR PELO WHATSAPP
+      </button>
+
+      <button class="botao contorno largura" id="continuarComprando">
+        CONTINUAR COMPRANDO
+      </button>
     </section>
   </div>
 

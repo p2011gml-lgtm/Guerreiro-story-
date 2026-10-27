@@ -1,3 +1,4 @@
+
 /* ==========================================
    GUERREIRO STORY — SCRIPT COMPLETO
    Catálogo, looks, sacola e WhatsApp
@@ -43,7 +44,6 @@ const products = [
   { id: 29, name: "Regata", category: "Regatas", color: "Laranja", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-34.jpg" },
   { id: 30, name: "Regata", category: "Regatas", color: "Bege", price: 87.00, sizes: "Consultar disponibilidade", img: "produto-28.jpg" },
 
-  // CAMISA CANELADA
   { id: 31, name: "Camisa Canelada", category: "Camisas", color: "Marrom", price: 87.00, sizes: "M", img: "produto-36.jpg" },
   { id: 32, name: "Camisa Canelada", category: "Camisas", color: "Branca", price: 87.00, sizes: "M", img: "produto-37.jpg" },
   { id: 33, name: "Camisa Canelada", category: "Camisas", color: "Bege", price: 87.00, sizes: "M", img: "produto-38.jpg" }
@@ -267,9 +267,8 @@ function addDetailToCart() {
   addProductToCart(selectedVariant, size || "A confirmar");
   closeProduct();
   showToast("Produto adicionado à sacola!");
-}
-
-/* FIM DA PARTE 1 — continue com a Parte 2 abaixo */
+   }
+       
 /* LOOKS PRONTOS */
 
 const looks = [
@@ -492,8 +491,8 @@ function addReadyLook(index) {
   renderCart();
   openCart();
   showToast("Look adicionado à sacola!");
-}
-
+       }
+     
 /* MONTE SEU LOOK */
 
 function renderBuilder() {
@@ -687,7 +686,7 @@ function closeCart() {
   if (!$("productModal")?.classList.contains("open")) {
     document.body.classList.remove("locked");
   }
-}
+                                                          }
 
 /* PEDIDO PELO WHATSAPP */
 
@@ -809,4 +808,4 @@ if (document.readyState === "loading") {
   );
 } else {
   initializeStore();
-                              }
+     }

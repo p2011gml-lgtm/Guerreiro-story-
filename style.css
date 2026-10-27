@@ -2399,3 +2399,154 @@ body.modal-open {
 
 /* FIM DO CSS — PARTE 2 */
    
+
+/* ==========================================
+   GUERREIRO STORY — CORREÇÃO DAS IMAGENS
+   Cole este bloco no FINAL do style.css
+========================================== */
+
+/* Fotos dos produtos no catálogo */
+.product-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e9e4db;
+}
+
+.product-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  transition: transform 0.35s ease;
+}
+
+/* Fotos dos looks prontos */
+.look-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e9e4db;
+}
+
+.look-images img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+}
+
+/* Miniaturas das fotos dos looks */
+.look-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #191714;
+}
+
+.look-thumb {
+  width: 64px;
+  height: 80px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #39332a;
+  background: #e9e4db;
+  cursor: pointer;
+}
+
+.look-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.look-thumb.active {
+  border-color: #e8c58c;
+}
+
+/* Fotos do montador de looks */
+.builder-product img,
+.builder-choice-image,
+.builder-selected-item img {
+  object-fit: contain;
+  object-position: center center;
+  background: #e9e4db;
+}
+
+.builder-product img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
+}
+
+.builder-selected-item img {
+  width: 66px;
+  height: 78px;
+}
+
+/* Fotos dentro da sacola */
+.cart-item > img {
+  width: 90px;
+  height: 110px;
+  object-fit: contain;
+  object-position: center center;
+  background: #e9e4db;
+}
+
+/* Foto ampliada do produto, se existir */
+.product-modal img,
+.product-detail-image {
+  object-fit: contain;
+  object-position: center center;
+  background: #e9e4db;
+}
+
+/* Evita que as imagens ultrapassem os cartões */
+.product-card,
+.look-card,
+.builder-product,
+.cart-item {
+  min-width: 0;
+}
+
+.product-image img,
+.look-images img,
+.builder-product img,
+.cart-item > img {
+  max-width: 100%;
+}
+
+/* Ajustes para celular */
+@media (max-width: 600px) {
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 12px;
+  }
+
+  .product-image {
+    aspect-ratio: 3 / 4;
+  }
+
+  .look-images {
+    aspect-ratio: 4 / 5;
+  }
+
+  .builder-product-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cart-item > img {
+    width: 76px;
+    height: 96px;
+  }
+   }
+   

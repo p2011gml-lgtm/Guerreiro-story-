@@ -1,471 +1,500 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Guerreiro Story | Moda Masculina</title>
-
-  <meta
-    name="description"
-    content="Descubra a coleção Guerreiro Story. Moda masculina, combinações exclusivas e looks para todos os momentos."
-  >
-
   <meta name="theme-color" content="#11100e">
+  <meta name="description" content="Guerreiro Store — moda masculina, estilo e personalidade. Descubra nossas peças e monte seu look.">
+
+  <title>Guerreiro Store | Moda Masculina</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
-    rel="stylesheet"
-  >
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
+  <div class="announcement">
+    <p>GUERREIRO STORE <span>•</span> ESTILO QUE MARCA PRESENÇA</p>
+  </div>
 
-  <!-- CABEÇALHO -->
-  <header class="header">
+  <header class="site-header" id="topo">
+    <div class="header-inner">
+      <a class="brand" href="#topo" aria-label="Guerreiro Store — página inicial">
+        <span class="brand-main">GUERREIRO</span>
+        <span class="brand-sub">STORE</span>
+      </a>
 
-    <a href="#inicio" class="brand" aria-label="Guerreiro Story - início">
-      <span class="brand-mark">GS</span>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        aria-controls="mainNav"
+      >
+        <span></span><span></span><span></span>
+      </button>
 
-      <span>
-        GUERREIRO <b>STORY</b>
-      </span>
-    </a>
+      <nav class="main-nav" id="mainNav" aria-label="Navegação principal">
+        <a href="#catalogo">Produtos</a>
+        <a href="#looks">Looks prontos</a>
+        <a href="#montar-look">Monte seu look</a>
+      </nav>
 
-    <button
-      class="menu-btn"
-      id="menuBtn"
-      type="button"
-      aria-label="Abrir menu"
-      aria-expanded="false"
-    >
-      ☰
-    </button>
-
-    <nav class="nav" id="nav">
-      <a href="#inicio">INÍCIO</a>
-      <a href="#produtos">COLEÇÃO</a>
-      <a href="#looks">LOOKS PRONTOS</a>
-      <a href="#montar">MONTE SEU LOOK</a>
-    </nav>
-
-    <button class="cart-open" id="openCart" type="button">
-      SACOLA
-      <span id="cartCount">0</span>
-    </button>
-
+      <button class="cart-trigger" id="openCart" type="button" aria-label="Abrir sacola">
+        <span>Sacola</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
   </header>
 
-
   <main>
-
     <!-- CAPA -->
-    <section class="hero" id="inicio">
-
-      <div class="hero-copy">
-
-        <span class="eyebrow">
-          GUERREIRO STORY · MODA MASCULINA
-        </span>
-
-        <h1>
-          Seu estilo.<br>
-          Sua <em>história.</em>
-        </h1>
-
-        <p>
-          Peças selecionadas para homens que valorizam personalidade,
-          elegância e autenticidade em cada detalhe.
-        </p>
-
-        <a href="#produtos" class="btn btn-gold">
-          VER COLEÇÃO
-          <span>↗</span>
-        </a>
-
-        <div class="hero-note">
-          <span></span>
-          ESTILO QUE MARCA PRESENÇA
-        </div>
-
-      </div>
-
-      <div class="hero-art">
-
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-image" aria-hidden="true">
         <img
           src="capa.jpg"
-          alt="Imagem de destaque da Guerreiro Story"
-          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"
+          alt=""
+          fetchpriority="high"
+          onerror="this.style.display='none'"
         >
-
-        <div class="hero-fallback">
-          <strong>GS</strong>
-          <span>GUERREIRO STORY</span>
-          <small>MODA MASCULINA</small>
-        </div>
-
-        <div class="hero-stamp">
-          GS
-          <small>EST. STYLE</small>
-        </div>
-
       </div>
 
-    </section>
+      <div class="hero-overlay"></div>
 
+      <div class="hero-content">
+        <p class="eyebrow">MODA MASCULINA • NOVA COLEÇÃO</p>
 
-    <!-- CATÁLOGO -->
-    <section class="section" id="produtos">
+        <h1 id="heroTitle">
+          Seu estilo.<br>
+          <span>Sua presença.</span>
+        </h1>
 
-      <div class="section-heading">
-
-        <div>
-          <span class="eyebrow">ENCONTRE SEU ESTILO</span>
-          <h2>Nossa <em>coleção</em></h2>
-        </div>
-
-        <p>
-          Explore nossas peças, confira as opções de cores e escolha
-          os tamanhos disponíveis.
+        <p class="hero-description">
+          Peças escolhidas para quem sabe que os detalhes fazem a diferença.
         </p>
 
+        <a class="btn btn-primary" href="#catalogo">EXPLORAR COLEÇÃO</a>
+
+        <div class="hero-note">
+          <span class="hero-note-line"></span>
+          <span>GUERREIRO STORE</span>
+        </div>
       </div>
 
-      <div class="filters" id="filters">
-
-        <button class="filter active" data-filter="Todos" type="button">
-          Todos
-        </button>
-
-        <button class="filter" data-filter="Camisas" type="button">
-          Camisas
-        </button>
-
-        <button class="filter" data-filter="Shorts" type="button">
-          Shorts
-        </button>
-
-        <button class="filter" data-filter="Bermudas" type="button">
-          Bermudas
-        </button>
-
-        <button class="filter" data-filter="T-shirts" type="button">
-          T-shirts
-        </button>
-
-        <button class="filter" data-filter="Regatas" type="button">
-          Regatas
-        </button>
-
-      </div>
-
-      <div class="product-grid" id="productGrid">
-        <!-- Os produtos serão carregados pelo JavaScript. -->
-      </div>
-
+      <a class="hero-scroll" href="#catalogo" aria-label="Descer até os produtos">
+        <span>DESCUBRA</span>
+        <span aria-hidden="true">↓</span>
+      </a>
     </section>
 
+    <!-- BENEFÍCIOS -->
+    <section class="benefits" aria-label="Destaques da loja">
+      <div class="benefit">
+        <span class="benefit-symbol" aria-hidden="true">✦</span>
+        <div>
+          <strong>Estilo autêntico</strong>
+          <p>Peças para expressar sua personalidade</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <span class="benefit-symbol" aria-hidden="true">◇</span>
+        <div>
+          <strong>Escolha seu look</strong>
+          <p>Combine peças do seu jeito</p>
+        </div>
+      </div>
+
+      <div class="benefit">
+        <span class="benefit-symbol" aria-hidden="true">↗</span>
+        <div>
+          <strong>Pedido pelo WhatsApp</strong>
+          <p>Envie sua seleção para a loja</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO -->
+    <section class="section catalog-section" id="catalogo">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ESCOLHA SUA PRÓXIMA PEÇA</p>
+          <h2>O catálogo <span>Guerreiro</span></h2>
+        </div>
+
+        <p class="section-description">
+          Explore as peças, confira as opções disponíveis e encontre seu estilo.
+        </p>
+      </div>
+
+      <div class="catalog-toolbar">
+        <label class="search-box" for="productSearch">
+          <span aria-hidden="true">⌕</span>
+          <input
+            id="productSearch"
+            type="search"
+            placeholder="Buscar uma peça..."
+            autocomplete="off"
+          >
+        </label>
+
+        <label class="sort-box" for="productSort">
+          <span>Ordenar:</span>
+          <select id="productSort">
+            <option value="default">Recomendados</option>
+            <option value="price-asc">Menor preço</option>
+            <option value="price-desc">Maior preço</option>
+            <option value="name">Nome A–Z</option>
+          </select>
+        </label>
+      </div>
+
+      <div
+        class="category-filters"
+        id="categoryFilters"
+        role="group"
+        aria-label="Filtrar produtos por categoria"
+      >
+        <button class="filter-btn active" type="button" data-category="Todos" aria-pressed="true">
+          Todos
+        </button>
+        <button class="filter-btn" type="button" data-category="Camisas Dubai" aria-pressed="false">
+          Camisas Dubai
+        </button>
+        <button class="filter-btn" type="button" data-category="Shorts de Linho" aria-pressed="false">
+          Shorts de Linho
+        </button>
+        <button class="filter-btn" type="button" data-category="T-shirt Texturizada" aria-pressed="false">
+          T-shirt Texturizada
+        </button>
+        <button class="filter-btn" type="button" data-category="Bermudas de Brim" aria-pressed="false">
+          Bermudas de Brim
+        </button>
+        <button class="filter-btn" type="button" data-category="Regatas" aria-pressed="false">
+          Regatas
+        </button>
+        <button class="filter-btn" type="button" data-category="T-shirts de Tricô" aria-pressed="false">
+          T-shirts de Tricô
+        </button>
+        <button class="filter-btn" type="button" data-category="T-shirts de Algodão" aria-pressed="false">
+          T-shirts de Algodão
+        </button>
+        <button class="filter-btn" type="button" data-category="Outras peças" aria-pressed="false">
+          Outras peças
+        </button>
+      </div>
+
+      <div class="catalog-summary">
+        <p id="productResultCount" aria-live="polite">Carregando produtos...</p>
+      </div>
+
+      <div class="product-grid" id="productGrid" aria-live="polite">
+        <!-- Os cards dos produtos serão criados pelo script.js -->
+      </div>
+
+      <div class="empty-state" id="productEmpty" hidden>
+        <span aria-hidden="true">⌕</span>
+        <h3>Nenhuma peça encontrada</h3>
+        <p>Tente outra busca ou escolha uma categoria diferente.</p>
+        <button class="btn btn-outline" id="clearProductFilters" type="button">
+          Limpar filtros
+        </button>
+      </div>
+    </section>
+
+    <!-- BANNER ENTRE AS SEÇÕES -->
+    <section class="style-banner">
+      <div class="style-banner-content">
+        <p class="eyebrow">VISTA SUA PERSONALIDADE</p>
+        <h2>Não é só uma roupa.<br><span>É o seu jeito de chegar.</span></h2>
+        <a class="btn btn-primary" href="#montar-look">MONTE SEU LOOK</a>
+      </div>
+    </section>
 
     <!-- LOOKS PRONTOS -->
     <section class="section looks-section" id="looks">
-
       <div class="section-heading">
-
         <div>
-          <span class="eyebrow">COMBINAÇÕES SELECIONADAS</span>
-          <h2>Looks <em>prontos</em></h2>
+          <p class="eyebrow">COMBINAÇÕES SELECIONADAS</p>
+          <h2>Looks <span>prontos</span></h2>
         </div>
 
-        <p>
-          Escolha uma combinação completa e aproveite 5% de desconto
-          sobre o valor original das peças.
+        <p class="section-description">
+          Combinações de peças do catálogo para facilitar sua escolha.
         </p>
-
       </div>
 
-      <div class="look-grid" id="lookGrid">
-        <!-- Os looks serão carregados pelo JavaScript. -->
+      <div class="discount-note">
+        <span class="discount-icon" aria-hidden="true">%</span>
+        <p>
+          <strong>5% de desconto</strong>
+          <span>na compra de um look pronto completo.</span>
+        </p>
       </div>
 
+      <div class="look-grid" id="lookGrid" aria-live="polite">
+        <!-- Os looks e os preços com desconto serão criados pelo script.js -->
+      </div>
+
+      <div class="empty-state" id="lookEmpty" hidden>
+        <h3>Looks em preparação</h3>
+        <p>Confira o catálogo enquanto as combinações são carregadas.</p>
+      </div>
     </section>
-
 
     <!-- MONTE SEU LOOK -->
-    <section class="section" id="montar">
-
-      <div class="section-heading">
-
-        <div>
-          <span class="eyebrow">VOCÊ ESCOLHE A COMBINAÇÃO</span>
-          <h2>Monte seu <em>look</em></h2>
-        </div>
-
+    <section class="builder-section" id="montar-look">
+      <div class="builder-intro">
+        <p class="eyebrow">SEU ESTILO, SUAS REGRAS</p>
+        <h2>Monte seu <span>look</span></h2>
         <p>
-          Selecione as peças que deseja combinar e acompanhe
-          o valor total da sua seleção.
+          Escolha as peças que você quer combinar. O valor será atualizado
+          conforme sua seleção.
         </p>
 
+        <div class="builder-steps">
+          <div><span>01</span> Escolha as peças</div>
+          <div><span>02</span> Selecione cor e tamanho</div>
+          <div><span>03</span> Confira e envie seu pedido</div>
+        </div>
       </div>
 
-      <div class="builder-layout">
-
-        <div class="builder-list" id="builderList">
-          <!-- As peças serão carregadas pelo JavaScript. -->
+      <div class="builder-panel">
+        <div class="builder-panel-heading">
+          <div>
+            <p class="eyebrow">CRIE SUA COMBINAÇÃO</p>
+            <h3>Suas escolhas</h3>
+          </div>
+          <span class="builder-item-count" id="builderCount">0 peças</span>
         </div>
 
-        <aside class="builder-summary">
+        <div class="builder-list" id="builderList">
+          <!-- As peças selecionáveis serão criadas pelo script.js -->
+        </div>
 
-          <span class="eyebrow">SUA COMBINAÇÃO</span>
+        <div class="builder-empty" id="builderEmpty">
+          <span aria-hidden="true">＋</span>
+          <p>Selecione uma peça abaixo para começar sua combinação.</p>
+        </div>
 
-          <h3>Seu estilo, suas escolhas.</h3>
-
-          <p>
-            Monte uma combinação com as peças que você mais gosta.
-          </p>
-
-          <div class="summary-line">
-            <span>Peças selecionadas</span>
-            <strong id="builderCount">0</strong>
-          </div>
-
-          <div class="summary-line total-line">
-            <span>Valor total</span>
+        <div class="builder-total">
+          <div>
+            <span>Valor do seu look</span>
             <strong id="builderTotal">R$ 0,00</strong>
           </div>
-
-          <button class="btn btn-gold full" id="addLook" type="button">
+          <button class="btn btn-primary" id="addLookToCart" type="button" disabled>
             ADICIONAR À SACOLA
           </button>
-
-          <small>
-            Os tamanhos e a disponibilidade serão confirmados
-            no atendimento pelo WhatsApp.
-          </small>
-
-        </aside>
-
+        </div>
       </div>
 
+      <div class="builder-products">
+        <div class="builder-products-heading">
+          <h3>Escolha as peças</h3>
+          <p>Adicione os produtos que deseja combinar.</p>
+        </div>
+
+        <div class="builder-product-list" id="builderProductList">
+          <!-- Opções de produtos serão criadas pelo script.js -->
+        </div>
+      </div>
     </section>
 
-
     <!-- CHAMADA FINAL -->
-    <section class="last-cta">
-
-      <span class="eyebrow">GUERREIRO STORY</span>
-
-      <h2>
-        Vista sua <em>história.</em>
-      </h2>
-
-      <a href="#produtos" class="btn btn-gold">
-        EXPLORAR COLEÇÃO ↗
-      </a>
-
+    <section class="closing-section">
+      <p class="eyebrow">GUERREIRO STORE</p>
+      <h2>Seu próximo look<br><span>começa aqui.</span></h2>
+      <a class="btn btn-primary" href="#catalogo">VER PRODUTOS</a>
     </section>
 
   </main>
 
-
   <!-- RODAPÉ -->
-  <footer class="footer">
+  <footer class="site-footer">
+    <div class="footer-main">
+      <a class="brand footer-brand" href="#topo" aria-label="Voltar ao início">
+        <span class="brand-main">GUERREIRO</span>
+        <span class="brand-sub">STORE</span>
+      </a>
 
-    <a href="#inicio" class="brand">
-      <span class="brand-mark">GS</span>
+      <p class="footer-description">
+        Moda masculina para quem valoriza estilo, personalidade e presença.
+      </p>
 
-      <span>
-        GUERREIRO <b>STORY</b>
-      </span>
-    </a>
+      <a class="footer-link" href="#catalogo">Explorar produtos ↗</a>
+    </div>
 
-    <p>
-      Moda masculina com personalidade.
-    </p>
+    <div class="footer-links">
+      <h3>Explore</h3>
+      <a href="#catalogo">Produtos</a>
+      <a href="#looks">Looks prontos</a>
+      <a href="#montar-look">Monte seu look</a>
+    </div>
 
-    <span>
-      © <span id="year"></span> Guerreiro Story
-    </span>
+    <div class="footer-links">
+      <h3>Atendimento</h3>
+      <a href="#catalogo">Escolher produtos</a>
+      <button class="footer-button" id="footerOpenCart" type="button">
+        Minha sacola
+      </button>
+    </div>
 
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Guerreiro Store. Todos os direitos reservados.</p>
+      <a href="#topo">Voltar ao topo ↑</a>
+    </div>
   </footer>
 
-
-  <!-- JANELA DE DETALHES DO PRODUTO -->
-  <div
-    class="modal-backdrop"
-    id="productModal"
-    aria-hidden="true"
-  >
+  <!-- MODAL DE DETALHES DO PRODUTO -->
+  <div class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-product-modal></div>
 
     <section
-      class="product-modal"
+      class="modal-dialog product-dialog"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="detailName"
+      aria-labelledby="modalProductName"
     >
-
       <button
         class="modal-close"
-        id="closeProduct"
         type="button"
+        data-close-product-modal
         aria-label="Fechar detalhes do produto"
-      >
-        ×
-      </button>
+      >×</button>
 
-      <div class="detail-image">
-        <img
-          id="detailImage"
-          src="produto-01.jpg"
-          alt="Produto selecionado"
-        >
-      </div>
-
-      <div class="detail-info">
-
-        <span class="eyebrow" id="detailCategory">
-          DETALHES DO PRODUTO
-        </span>
-
-        <h2 id="detailName">
-          Produto
-        </h2>
-
-        <div class="detail-price" id="detailPrice">
-          R$ 0,00
+      <div class="product-detail-layout">
+        <div class="product-detail-image">
+          <img id="modalProductImage" src="" alt="">
         </div>
 
-        <p class="detail-description">
-          Escolha a cor e o tamanho para adicionar a peça à sua sacola.
-        </p>
+        <div class="product-detail-info">
+          <p class="eyebrow" id="modalProductCategory">GUERREIRO STORE</p>
+          <h2 id="modalProductName">Produto</h2>
+          <p class="product-detail-price" id="modalProductPrice">R$ 0,00</p>
+          <p class="product-detail-description" id="modalProductDescription"></p>
 
-        <label class="option-label">
-          COR:
-          <strong id="selectedColorLabel"></strong>
-        </label>
+          <label class="field-label" for="modalProductColor">Cor</label>
+          <select id="modalProductColor">
+            <option value="">Selecione uma cor</option>
+          </select>
 
-        <div class="color-options" id="colorOptions">
-          <!-- As opções de cores serão criadas pelo JavaScript. -->
+          <label class="field-label" for="modalProductSize">Tamanho</label>
+          <select id="modalProductSize">
+            <option value="">Selecione um tamanho</option>
+          </select>
+
+          <div class="detail-quantity">
+            <label class="field-label" for="modalProductQuantity">Quantidade</label>
+            <div class="quantity-control">
+              <button type="button" id="modalQuantityMinus" aria-label="Diminuir quantidade">−</button>
+              <input id="modalProductQuantity" type="number" min="1" max="20" value="1" inputmode="numeric">
+              <button type="button" id="modalQuantityPlus" aria-label="Aumentar quantidade">+</button>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-full" id="addProductToCart" type="button">
+            ADICIONAR À SACOLA
+          </button>
+
+          <p class="modal-feedback" id="productModalFeedback" aria-live="polite"></p>
         </div>
-
-        <label class="option-label" for="detailSize">
-          TAMANHO:
-        </label>
-
-        <select class="size-select" id="detailSize">
-          <option value="">Selecione o tamanho</option>
-        </select>
-
-        <button
-          class="btn btn-gold full"
-          id="addDetail"
-          type="button"
-        >
-          ADICIONAR À SACOLA
-        </button>
-
-        <p class="detail-hint">
-          A disponibilidade será confirmada durante o atendimento.
-        </p>
-
       </div>
-
     </section>
-
   </div>
 
+  <!-- SACOLA LATERAL -->
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true">
+    <button
+      class="cart-backdrop"
+      id="closeCartBackdrop"
+      type="button"
+      aria-label="Fechar sacola"
+    ></button>
 
-  <!-- FUNDO DA SACOLA -->
-  <div class="overlay" id="overlay"></div>
+    <aside
+      class="cart-drawer"
+      id="cartDrawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="cartTitle"
+      aria-hidden="true"
+    >
+      <div class="cart-header">
+        <div>
+          <p class="eyebrow">SUAS ESCOLHAS</p>
+          <h2 id="cartTitle">Minha sacola</h2>
+        </div>
 
+        <button class="modal-close" id="closeCart" type="button" aria-label="Fechar sacola">
+          ×
+        </button>
+      </div>
 
-  <!-- SACOLA DE COMPRAS -->
-  <aside
-    class="cart-drawer"
-    id="cartDrawer"
-    aria-label="Sua sacola de compras"
+      <div class="cart-items" id="cartItems" aria-live="polite">
+        <!-- Itens da sacola serão criados pelo script.js -->
+      </div>
+
+      <div class="cart-empty" id="cartEmpty">
+        <span aria-hidden="true">◇</span>
+        <h3>Sua sacola está vazia</h3>
+        <p>Explore o catálogo e escolha suas peças favoritas.</p>
+        <button class="btn btn-outline" id="continueShopping" type="button">
+          EXPLORAR PRODUTOS
+        </button>
+      </div>
+
+      <div class="cart-footer" id="cartFooter">
+        <div class="cart-subtotal">
+          <span>Subtotal</span>
+          <strong id="cartSubtotal">R$ 0,00</strong>
+        </div>
+
+        <p class="cart-notice">
+          Confira cores e tamanhos antes de enviar seu pedido.
+        </p>
+
+        <button class="btn btn-primary btn-full" id="sendOrder" type="button">
+          ENVIAR PEDIDO PELO WHATSAPP
+        </button>
+
+        <button class="cart-continue" id="continueShoppingFooter" type="button">
+          Continuar comprando
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- MENSAGENS TEMPORÁRIAS -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon" aria-hidden="true">✓</span>
+    <span id="toastMessage">Produto adicionado à sacola.</span>
+  </div>
+
+  <!-- BOTÃO FLUTUANTE -->
+  <a
+    class="whatsapp-float"
+    id="whatsappFloat"
+    href="https://wa.me/557588033637"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Falar com a Guerreiro Store pelo WhatsApp"
   >
+    <span aria-hidden="true">✆</span>
+    <span>Fale conosco</span>
+  </a>
 
-    <div class="cart-heading">
-
-      <div>
-        <span class="eyebrow">GUERREIRO STORY</span>
-        <h2>Sua sacola</h2>
-      </div>
-
-      <button
-        class="modal-close"
-        id="closeCart"
-        type="button"
-        aria-label="Fechar sacola"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <div class="cart-items" id="cartItems">
-      <p class="empty-cart">
-        Sua sacola está vazia. Escolha suas peças favoritas!
-      </p>
-    </div>
-
-    <div class="cart-bottom">
-
-      <div class="summary-line total-line">
-        <span>Total do pedido</span>
-        <strong id="cartTotal">R$ 0,00</strong>
-      </div>
-
-      <label for="customerName">
-        Seu nome
-      </label>
-
-      <input
-        id="customerName"
-        type="text"
-        placeholder="Digite seu nome"
-        autocomplete="name"
-      >
-
-      <label for="customerNote">
-        Observações do pedido
-      </label>
-
-      <textarea
-        id="customerNote"
-        rows="2"
-        placeholder="Ex.: dúvidas, preferências ou informações adicionais"
-      ></textarea>
-
-      <button
-        class="btn btn-gold full"
-        id="sendOrder"
-        type="button"
-      >
-        ENVIAR PEDIDO PELO WHATSAPP ↗
-      </button>
-
-      <small>
-        Seu pedido será enviado para a equipe da Guerreiro Story
-        confirmar os produtos, tamanhos e disponibilidade.
-      </small>
-
-    </div>
-
-  </aside>
-
-
-  <!-- AVISO DE AÇÃO -->
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-
-  <!-- JAVASCRIPT -->
-  <script src="script.js"></script>
+  <!-- ACESSIBILIDADE E INÍCIO DA PÁGINA -->
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Voltar ao topo">
+    ↑
+  </button>
 
 </body>
   </html>
+
+  

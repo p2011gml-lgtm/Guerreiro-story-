@@ -1,65 +1,51 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#11100e">
   <title>Guerreiro Story | Moda Masculina</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" defer></script>
 </head>
 <body>
   <header class="topo">
-    <a class="logo" href="#inicio">
-      <span>GUERREIRO</span>
-      <small>STORY</small>
-    </a>
-
+    <a class="logo" href="#inicio">GUERREIRO <span>STORY</span></a>
     <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
-
-    <nav class="menu" id="menu">
+    <nav id="menu">
       <a href="#inicio">Início</a>
       <a href="#produtos">Produtos</a>
       <a href="#looks">Looks prontos</a>
       <a href="#montar">Monte seu look</a>
     </nav>
-
-    <button class="sacola-topo" id="abrirSacola">
-      Sacola <span id="contadorSacola">0</span>
-    </button>
+    <button class="sacola-btn" id="abrirSacola">Sacola (<span id="contadorSacola">0</span>)</button>
   </header>
 
   <main>
     <section class="hero" id="inicio">
       <div class="hero-texto">
-        <span class="sobrelinha">GUERREIRO STORY • MODA MASCULINA</span>
-        <h1>Vista sua<br><em>melhor versão.</em></h1>
+        <p class="etiqueta">MODA MASCULINA • GUERREIRO STORY</p>
+        <h1>Vista sua <em>melhor versão.</em></h1>
         <p>Estilo, presença e personalidade em cada detalhe.</p>
         <a class="botao dourado" href="#produtos">EXPLORAR COLEÇÃO</a>
       </div>
-
       <div class="hero-foto">
-        <img src="capa.jpg" alt="Coleção Guerreiro Story"
-             onerror="this.style.display='none'">
-        <div class="hero-selo">ESTILO QUE<br>MARCA PRESENÇA</div>
+        <img src="./produto-01.jpg" alt="Peça da coleção Guerreiro Story">
+        <span>ESTILO QUE MARCA PRESENÇA</span>
       </div>
     </section>
 
-    <section class="faixa">
-      <span>ESTILO</span><b>✦</b>
-      <span>QUALIDADE</span><b>✦</b>
-      <span>PERSONALIDADE</span><b>✦</b>
-      <span>GUERREIRO STORY</span>
-    </section>
+    <div class="faixa">
+      <span>ESTILO</span> ✦ <span>QUALIDADE</span> ✦
+      <span>PERSONALIDADE</span> ✦ <span>GUERREIRO STORY</span>
+    </div>
 
     <section class="secao" id="produtos">
-      <div class="cabecalho-secao">
-        <div>
-          <span class="sobrelinha">ESCOLHA SUA PEÇA</span>
-          <h2>Nosso catálogo</h2>
-        </div>
-        <p>Peças para completar seu estilo.</p>
+      <div class="cabecalho">
+        <div><p class="etiqueta">ESCOLHA SUA PEÇA</p><h2>Nosso catálogo</h2></div>
+        <p>Encontre as peças que combinam com você.</p>
       </div>
-
       <div class="filtros" id="filtros">
         <button class="filtro ativo" data-categoria="todos">Todos</button>
         <button class="filtro" data-categoria="camisas">Camisas</button>
@@ -67,99 +53,59 @@
         <button class="filtro" data-categoria="shorts">Shorts e bermudas</button>
         <button class="filtro" data-categoria="regatas">Regatas</button>
       </div>
-
       <div class="grade-produtos" id="gradeProdutos"></div>
     </section>
 
-    <section class="secao secao-looks" id="looks">
-      <div class="cabecalho-secao">
-        <div>
-          <span class="sobrelinha">COMBINAÇÕES ESPECIAIS</span>
-          <h2>Looks prontos</h2>
-        </div>
-        <p>Escolha uma combinação e leve as peças com 5% de desconto.</p>
+    <section class="secao secao-escura" id="looks">
+      <div class="cabecalho">
+        <div><p class="etiqueta">COMBINAÇÕES ESPECIAIS</p><h2>Looks prontos</h2></div>
+        <p>Combinações selecionadas com 5% de desconto.</p>
       </div>
       <div class="grade-looks" id="gradeLooks"></div>
     </section>
 
-    <section class="secao montar-secao" id="montar">
-      <div class="cabecalho-secao">
-        <div>
-          <span class="sobrelinha">SEU ESTILO, SUAS REGRAS</span>
-          <h2>Monte seu look</h2>
-        </div>
-        <p>Selecione suas peças e veja o valor atualizar automaticamente.</p>
+    <section class="secao" id="montar">
+      <div class="cabecalho">
+        <div><p class="etiqueta">SEU ESTILO, SUAS REGRAS</p><h2>Monte seu look</h2></div>
+        <p>Selecione as peças e veja o total atualizar.</p>
       </div>
-
       <div class="montador">
         <div>
           <h3>Escolha as peças</h3>
           <div id="opcoesMontagem" class="opcoes-montagem"></div>
         </div>
-
-        <aside class="resumo-look">
-          <span class="sobrelinha">SUA COMBINAÇÃO</span>
+        <aside class="resumo">
+          <p class="etiqueta">SUA COMBINAÇÃO</p>
           <h3>Resumo do look</h3>
-          <div id="resumoMontagem">
-            <p class="vazio">Selecione uma ou mais peças para começar.</p>
-          </div>
-          <div class="total-linha">
-            <span>Total</span>
-            <strong id="totalMontagem">R$ 0,00</strong>
-          </div>
-          <button class="botao dourado largura-total" id="adicionarLook">
-            ADICIONAR À SACOLA
-          </button>
+          <div id="resumoMontagem">Selecione uma ou mais peças.</div>
+          <div class="total"><span>Total</span><strong id="totalMontagem">R$ 0,00</strong></div>
+          <button class="botao dourado largura" id="adicionarLook">ADICIONAR À SACOLA</button>
         </aside>
       </div>
     </section>
   </main>
-    <footer class="rodape">
-    <a class="logo" href="#inicio">
-      <span>GUERREIRO</span>
-      <small>STORY</small>
-    </a>
+
+  <footer>
+    <a class="logo" href="#inicio">GUERREIRO <span>STORY</span></a>
     <p>Vista sua essência. Marque sua história.</p>
-    <small>© 2026 Guerreiro Story. Todos os direitos reservados.</small>
+    <small>© 2026 Guerreiro Story</small>
   </footer>
 
-  <button class="whatsapp-flutuante" id="whatsappFlutuante"
-          aria-label="Fazer pedido pelo WhatsApp">✆</button>
+  <button class="whatsapp-flutuante" id="whatsappFlutuante" aria-label="WhatsApp">✆</button>
 
   <div class="fundo-modal" id="fundoModal">
-    <section class="modal-sacola" role="dialog" aria-modal="true"
-             aria-labelledby="tituloSacola">
-      <div class="modal-cabecalho">
-        <div>
-          <span class="sobrelinha">SEU PEDIDO</span>
-          <h2 id="tituloSacola">Minha sacola</h2>
-        </div>
-        <button id="fecharSacola" class="fechar-modal" aria-label="Fechar">×</button>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloSacola">
+      <div class="modal-topo">
+        <h2 id="tituloSacola">Minha sacola</h2>
+        <button class="fechar" id="fecharSacola" aria-label="Fechar">×</button>
       </div>
-
-      <div id="itensSacola" class="itens-sacola"></div>
-
-      <div class="total-linha">
-        <span>Total do pedido</span>
-        <strong id="totalSacola">R$ 0,00</strong>
-      </div>
-
-      <button class="botao dourado largura-total" id="enviarPedido">
-        FINALIZAR PELO WHATSAPP
-      </button>
-      <button class="botao contorno largura-total" id="continuarComprando">
-        CONTINUAR COMPRANDO
-      </button>
+      <div id="itensSacola"></div>
+      <div class="total"><span>Total do pedido</span><strong id="totalSacola">R$ 0,00</strong></div>
+      <button class="botao dourado largura" id="enviarPedido">FINALIZAR PELO WHATSAPP</button>
+      <button class="botao contorno largura" id="continuarComprando">CONTINUAR COMPRANDO</button>
     </section>
   </div>
 
-  <div class="fundo-modal" id="fundoProduto">
-    <section class="modal-produto" role="dialog" aria-modal="true">
-      <button id="fecharProduto" class="fechar-modal" aria-label="Fechar">×</button>
-      <div id="detalhesProduto"></div>
-    </section>
-  </div>
-
-  <script src="script.js"></script>
+  <div class="aviso" id="aviso" role="status"></div>
 </body>
 </html>

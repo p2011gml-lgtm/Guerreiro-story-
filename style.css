@@ -755,3 +755,53 @@ footer small {
     position: static;
   }
   }
+
+/* Fluxo da página inicial */
+body:not(.catalogo-aberto) #looks,
+body:not(.catalogo-aberto) #montar {
+  display: none;
+}
+
+body.catalogo-aberto #looks,
+body.catalogo-aberto #montar {
+  display: block;
+}
+
+@media (max-width: 420px) {
+  .hero-foto {
+    height: 280px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 11vw, 52px);
+  }
+
+  .filtro {
+    padding: 9px 10px;
+  }
+}
+
+/* Fluxo da página inicial */
+body:not(.catalogo-aberto) #looks,
+body:not(.catalogo-aberto) #montar {
+  display: none;
+}
+
+body.catalogo-aberto #looks,
+body.catalogo-aberto #montar {
+  display: block;
+}
+
+@media (max-width: 420px) {
+  .hero-foto {
+    height: 280px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 11vw, 52px);
+  }
+
+  .filtro {
+    padding: 9px 10px;
+  }
+}

@@ -495,3 +495,187 @@
       </article>
 
         </section>
+    <!-- MONTAR LOOK -->
+    <section class="secao-montar" id="montar-look">
+
+      <div class="montar-introducao">
+        <p class="texto-destaque">CRIE SUA COMBINAÇÃO</p>
+
+        <h2>
+          Monte seu<br>
+          próprio look.
+        </h2>
+
+        <p>
+          Escolha as peças que você deseja combinar e confira
+          sua seleção antes de enviar o pedido.
+        </p>
+      </div>
+
+      <div class="montar-conteudo">
+
+        <div class="montar-lista">
+
+          <div class="montar-categoria">
+            <h3>1. Escolha suas peças</h3>
+            <p>Selecione as roupas que deseja incluir.</p>
+          </div>
+
+          <div
+            id="pecas-para-montar"
+            class="grade-montar"
+          >
+            <!-- O JavaScript preencherá esta área. -->
+          </div>
+
+        </div>
+
+        <aside class="resumo-montagem">
+
+          <p class="texto-destaque">SUA SELEÇÃO</p>
+
+          <h3>Seu look</h3>
+
+          <div id="resumo-selecao">
+            Nenhuma peça selecionada ainda.
+          </div>
+
+          <div class="resumo-total">
+            <span>Total das peças</span>
+            <strong id="total-montagem">R$ 0,00</strong>
+          </div>
+
+          <button
+            id="adicionar-look-sacola"
+            class="botao-principal botao-largo"
+          >
+            ADICIONAR À SACOLA
+          </button>
+
+          <p class="aviso-montagem">
+            A disponibilidade das peças será confirmada no atendimento.
+          </p>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- SACOLA LATERAL -->
+    <div
+      class="fundo-sacola"
+      id="fundo-sacola"
+      hidden
+    ></div>
+
+    <aside
+      class="painel-sacola"
+      id="painel-sacola"
+      aria-label="Sua sacola de compras"
+      aria-hidden="true"
+    >
+
+      <div class="sacola-cabecalho">
+
+        <div>
+          <p class="texto-destaque">GUERREIRO STORE</p>
+          <h2>Sua sacola</h2>
+        </div>
+
+        <button
+          id="fechar-sacola"
+          class="botao-fechar"
+          aria-label="Fechar sacola"
+        >
+          &times;
+        </button>
+
+      </div>
+
+      <div id="itens-sacola" class="itens-sacola">
+        <p class="sacola-vazia">
+          Sua sacola está vazia.
+        </p>
+      </div>
+
+      <div class="sacola-rodape">
+
+        <div class="sacola-total">
+          <span>Total</span>
+          <strong id="total-sacola">R$ 0,00</strong>
+        </div>
+
+        <button
+          id="enviar-pedido"
+          class="botao-principal botao-largo"
+        >
+          ENVIAR PEDIDO
+        </button>
+
+        <p>
+          Seu pedido será enviado pelo WhatsApp para confirmação.
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- VISUALIZAÇÃO AMPLIADA DAS PEÇAS -->
+    <div
+      class="modal-imagem"
+      id="modal-imagem"
+      hidden
+      aria-hidden="true"
+    >
+
+      <div class="modal-conteudo">
+
+        <button
+          id="fechar-modal-imagem"
+          class="botao-fechar"
+          aria-label="Fechar imagem"
+        >
+          &times;
+        </button>
+
+        <img id="imagem-ampliada" src="" alt="">
+
+        <div class="modal-legenda">
+          <h3 id="nome-imagem-ampliada"></h3>
+          <p id="descricao-imagem-ampliada"></p>
+        </div>
+
+      </div>
+
+    </div>
+      </main>
+
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+
+    <a href="#inicio" class="marca">
+      GUERREIRO <span>STORE</span>
+    </a>
+
+    <p>
+      Moda masculina. Estilo em cada detalhe.
+    </p>
+
+    <div class="rodape-links">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#looks-prontos">Looks prontos</a>
+      <a href="#montar-look">Monte seu look</a>
+    </div>
+
+    <p class="direitos">
+      &copy; <span id="ano-atual"></span> Guerreiro Store.
+    </p>
+
+  </footer>
+
+</body>
+</html>

@@ -781,3 +781,386 @@ function renderizarLooks() {
   });
   }
         
+
+/* ==========================================
+   GUERREIRO STORE — PARTE 4/4
+   Eventos, sacola, modal e WhatsApp
+========================================== */
+
+function abrirSacola() {
+  const painel = document.getElementById("painel-sacola");
+  const fundo = document.getElementById("fundo-sacola");
+
+  if (painel) {
+    painel.classList.add("aberta");
+    painel.setAttribute("aria-hidden", "false");
+  }
+
+  if (fundo) fundo.hidden = false;
+  document.body.classList.add("sacola-aberta");
+}
+
+function fecharSacola() {
+  const painel = document.getElementById("painel-sacola");
+  const fundo = document.getElementById("fundo-sacola");
+
+  if (painel) {
+    painel.classList.remove("aberta");
+    painel.setAttribute("aria-hidden", "true");
+  }
+
+  if (fundo) fundo.hidden = true;
+  document.body.classList.remove("sacola-aberta");
+}
+
+function adicionarProdutoIndividual(id) {
+  const produto = obterProduto(id);
+  if (!produto) return;
+
+  const cor = document.querySelector(
+    `[data-cor-produto="${id}"]`
+  )?.value;
+
+  const tamanho = document.querySelector(
+    `[data-tamanho-produto="${id}"]`
+  )?.value;
+
+  const quantidade = Number(document.querySelector(
+    `[data-quantidade-produto="${id}"]`
+  )?.value || 1);
+
+  const opcao = obterOpcao(produto, cor);
+
+  if (!opcao || !opcao.tamanhos.includes(tamanho)) {
+    mostrarAviso("Selecione uma cor e um tamanho disponíveis.");
+    return;
+  }
+
+  adicionarItemSacola({
+    tipo: "produto",
+    nome: produto.nome,
+    detalhes: `Cor: ${cor} | Tamanho: ${tamanho}`,
+    precoUnitario: produto.preco,
+    quantidade: Math.max(1, Math.min(20, quantidade)),
+    imagem: opcao.imagem,
+    pecas: [{
+      nome: produto.nome,
+      cor,
+      tamanho,
+      quantidade: Math.max(1, Math.min(20, quantidade)),
+      preco: produto.preco
+    }]
+  });
+}
+
+function adicionarLookPronto(grupoId, indice) {
+  const grupo = looksProntos.find(look => look.id === grupoId);
+  const look = grupo?.opcoes[indice];
+
+  if (!look) return;
+
+  const pecas = look.pecas.map((peca, i) => {
+    const produto = obterProduto(peca.produto);
+    const seletor = document.querySelector(
+      `[data-tamanho-look="${grupoId}-${indice}-${i}"]`
+    );
+
+    return {
+      ...peca,
+      produto,
+      tamanho: seletor?.value || ""
+    };
+  });
+
+  if (pecas.some(peca =>
+    !peca.produto ||
+    !obterOpcao(peca.produto, peca.cor)?.tamanhos.includes(peca.tamanho)
+  )) {
+    mostrarAviso("Confira os tamanhos disponíveis para esse look.");
+    return;
+  }
+
+  const quantidade = Math.max(1, Math.min(20, Number(
+    document.querySelector(
+      `[data-quantidade-look="${grupoId}-${indice}"]`
+    )?.value || 1
+  )));
+
+  const precoOriginal = pecas.reduce(
+    (total, peca) => total + peca.produto.preco,
+    0
+  );
+
+  const precoComDesconto =
+    Math.round(precoOriginal * 0.95 * 100) / 100;
+
+  adicionarItemSacola({
+    tipo: "look-pronto",
+    nome: look.nome,
+    detalhes: pecas.map(peca =>
+      `${peca.produto.nome}: ${peca.cor}, tamanho ${peca.tamanho}`
+    ).join(" | ") + " | Desconto de 5%",
+    precoUnitario: precoComDesconto,
+    quantidade,
+    imagem: look.imagem,
+    precoOriginal,
+    desconto: precoOriginal - precoComDesconto,
+    pecas: pecas.map(peca => ({
+      nome: peca.produto.nome,
+      cor: peca.cor,
+      tamanho: peca.tamanho,
+      quantidade: 1,
+      preco: peca.produto.preco
+    }))
+  });
+}
+
+function criarMensagemWhatsApp() {
+  if (!sacola.length) {
+    mostrarAviso("Sua sacola está vazia.");
+    return null;
+  }
+
+  const linhas = [
+    "Olá! Gostaria de fazer um pedido na Guerreiro Store.",
+    "",
+    "MEU PEDIDO:"
+  ];
+
+  sacola.forEach((item, indice) => {
+    linhas.push("");
+    linhas.push(`${indice + 1}. ${item.nome}`);
+
+    if (item.pecas?.length) {
+      item.pecas.forEach(peca => {
+        linhas.push(
+          `- ${peca.nome}: ${peca.cor}, tamanho ${peca.tamanho}` +
+          (peca.quantidade > 1 ? `, quantidade ${peca.quantidade}` : "") +
+          ` — ${formatarPreco(peca.preco)}`
+        );
+      });
+    } else if (item.detalhes) {
+      linhas.push(`- ${item.detalhes}`);
+    }
+
+    if (item.desconto > 0) {
+      linhas.push(`- Preço original: ${formatarPreco(item.precoOriginal)}`);
+      linhas.push(`- Desconto: ${formatarPreco(item.desconto)}`);
+    }
+
+    linhas.push(`- Quantidade: ${item.quantidade}`);
+    linhas.push(
+      `- Subtotal: ${formatarPreco(item.precoUnitario * item.quantidade)}`
+    );
+  });
+
+  linhas.push("");
+  linhas.push(`TOTAL DO PEDIDO: ${formatarPreco(totalSacola())}`);
+  linhas.push("");
+  linhas.push(
+    "Gostaria de confirmar a disponibilidade e combinar o pagamento e a entrega. Obrigado!"
+  );
+
+  return linhas.join("\n");
+}
+
+function enviarPedidoWhatsApp() {
+  const mensagem = criarMensagemWhatsApp();
+  if (!mensagem) return;
+
+  const url =
+    `https://wa.me/${WHATSAPP_LOJA}?text=${encodeURIComponent(mensagem)}`;
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+/* Imagem ampliada */
+
+function abrirImagemAmpliada(produtoId) {
+  const produto = obterProduto(produtoId);
+  if (!produto) return;
+
+  const cor = document.querySelector(
+    `[data-cor-produto="${produtoId}"]`
+  )?.value;
+
+  const opcao = obterOpcao(produto, cor) || produto.opcoes[0];
+
+  const modal = document.getElementById("modal-imagem");
+  const imagem = document.getElementById("imagem-ampliada");
+  const nome = document.getElementById("nome-imagem-ampliada");
+  const descricao = document.getElementById("descricao-imagem-ampliada");
+
+  if (!modal || !imagem) return;
+
+  imagem.src = opcao.imagem;
+  imagem.alt = `${produto.nome} — ${opcao.cor}`;
+
+  if (nome) nome.textContent = produto.nome;
+  if (descricao) {
+    descricao.textContent =
+      `${opcao.cor} · ${opcao.tamanhos.join(", ")} · ${formatarPreco(produto.preco)}`;
+  }
+
+  modal.hidden = false;
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function fecharImagemAmpliada() {
+  const modal = document.getElementById("modal-imagem");
+  if (!modal) return;
+
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+}
+
+/* Eventos gerais */
+
+document.addEventListener("change", evento => {
+  const alvo = evento.target;
+
+  if (alvo.matches("[data-cor-produto]")) {
+    const id = alvo.dataset.corProduto;
+    atualizarTamanhosProduto(id, alvo.value);
+  }
+
+  if (alvo.matches("[data-cor-montagem]")) {
+    const id = alvo.dataset.corMontagem;
+    const produto = obterProduto(id);
+    const opcao = obterOpcao(produto, alvo.value);
+
+    const seletorTamanho = document.querySelector(
+      `[data-tamanho-montagem="${id}"]`
+    );
+
+    if (seletorTamanho) {
+      seletorTamanho.innerHTML = opcao
+        ? `<option value="">Selecione</option>` +
+          opcao.tamanhos.map(t =>
+            `<option value="${escaparHTML(t)}">${escaparHTML(t)}</option>`
+          ).join("")
+        : `<option value="">Selecione a cor primeiro</option>`;
+    }
+
+    atualizarResumoMontagem();
+  }
+
+  if (
+    alvo.matches("[data-selecionar-montagem]") ||
+    alvo.matches("[data-tamanho-montagem]") ||
+    alvo.matches("[data-quantidade-montagem]")
+  ) {
+    atualizarResumoMontagem();
+  }
+
+  if (alvo.matches("[data-quantidade-sacola]")) {
+    alterarQuantidadeSacola(
+      alvo.dataset.quantidadeSacola,
+      alvo.value
+    );
+  }
+});
+
+document.addEventListener("click", evento => {
+  const alvo = evento.target.closest("button");
+  if (!alvo) return;
+
+  if (alvo.matches("[data-adicionar-produto]")) {
+    adicionarProdutoIndividual(alvo.dataset.adicionarProduto);
+  }
+
+  if (alvo.matches("[data-adicionar-look]")) {
+    const [grupoId, indice] = alvo.dataset.adicionarLook.split("-");
+    adicionarLookPronto(grupoId, Number(indice));
+  }
+
+  if (alvo.matches("[data-remover-sacola]")) {
+    removerItemSacola(alvo.dataset.removerSacola);
+  }
+
+  if (alvo.matches("[data-abrir-look]")) {
+    const id = alvo.dataset.abrirLook;
+    const area = document.getElementById(`opcoes-look-${id}`);
+
+    if (area) {
+      area.hidden = !area.hidden;
+      alvo.setAttribute("aria-expanded", String(!area.hidden));
+      alvo.textContent = area.hidden ? "VER MAIS" : "VER MENOS";
+    }
+  }
+
+  if (alvo.matches("[data-ampliar]")) {
+    abrirImagemAmpliada(alvo.dataset.ampliar);
+  }
+
+  if (alvo.id === "adicionar-look-sacola") {
+    adicionarMontagemSacola();
+  }
+
+  if (alvo.id === "enviar-pedido") {
+    enviarPedidoWhatsApp();
+  }
+
+  if (alvo.id === "abrir-sacola") abrirSacola();
+  if (alvo.id === "fechar-sacola") fecharSacola();
+
+  if (alvo.id === "fundo-sacola") fecharSacola();
+
+  if (alvo.id === "fechar-modal-imagem") {
+    fecharImagemAmpliada();
+  }
+
+  if (alvo.id === "modal-imagem") {
+    fecharImagemAmpliada();
+  }
+
+  if (alvo.id === "botao-menu") {
+    const navegacao = document.getElementById("navegacao");
+    if (navegacao) {
+      const aberto = navegacao.classList.toggle("aberta");
+      alvo.setAttribute("aria-expanded", String(aberto));
+    }
+  }
+
+  if (alvo.matches(".navegacao a")) {
+    document.getElementById("navegacao")?.classList.remove("aberta");
+    document.getElementById("botao-menu")?.setAttribute("aria-expanded", "false");
+  }
+
+  if (alvo.matches("[data-cor]")) {
+    const mensagem = document.getElementById("mensagem-paleta");
+    if (mensagem) {
+      mensagem.textContent = `Você selecionou a cor ${alvo.dataset.cor}. Explore o catálogo para conferir as peças disponíveis.`;
+    }
+  }
+});
+
+document.addEventListener("keydown", evento => {
+  if (evento.key === "Escape") {
+    fecharSacola();
+    fecharImagemAmpliada();
+  }
+});
+
+/* Inicialização */
+
+function iniciarSite() {
+  renderizarCatalogo();
+  renderizarLooks();
+  renderizarMontador();
+  renderizarSacola();
+
+  const ano = document.getElementById("ano-atual");
+  if (ano) ano.textContent = new Date().getFullYear();
+
+  document.querySelectorAll(".opcoes-look").forEach(area => {
+    area.hidden = true;
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", iniciarSite);
+} else {
+  iniciarSite();
+       }
+   

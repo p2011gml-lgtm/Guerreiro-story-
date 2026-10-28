@@ -416,8 +416,8 @@ const produtos = [
     ]
   },
   {
-    id: "regata-trico",
-    nome: "Regata Tricô",
+    id: "regata",
+    nome: "Regata",
     preco: 89.90,
     categoria: "Regatas",
     opcoes: [

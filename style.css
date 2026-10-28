@@ -2098,3 +2098,40 @@ a,
     height: 210px;
   }
 }
+
+
+/* PALETA DE CORES DOS PRODUTOS */
+.paleta-produto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.cor-produto {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--cor-amostra, #c99b58);
+  border: 2px solid #777;
+  cursor: pointer;
+}
+
+.cor-produto.cor-ativa {
+  outline: 2px solid #e8c58c;
+  outline-offset: 3px;
+}
+
+.nome-cor-escolhida {
+  margin: 4px 0 12px;
+  color: #e8c58c;
+  font-size: 13px;
+}
+
+.detalhes-produto[hidden] {
+  display: none !important;
+}

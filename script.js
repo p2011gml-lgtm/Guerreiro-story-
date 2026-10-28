@@ -1140,6 +1140,32 @@ document.addEventListener("change", evento => {
 document.addEventListener("click", evento => {
   const alvo = evento.target.closest("button");
   if (!alvo) return;
+   if (alvo.matches("[data-escolher-cor]")) {
+  const id = alvo.dataset.escolherCor;
+  const cor = alvo.dataset.valorCor;
+
+  const detalhes = document.querySelector(
+    `[data-detalhes-produto="${id}"]`
+  );
+
+  if (!detalhes) return;
+
+  detalhes.querySelectorAll("[data-escolher-cor]").forEach(botao => {
+    const selecionado = botao === alvo;
+    botao.classList.toggle("cor-ativa", selecionado);
+    botao.setAttribute("aria-pressed", String(selecionado));
+  });
+
+  const nomeCor = detalhes.querySelector(`[data-nome-cor="${id}"]`);
+  if (nomeCor) nomeCor.textContent = cor;
+
+  const campoCor = document.querySelector(`[data-cor-produto="${id}"]`);
+  if (campoCor) campoCor.value = cor;
+
+  atualizarTamanhosProduto(id, cor);
+  return;
+   }
+
    
 if (alvo.matches("[data-ver-mais]")) {
   const id = alvo.dataset.verMais;

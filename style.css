@@ -887,3 +887,354 @@ button:disabled {
   font-size: 11px;
   text-align: center;
    }
+/* =========================================
+   CSS — PARTE 3/4
+   Looks prontos e montagem de looks
+========================================= */
+
+/* SEÇÃO DE LOOKS PRONTOS */
+
+.secao-looks {
+  width: min(100% - 48px, var(--largura));
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+.categoria-look {
+  margin-top: 55px;
+  scroll-margin-top: 100px;
+}
+
+.categoria-look-cabecalho {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.categoria-look-cabecalho h3 {
+  margin-top: 5px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 400;
+}
+
+/* LOOK EM DESTAQUE */
+
+.look-destaque {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 65px);
+  padding: 24px;
+  border: 1px solid var(--borda-suave);
+  background:
+    radial-gradient(
+      ellipse at 15% 30%,
+      rgba(201, 155, 88, 0.06),
+      transparent 55%
+    ),
+    var(--fundo-card);
+}
+
+.look-foto {
+  min-width: 0;
+  overflow: hidden;
+  background: #242019;
+}
+
+.look-foto img {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.look-foto:hover img {
+  transform: scale(1.035);
+}
+
+.look-info {
+  padding: 15px 10px;
+}
+
+.selo-look {
+  display: inline-block;
+  margin-bottom: 17px;
+  color: var(--dourado);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.look-info h4 {
+  margin-bottom: 16px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(24px, 3vw, 35px);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.look-info p {
+  max-width: 380px;
+  margin-bottom: 25px;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.look-info .botao-ver-mais {
+  min-width: 150px;
+}
+
+/* OPÇÕES EXTRAS DE LOOKS */
+
+.opcoes-look {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid var(--borda);
+  background: #15130f;
+  animation: surgir-abaixo 0.3s ease both;
+}
+
+.grade-opcoes-look {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.look-opcao {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--borda-suave);
+  background: var(--fundo-card);
+  transition:
+    border-color var(--transicao),
+    transform var(--transicao);
+}
+
+.look-opcao:hover {
+  border-color: var(--dourado-escuro);
+  transform: translateY(-3px);
+}
+
+.look-opcao-foto {
+  overflow: hidden;
+  background: #242019;
+}
+
+.look-opcao-foto img {
+  width: 100%;
+  aspect-ratio: 4 / 3.8;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.look-opcao:hover .look-opcao-foto img {
+  transform: scale(1.03);
+}
+
+.look-opcao-info {
+  padding: 16px;
+}
+
+.look-opcao-info h5 {
+  margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.look-opcao-info p {
+  margin-bottom: 15px;
+  color: var(--texto-secundario);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.look-opcao-info .botao-adicionar {
+  width: 100%;
+}
+
+/* MONTAGEM DE LOOK */
+
+.secao-montar {
+  padding: 95px max(24px, calc((100% - var(--largura)) / 2));
+  border-top: 1px solid var(--borda);
+  background:
+    radial-gradient(
+      ellipse at 15% 0%,
+      rgba(201, 155, 88, 0.08),
+      transparent 40%
+    ),
+    #171512;
+}
+
+.montar-introducao {
+  max-width: 650px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.montar-introducao h2 {
+  margin: 13px 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(36px, 5vw, 58px);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.montar-introducao > p:last-child {
+  max-width: 470px;
+  margin: 0 auto;
+  color: var(--texto-secundario);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.montar-conteudo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  align-items: start;
+  gap: 30px;
+}
+
+.montar-categoria {
+  margin-bottom: 20px;
+}
+
+.montar-categoria h3 {
+  margin-bottom: 5px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 400;
+}
+
+.montar-categoria p {
+  color: var(--texto-secundario);
+  font-size: 12px;
+}
+
+.grade-montar {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 18px;
+}
+
+/* CARTÃO DAS PEÇAS PARA MONTAR */
+
+.grade-montar .produto-card {
+  background: #1b1915;
+}
+
+.grade-montar .produto-foto {
+  aspect-ratio: 4 / 4.3;
+}
+
+.grade-montar .produto-informacoes {
+  padding: 14px;
+}
+
+.grade-montar .produto-nome {
+  font-size: 18px;
+}
+
+.grade-montar .produto-preco {
+  font-size: 16px;
+}
+
+.grade-montar .produto-acoes {
+  gap: 8px;
+}
+
+/* RESUMO DO LOOK MONTADO */
+
+.resumo-montagem {
+  position: sticky;
+  top: 22px;
+  padding: 25px;
+  border: 1px solid var(--borda);
+  background: #11100e;
+}
+
+.resumo-montagem h3 {
+  margin: 8px 0 20px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 27px;
+  font-weight: 400;
+}
+
+#resumo-selecao {
+  min-height: 75px;
+  color: var(--texto-secundario);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.item-resumo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--borda-suave);
+}
+
+.item-resumo span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.item-resumo button {
+  flex-shrink: 0;
+  border: 0;
+  background: transparent;
+  color: #dba18c;
+  font-size: 10px;
+}
+
+.resumo-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--borda);
+}
+
+.resumo-total span {
+  color: var(--texto-secundario);
+  font-size: 12px;
+}
+
+.resumo-total strong {
+  color: var(--dourado-claro);
+  font-size: 19px;
+  white-space: nowrap;
+}
+
+.botao-largo {
+  width: 100%;
+}
+
+.aviso-montagem {
+  margin-top: 15px;
+  color: var(--texto-discreto);
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+/* ESTADOS DE SELEÇÃO */
+
+.produto-card.selecionado {
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 1px rgba(201, 155, 88, 0.12);
+}
+
+.produto-card.selecionado .botao-adicionar {
+  background: #272116;
+  color: var(--dourado-claro);
+}

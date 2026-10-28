@@ -488,9 +488,11 @@ function renderizarCatalogo() {
     return `
       <section class="grupo-categoria">
         <h3>${escaparHTML(categoria)}</h3>
+
         <div class="grade-produtos">
           ${itens.map(produto => `
             <article class="cartao-produto">
+
               <button
                 type="button"
                 class="foto-produto"
@@ -506,39 +508,78 @@ function renderizarCatalogo() {
 
               <div class="informacoes-produto">
                 <h4>${escaparHTML(produto.nome)}</h4>
-                <p class="preco-produto">${formatarPreco(produto.preco)}</p>
 
-                ${criarSeletor(
-                  "Cor",
-                  produto.opcoes.map(o => o.cor),
-                  `data-cor-produto="${produto.id}"`
-                )}
-
-                <label class="seletor-produto">
-                  <span>Tamanho</span>
-                  <select data-tamanho-produto="${produto.id}" required>
-                    <option value="">Selecione a cor primeiro</option>
-                  </select>
-                </label>
-
-                <label class="seletor-produto">
-                  <span>Quantidade</span>
-                  <input
-                    type="number"
-                    min="1"
-                    max="20"
-                    value="1"
-                    data-quantidade-produto="${produto.id}"
-                  >
-                </label>
+                <p class="preco-produto">
+                  ${formatarPreco(produto.preco)}
+                </p>
 
                 <button
                   type="button"
-                  class="botao-principal botao-largo"
-                  data-adicionar-produto="${produto.id}"
+                  class="botao-ver-mais"
+                  data-ver-mais="${produto.id}"
+                  aria-expanded="false"
                 >
-                  ADICIONAR À SACOLA
+                  Ver mais
                 </button>
+
+                <div
+                  class="detalhes-produto"
+                  data-detalhes-produto="${produto.id}"
+                  hidden
+                >
+                  <span class="titulo-opcoes">Escolha a cor</span>
+
+                  <div class="paleta-produto">
+                    ${produto.opcoes.map((opcao, indice) => `
+                      <button
+                        type="button"
+                        class="cor-produto ${indice === 0 ? "cor-ativa" : ""}"
+                        data-escolher-cor="${produto.id}"
+                        data-valor-cor="${escaparHTML(opcao.cor)}"
+                        aria-label="${escaparHTML(opcao.cor)}"
+                        aria-pressed="${indice === 0}"
+                        title="${escaparHTML(opcao.cor)}"
+                        style="--cor-amostra:${obterCorCSS(opcao.cor)}"
+                      ></button>
+                    `).join("")}
+                  </div>
+
+                  <p
+                    class="nome-cor-escolhida"
+                    data-nome-cor="${produto.id}"
+                  >
+                    ${escaparHTML(produto.opcoes[0]?.cor || "")}
+                  </p>
+
+                  <label class="seletor-produto">
+                    <span>Tamanho</span>
+                    <select
+                      data-tamanho-produto="${produto.id}"
+                      required
+                    >
+                      <option value="">Selecione a cor primeiro</option>
+                    </select>
+                  </label>
+
+                  <label class="seletor-produto">
+                    <span>Quantidade</span>
+                    <input
+                      type="number"
+                      min="1"
+                      max="20"
+                      value="1"
+                      data-quantidade-produto="${produto.id}"
+                    >
+                  </label>
+
+                  <button
+                    type="button"
+                    class="botao-principal botao-largo"
+                    data-adicionar-produto="${produto.id}"
+                  >
+                    ADICIONAR À SACOLA
+                  </button>
+                </div>
               </div>
             </article>
           `).join("")}
@@ -546,6 +587,14 @@ function renderizarCatalogo() {
       </section>
     `;
   }).join("");
+
+  // Deixa a primeira cor selecionada e carrega seus tamanhos.
+  produtos.forEach(produto => {
+    const primeiraOpcao = produto.opcoes[0];
+    if (primeiraOpcao) {
+      atualizarTamanhosProduto(produto.id, primeiraOpcao.cor);
+    }
+  });
 }
 
 function atualizarTamanhosProduto(id, cor) {

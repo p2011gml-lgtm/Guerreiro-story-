@@ -1,5 +1,305 @@
 
 /* ==========================================
+   GUERREIRO STORE — PARTE 3/4
+   Montador de look, sacola e totais
+========================================== */
+
+const sacola = [];
+
+const pecasSelecionadas = new Map();
+
+function gerarIdCarrinho() {
+  return `item-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function adicionarItemSacola(item) {
+  sacola.push({
+    id: gerarIdCarrinho(),
+    ...item,
+    quantidade: Math.max(1, Number(item.quantidade) || 1)
+  });
+
+  renderizarSacola();
+  mostrarAviso("Produto adicionado à sacola.");
+}
+
+function removerItemSacola(id) {
+  const indice = sacola.findIndex(item => item.id === id);
+
+  if (indice !== -1) {
+    sacola.splice(indice, 1);
+    renderizarSacola();
+  }
+}
+
+function alterarQuantidadeSacola(id, quantidade) {
+  const item = sacola.find(item => item.id === id);
+  if (!item) return;
+
+  const numero = Math.max(1, Math.min(20, Number(quantidade) || 1));
+  item.quantidade = numero;
+  renderizarSacola();
+}
+
+function totalSacola() {
+  return sacola.reduce((total, item) => {
+    return total + item.precoUnitario * item.quantidade;
+  }, 0);
+}
+
+function quantidadeSacola() {
+  return sacola.reduce((total, item) => total + item.quantidade, 0);
+}
+
+function renderizarSacola() {
+  const area = document.getElementById("itens-sacola");
+  const total = document.getElementById("total-sacola");
+  const contador = document.getElementById("contador-sacola");
+
+  if (contador) contador.textContent = quantidadeSacola();
+
+  if (total) total.textContent = formatarPreco(totalSacola());
+
+  if (!area) return;
+
+  if (!sacola.length) {
+    area.innerHTML = `<p class="sacola-vazia">Sua sacola está vazia.</p>`;
+    return;
+  }
+
+  area.innerHTML = sacola.map(item => `
+    <article class="item-sacola">
+      ${item.imagem ? `
+        <img
+          src="${escaparHTML(item.imagem)}"
+          alt="${escaparHTML(item.nome)}"
+          loading="lazy"
+        >
+      ` : ""}
+
+      <div class="item-sacola-info">
+        <h3>${escaparHTML(item.nome)}</h3>
+        <p>${escaparHTML(item.detalhes || "")}</p>
+
+        <strong>${formatarPreco(item.precoUnitario)}</strong>
+
+        <label class="seletor-produto">
+          <span>Quantidade</span>
+          <input
+            type="number"
+            min="1"
+            max="20"
+            value="${item.quantidade}"
+            data-quantidade-sacola="${item.id}"
+          >
+        </label>
+
+        <p>
+          Subtotal:
+          <strong>${formatarPreco(item.precoUnitario * item.quantidade)}</strong>
+        </p>
+
+        <button
+          type="button"
+          class="botao-remover"
+          data-remover-sacola="${item.id}"
+        >
+          Remover
+        </button>
+      </div>
+    </article>
+  `).join("");
+}
+
+/* Montador personalizado */
+
+function renderizarMontador() {
+  const area = document.getElementById("pecas-para-montar");
+  if (!area) return;
+
+  area.innerHTML = produtos.map(produto => `
+    <article class="cartao-montagem">
+      <label class="seletor-produto">
+        <span>
+          <input
+            type="checkbox"
+            data-selecionar-montagem="${produto.id}"
+          >
+          <strong>${escaparHTML(produto.nome)}</strong>
+        </span>
+      </label>
+
+      <img
+        src="${escaparHTML(obterImagemProduto(produto))}"
+        alt="${escaparHTML(produto.nome)}"
+        loading="lazy"
+      >
+
+      <p>${formatarPreco(produto.preco)}</p>
+
+      ${criarSeletor(
+        "Cor",
+        produto.opcoes.map(opcao => opcao.cor),
+        `data-cor-montagem="${produto.id}"`
+      )}
+
+      <label class="seletor-produto">
+        <span>Tamanho</span>
+        <select data-tamanho-montagem="${produto.id}">
+          <option value="">Selecione a cor primeiro</option>
+        </select>
+      </label>
+
+      <label class="seletor-produto">
+        <span>Quantidade</span>
+        <input
+          type="number"
+          min="1"
+          max="20"
+          value="1"
+          data-quantidade-montagem="${produto.id}"
+        >
+      </label>
+    </article>
+  `).join("");
+
+  atualizarResumoMontagem();
+}
+
+function obterSelecaoMontagem() {
+  const selecionados = [];
+
+  produtos.forEach(produto => {
+    const marcado = document.querySelector(
+      `[data-selecionar-montagem="${produto.id}"]`
+    );
+
+    if (!marcado?.checked) return;
+
+    const cor = document.querySelector(
+      `[data-cor-montagem="${produto.id}"]`
+    )?.value;
+
+    const tamanho = document.querySelector(
+      `[data-tamanho-montagem="${produto.id}"]`
+    )?.value;
+
+    const quantidade = Number(document.querySelector(
+      `[data-quantidade-montagem="${produto.id}"]`
+    )?.value || 1);
+
+    const opcao = obterOpcao(produto, cor);
+
+    if (!opcao || !opcao.tamanhos.includes(tamanho)) return;
+
+    selecionados.push({
+      produto,
+      cor,
+      tamanho,
+      quantidade: Math.max(1, Math.min(20, quantidade)),
+      imagem: opcao.imagem
+    });
+  });
+
+  return selecionados;
+}
+
+function atualizarResumoMontagem() {
+  const area = document.getElementById("resumo-selecao");
+  const totalElemento = document.getElementById("total-montagem");
+  const selecionados = obterSelecaoMontagem();
+
+  const total = selecionados.reduce((soma, item) => {
+    return soma + item.produto.preco * item.quantidade;
+  }, 0);
+
+  if (area) {
+    area.innerHTML = selecionados.length
+      ? selecionados.map(item => `
+          <div class="resumo-item">
+            <strong>${escaparHTML(item.produto.nome)}</strong>
+            <p>
+              ${escaparHTML(item.cor)} ·
+              Tam. ${escaparHTML(item.tamanho)} ·
+              Qtd. ${item.quantidade}
+            </p>
+            <span>${formatarPreco(item.produto.preco * item.quantidade)}</span>
+          </div>
+        `).join("")
+      : "Nenhuma peça selecionada ainda.";
+  }
+
+  if (totalElemento) totalElemento.textContent = formatarPreco(total);
+}
+
+function adicionarMontagemSacola() {
+  const selecionados = obterSelecaoMontagem();
+
+  if (!selecionados.length) {
+    mostrarAviso("Selecione pelo menos uma peça com cor e tamanho.");
+    return;
+  }
+
+  const total = selecionados.reduce((soma, item) => {
+    return soma + item.produto.preco * item.quantidade;
+  }, 0);
+
+  const detalhes = selecionados.map(item =>
+    `${item.produto.nome} — ${item.cor}, tamanho ${item.tamanho}, quantidade ${item.quantidade}`
+  ).join(" | ");
+
+  adicionarItemSacola({
+    tipo: "montagem",
+    nome: "Look personalizado",
+    detalhes,
+    precoUnitario: total,
+    quantidade: 1,
+    imagem: selecionados[0].imagem,
+    pecas: selecionados.map(item => ({
+      nome: item.produto.nome,
+      cor: item.cor,
+      tamanho: item.tamanho,
+      quantidade: item.quantidade,
+      preco: item.produto.preco
+    }))
+  });
+}
+
+function mostrarAviso(mensagem) {
+  let aviso = document.getElementById("aviso-js");
+
+  if (!aviso) {
+    aviso = document.createElement("div");
+    aviso.id = "aviso-js";
+    aviso.setAttribute("role", "status");
+    aviso.style.cssText = [
+      "position:fixed",
+      "bottom:20px",
+      "left:50%",
+      "transform:translateX(-50%)",
+      "z-index:9999",
+      "background:#c99b58",
+      "color:#11100e",
+      "padding:12px 18px",
+      "border-radius:8px",
+      "max-width:90%",
+      "font-weight:600",
+      "box-shadow:0 8px 25px #0005"
+    ].join(";");
+
+    document.body.appendChild(aviso);
+  }
+
+  aviso.textContent = mensagem;
+  aviso.hidden = false;
+
+  clearTimeout(aviso._temporizador);
+  aviso._temporizador = setTimeout(() => {
+    aviso.hidden = true;
+  }, 2800);
+                                 }
+                                    
+/* ==========================================
    GUERREIRO STORE — PARTE 1/4
    Catálogo, produtos, preços, cores e tamanhos
 ========================================== */

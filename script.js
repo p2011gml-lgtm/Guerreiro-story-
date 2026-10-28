@@ -441,6 +441,33 @@ const produtos = [
   }
 ];
 
+const obterCorCSS = (cor = "") => {
+  const cores = {
+    "Branca": "#f5f5f0",
+    "Branco": "#f5f5f0",
+    "Preta": "#171717",
+    "Preto": "#171717",
+    "Verde": "#477653",
+    "Azul claro": "#a9d4e8",
+    "Azul": "#315b91",
+    "Azul escuro": "#1d3154",
+    "Azul água": "#80d6d0",
+    "Marrom": "#76513b",
+    "Marrom escuro": "#493023",
+    "Marrom claro": "#b58b68",
+    "Bege": "#d9c5a1",
+    "Bege claro": "#e4d5b7",
+    "Bege clarinho": "#e4d5b7",
+    "Rosa": "#e8a8b8",
+    "Cinza": "#929292",
+    "Cinza claro": "#c4c4c4",
+    "Caqui": "#a99b73",
+    "Laranja": "#df803b"
+  };
+
+  return cores[cor] || "#c99b58";
+};
+
 function obterProduto(id) {
   return produtos.find(produto => produto.id === id);
 }

@@ -1140,7 +1140,22 @@ document.addEventListener("change", evento => {
 document.addEventListener("click", evento => {
   const alvo = evento.target.closest("button");
   if (!alvo) return;
+   
+if (alvo.matches("[data-ver-mais]")) {
+  const id = alvo.dataset.verMais;
+  const detalhes = document.querySelector(
+    `[data-detalhes-produto="${id}"]`
+  );
 
+  if (detalhes) {
+    detalhes.hidden = !detalhes.hidden;
+    alvo.setAttribute("aria-expanded", String(!detalhes.hidden));
+  }
+
+  return;
+}
+
+   
   if (alvo.matches("[data-adicionar-produto]")) {
     adicionarProdutoIndividual(alvo.dataset.adicionarProduto);
   }

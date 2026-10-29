@@ -2182,3 +2182,56 @@ a,
     height: 230px;
   }
 }
+
+
+/* MONTE SEU LOOK — PALETAS DE CORES */
+
+.grade-montagem .seletor-produto select {
+  width: 100%;
+  box-sizing: border-box;
+  background: #201d19;
+  color: #f5f0e8;
+  border: 1px solid #5b4934;
+  border-radius: 8px;
+  padding: 11px;
+}
+
+.grade-montagem .cartao-montagem > img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  background: #11100e;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.grade-montagem .cartao-montagem > p {
+  color: #e8c58c;
+  font-weight: 700;
+}
+
+.grade-montagem .cartao-montagem strong {
+  color: #f5f0e8;
+}
+
+.grade-montagem .cartao-montagem input[type="checkbox"] {
+  accent-color: #c99b58;
+}
+
+@media (max-width: 480px) {
+  .grade-montagem {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .grade-montagem .cartao-montagem {
+    padding: 9px;
+  }
+
+  .grade-montagem .cartao-montagem > img {
+    height: 180px;
+  }
+}

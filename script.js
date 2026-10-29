@@ -1313,6 +1313,51 @@ document.addEventListener("change", evento => {
 document.addEventListener("click", evento => {
   const alvo = evento.target.closest("button");
   if (!alvo) return;
+
+   
+  if (alvo.matches("[data-escolher-cor-montagem]")) {
+    const id = alvo.dataset.escolherCorMontagem;
+    const cor = alvo.dataset.valorCorMontagem;
+
+    const area = document.getElementById("pecas-para-montar");
+    const cartao = alvo.closest(".cartao-montagem");
+    const seletorCor = cartao?.querySelector(
+      `[data-cor-montagem="${id}"]`
+    );
+
+    if (!seletorCor) return;
+
+    seletorCor.value = cor;
+
+    cartao.querySelectorAll("[data-escolher-cor-montagem]").forEach(botao => {
+      const ativo = botao === alvo;
+      botao.classList.toggle("cor-montagem-ativa", ativo);
+      botao.setAttribute("aria-pressed", String(ativo));
+    });
+
+    const nomeCor = cartao.querySelector(
+      `[data-nome-cor-montagem="${id}"]`
+    );
+    if (nomeCor) nomeCor.textContent = cor;
+
+    const produto = obterProduto(id);
+    const opcao = obterOpcao(produto, cor);
+    const imagem = cartao.querySelector(
+      `[data-imagem-montagem="${id}"]`
+    );
+
+    if (imagem && opcao?.imagem) {
+      imagem.src = opcao.imagem;
+    }
+
+    seletorCor.dispatchEvent(
+      new Event("change", { bubbles: true })
+    );
+
+    return;
+  }
+
+   
    if (alvo.matches("[data-escolher-cor]")) {
   const id = alvo.dataset.escolherCor;
   const cor = alvo.dataset.valorCor;

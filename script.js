@@ -737,66 +737,122 @@ function renderizarMontador() {
           <span>Tamanho</span>
           <select data-tamanho-montagem="${produto.id}">
             <option value="">Selecione a cor primeiro</option>
-          </select>
-        </label>
+function renderizarCatalogo() {
+  if (!listaCategorias) return;
 
-        <label class="seletor-produto">
-          <span>Quantidade</span>
-          <input
-            type="number"
-            min="1"
-            max="20"
-            value="1"
-            data-quantidade-montagem="${produto.id}"
-          >
-        </label>
-      </article>
+  listaCategorias.innerHTML = gruposCategorias.map(categoria => {
+    const itens = produtos.filter(p => p.categoria === categoria);
+
+    return `
+      <section class="grupo-categoria">
+        <h3>${escaparHTML(categoria)}</h3>
+
+        <div class="grade-produtos">
+          ${itens.map(produto => `
+            <article class="cartao-produto">
+              <button
+                type="button"
+                class="foto-produto"
+                data-ampliar="${produto.id}"
+                aria-label="Ampliar ${escaparHTML(produto.nome)}"
+              >
+                <img
+                  src="${escaparHTML(obterImagemProduto(produto))}"
+                  alt="${escaparHTML(produto.nome)}"
+                  loading="lazy"
+                >
+              </button>
+
+              <div class="informacoes-produto">
+                <h4>${escaparHTML(produto.nome)}</h4>
+
+                <p class="preco-produto">
+                  ${formatarPreco(produto.preco)}
+                </p>
+
+                <button
+                  type="button"
+                  class="botao-ver-mais"
+                  data-ver-mais="${produto.id}"
+                  aria-expanded="false"
+                >
+                  Ver mais
+                </button>
+
+                <div
+                  class="detalhes-produto"
+                  data-detalhes-produto="${produto.id}"
+                  hidden
+                >
+                  <span class="titulo-opcoes">Escolha a cor</span>
+
+                  <div class="paleta-produto">
+                    ${produto.opcoes.map((opcao, indice) => `
+                      <button
+                        type="button"
+                        class="cor-produto ${indice === 0 ? "cor-ativa" : ""}"
+                        data-escolher-cor="${produto.id}"
+                        data-valor-cor="${escaparHTML(opcao.cor)}"
+                        aria-label="${escaparHTML(opcao.cor)}"
+                        aria-pressed="${indice === 0}"
+                        title="${escaparHTML(opcao.cor)}"
+                        style="--cor-amostra:${obterCorCSS(opcao.cor)}"
+                      ></button>
+                    `).join("")}
+                  </div>
+
+                  <p
+                    class="nome-cor-escolhida"
+                    data-nome-cor="${produto.id}"
+                  >${escaparHTML(produto.opcoes[0]?.cor || "")}</p>
+
+                  <label class="seletor-produto">
+                    <span>Tamanho</span>
+                    <select
+                      data-tamanho-produto="${produto.id}"
+                      required
+                    >
+                      <option value="">Selecione um tamanho</option>
+                    </select>
+                  </label>
+
+                  <label class="seletor-produto">
+                    <span>Quantidade</span>
+                    <input
+                      type="number"
+                      min="1"
+                      max="20"
+                      value="1"
+                      data-quantidade-produto="${produto.id}"
+                      required
+                    >
+                  </label>
+
+                  <button
+                    type="button"
+                    class="botao-adicionar"
+                    data-adicionar-produto="${produto.id}"
+                  >
+                    Adicionar à sacola
+                  </button>
+                </div>
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      </section>
     `;
-  }
+  }).join("");
 
-  const parteDeCima = produtos.filter(produto =>
-    nomesParteDeCima.includes(produto.nome)
-  );
-
-  const parteDeBaixo = produtos.filter(produto =>
-    nomesParteDeBaixo.includes(produto.nome)
-  );
-
-  area.innerHTML = `
-    <section class="secao-montagem">
-      <h3 class="titulo-secao-montagem">PARTE DE CIMA</h3>
-      <p class="descricao-secao-montagem">
-        Escolha suas camisas, camisetas e regatas.
-      </p>
-      <div class="grade-montagem">
-        ${parteDeCima.map(renderizarPeca).join("")}
-      </div>
-    </section>
-
-    <section class="secao-montagem">
-      <h3 class="titulo-secao-montagem">PARTE DE BAIXO</h3>
-      <p class="descricao-secao-montagem">
-        Escolha seus shorts e bermudas.
-      </p>
-      <div class="grade-montagem">
-        ${parteDeBaixo.map(renderizarPeca).join("")}
-      </div>
-    </section>
-  `;
-
-  atualizarResumoMontagem();
-}
-
-
-  // Deixa a primeira cor selecionada e carrega seus tamanhos.
+  // Carrega os tamanhos disponíveis da primeira cor de cada produto.
   produtos.forEach(produto => {
     const primeiraOpcao = produto.opcoes[0];
+
     if (primeiraOpcao) {
       atualizarTamanhosProduto(produto.id, primeiraOpcao.cor);
     }
   });
 }
-
 function atualizarTamanhosProduto(id, cor) {
   const produto = obterProduto(id);
   const seletor = document.querySelector(

@@ -113,58 +113,158 @@ function renderizarSacola() {
 
 /* Montador personalizado */
 
+
 function renderizarMontador() {
   const area = document.getElementById("pecas-para-montar");
   if (!area) return;
 
-  area.innerHTML = produtos.map(produto => `
-    <article class="cartao-montagem">
-      <label class="seletor-produto">
-        <span>
-          <input
-            type="checkbox"
-            data-selecionar-montagem="${produto.id}"
-          >
-          <strong>${escaparHTML(produto.nome)}</strong>
-        </span>
-      </label>
+  const nomesParteDeCima = [
+    "Camisa Dubai",
+    "Camisa Canelada",
+    "T-shirt Texturada",
+    "T-shirt Tricô",
+    "T-shirt Algodão",
+    "Regata"
+  ];
 
-      <img
-        src="${escaparHTML(obterImagemProduto(produto))}"
-        alt="${escaparHTML(produto.nome)}"
-        loading="lazy"
-      >
+  const nomesParteDeBaixo = [
+    "Short Linho",
+    "Short Mauricinho de Algodão",
+    "Short Sarja",
+    "Bermuda Brim"
+  ];
 
-      <p>${formatarPreco(produto.preco)}</p>
+  function renderizarPeca(produto) {
+    const primeiraOpcao = produto.opcoes[0];
+    const primeiraCor = primeiraOpcao?.cor || "";
 
-      ${criarSeletor(
-        "Cor",
-        produto.opcoes.map(opcao => opcao.cor),
-        `data-cor-montagem="${produto.id}"`
-      )}
+    return `
+      <article class="cartao-montagem">
+        <label class="seletor-produto">
+          <span>
+            <input
+              type="checkbox"
+              data-selecionar-montagem="${produto.id}"
+            >
+            <strong>${escaparHTML(produto.nome)}</strong>
+          </span>
+        </label>
 
-      <label class="seletor-produto">
-        <span>Tamanho</span>
-        <select data-tamanho-montagem="${produto.id}">
-          <option value="">Selecione a cor primeiro</option>
-        </select>
-      </label>
-
-      <label class="seletor-produto">
-        <span>Quantidade</span>
-        <input
-          type="number"
-          min="1"
-          max="20"
-          value="1"
-          data-quantidade-montagem="${produto.id}"
+        <img
+          data-imagem-montagem="${produto.id}"
+          src="${escaparHTML(obterImagemProduto(produto))}"
+          alt="${escaparHTML(produto.nome)}"
+          loading="lazy"
         >
-      </label>
-    </article>
-  `).join("");
+
+        <p>${formatarPreco(produto.preco)}</p>
+
+        <div class="paleta-montagem">
+          <span class="titulo-paleta">Escolha a cor</span>
+
+          <div class="botoes-paleta">
+            ${produto.opcoes.map(opcao => `
+              <button
+                type="button"
+                class="bolinha-montagem ${opcao.cor === primeiraCor ? "cor-montagem-ativa" : ""}"
+                data-escolher-cor-montagem="${produto.id}"
+                data-valor-cor-montagem="${escaparHTML(opcao.cor)}"
+                aria-label="${escaparHTML(opcao.cor)}"
+                aria-pressed="${opcao.cor === primeiraCor}"
+                title="${escaparHTML(opcao.cor)}"
+                style="--cor-bolinha:${obterCorCSS(opcao.cor)}"
+              ></button>
+            `).join("")}
+          </div>
+
+          <span data-nome-cor-montagem="${produto.id}">
+            ${escaparHTML(primeiraCor)}
+          </span>
+        </div>
+
+        <select
+          data-cor-montagem="${produto.id}"
+          class="cor-montagem-interna"
+          aria-label="Cor de ${escaparHTML(produto.nome)}"
+          tabindex="-1"
+        >
+          ${produto.opcoes.map(opcao => `
+            <option
+              value="${escaparHTML(opcao.cor)}"
+              ${opcao.cor === primeiraCor ? "selected" : ""}
+            >${escaparHTML(opcao.cor)}</option>
+          `).join("")}
+        </select>
+
+        <label class="seletor-produto">
+          <span>Tamanho</span>
+          <select data-tamanho-montagem="${produto.id}">
+            <option value="">Selecione a cor primeiro</option>
+          </select>
+        </label>
+
+        <label class="seletor-produto">
+          <span>Quantidade</span>
+          <input
+            type="number"
+            min="1"
+            max="20"
+            value="1"
+            data-quantidade-montagem="${produto.id}"
+          >
+        </label>
+      </article>
+    `;
+  }
+
+  const parteDeCima = produtos.filter(produto =>
+    nomesParteDeCima.includes(produto.nome)
+  );
+
+  const parteDeBaixo = produtos.filter(produto =>
+    nomesParteDeBaixo.includes(produto.nome)
+  );
+
+  area.innerHTML = `
+    <section class="secao-montagem">
+      <h3 class="titulo-secao-montagem">PARTE DE CIMA</h3>
+      <p class="descricao-secao-montagem">
+        Escolha suas camisas, camisetas e regatas.
+      </p>
+      <div class="grade-montagem">
+        ${parteDeCima.map(renderizarPeca).join("")}
+      </div>
+    </section>
+
+    <section class="secao-montagem">
+      <h3 class="titulo-secao-montagem">PARTE DE BAIXO</h3>
+      <p class="descricao-secao-montagem">
+        Escolha seus shorts e bermudas.
+      </p>
+      <div class="grade-montagem">
+        ${parteDeBaixo.map(renderizarPeca).join("")}
+      </div>
+    </section>
+  `;
+
+  produtos.forEach(produto => {
+    const opcao = produto.opcoes[0];
+    const seletorTamanho = area.querySelector(
+      `[data-tamanho-montagem="${produto.id}"]`
+    );
+
+    if (seletorTamanho && opcao) {
+      seletorTamanho.innerHTML =
+        `<option value="">Selecione</option>` +
+        opcao.tamanhos.map(t =>
+          `<option value="${escaparHTML(t)}">${escaparHTML(t)}</option>`
+        ).join("");
+    }
+  });
 
   atualizarResumoMontagem();
 }
+
 
 function obterSelecaoMontagem() {
   const selecionados = [];

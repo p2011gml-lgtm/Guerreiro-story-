@@ -606,37 +606,7 @@ const pecasParaMontar = document.getElementById("pecas-para-montar");
 
 const gruposCategorias = [...new Set(produtos.map(p => p.categoria))];
 
-function renderizarCatalogo() {
-  if (!listaCategorias) return;
 
-  listaCategorias.innerHTML = gruposCategorias.map(categoria => {
-    const itens = produtos.filter(p => p.categoria === categoria);
-
-    return `
-      <section class="grupo-categoria">
-        <h3>${escaparHTML(categoria)}</h3>
-
-        <div class="grade-produtos">
-          ${itens.map(produto => `
-            <article class="cartao-produto">
-
-              <button
-                type="button"
-                class="foto-produto"
-                data-ampliar="${produto.id}"
-                aria-label="Ampliar ${escaparHTML(produto.nome)}"
-              >
-                <img
-                  src="${escaparHTML(obterImagemProduto(produto))}"
-                  alt="${escaparHTML(produto.nome)}"
-                  loading="lazy"
-                >
-              </button>
-
-              <div class="informacoes-produto">
-                <h4>${escaparHTML(produto.nome)}</h4>
-
-                <p class="preco-produto">
                   ${formatarPreco(produto.preco)}
                 </p>
 

@@ -585,35 +585,108 @@ function renderizarCatalogo() {
                       required
                     >
                       <option value="">Selecione a cor primeiro</option>
-                    </select>
-                  </label>
 
-                  <label class="seletor-produto">
-                    <span>Quantidade</span>
-                    <input
-                      type="number"
-                      min="1"
-                      max="20"
-                      value="1"
-                      data-quantidade-produto="${produto.id}"
-                    >
-                  </label>
+function renderizarMontador() {
+  const area = document.getElementById("pecas-para-montar");
+  if (!area) return;
 
-                  <button
-                    type="button"
-                    class="botao-principal botao-largo"
-                    data-adicionar-produto="${produto.id}"
-                  >
-                    ADICIONAR À SACOLA
-                  </button>
-                </div>
-              </div>
-            </article>
-          `).join("")}
-        </div>
-      </section>
+  const nomesParteDeCima = [
+    "Camisa Dubai",
+    "Camisa Canelada",
+    "T-shirt Texturada",
+    "T-shirt Tricô",
+    "T-shirt Algodão",
+    "Regata"
+  ];
+
+  const nomesParteDeBaixo = [
+    "Short Linho",
+    "Short Mauricinho de Algodão",
+    "Short Sarja",
+    "Bermuda Brim"
+  ];
+
+  function renderizarPeca(produto) {
+    return `
+      <article class="cartao-montagem">
+        <label class="seletor-produto">
+          <span>
+            <input
+              type="checkbox"
+              data-selecionar-montagem="${produto.id}"
+            >
+            <strong>${escaparHTML(produto.nome)}</strong>
+          </span>
+        </label>
+
+        <img
+          src="${escaparHTML(obterImagemProduto(produto))}"
+          alt="${escaparHTML(produto.nome)}"
+          loading="lazy"
+        >
+
+        <p>${formatarPreco(produto.preco)}</p>
+
+        ${criarSeletor(
+          "Cor",
+          produto.opcoes.map(opcao => opcao.cor),
+          `data-cor-montagem="${produto.id}"`
+        )}
+
+        <label class="seletor-produto">
+          <span>Tamanho</span>
+          <select data-tamanho-montagem="${produto.id}">
+            <option value="">Selecione a cor primeiro</option>
+          </select>
+        </label>
+
+        <label class="seletor-produto">
+          <span>Quantidade</span>
+          <input
+            type="number"
+            min="1"
+            max="20"
+            value="1"
+            data-quantidade-montagem="${produto.id}"
+          >
+        </label>
+      </article>
     `;
-  }).join("");
+  }
+
+  const parteDeCima = produtos.filter(produto =>
+    nomesParteDeCima.includes(produto.nome)
+  );
+
+  const parteDeBaixo = produtos.filter(produto =>
+    nomesParteDeBaixo.includes(produto.nome)
+  );
+
+  area.innerHTML = `
+    <section class="secao-montagem">
+      <h3 class="titulo-secao-montagem">PARTE DE CIMA</h3>
+      <p class="descricao-secao-montagem">
+        Escolha suas camisas, camisetas e regatas.
+      </p>
+      <div class="grade-montagem">
+        ${parteDeCima.map(renderizarPeca).join("")}
+      </div>
+    </section>
+
+    <section class="secao-montagem">
+      <h3 class="titulo-secao-montagem">PARTE DE BAIXO</h3>
+      <p class="descricao-secao-montagem">
+        Escolha seus shorts e bermudas.
+      </p>
+      <div class="grade-montagem">
+        ${parteDeBaixo.map(renderizarPeca).join("")}
+      </div>
+    </section>
+  `;
+
+  atualizarResumoMontagem();
+}
+
 
   // Deixa a primeira cor selecionada e carrega seus tamanhos.
   produtos.forEach(produto => {

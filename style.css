@@ -2235,3 +2235,53 @@ a,
     height: 180px;
   }
 }
+
+
+.paleta-montagem {
+  margin: 14px 0;
+}
+
+.titulo-paleta {
+  display: block;
+  color: #e8c58c;
+  font-size: 13px;
+  margin-bottom: 9px;
+}
+
+.botoes-paleta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.bolinha-montagem {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 50%;
+  background: var(--cor-bolinha);
+  border: 2px solid #777;
+  cursor: pointer;
+  padding: 0;
+}
+
+.bolinha-montagem.cor-montagem-ativa {
+  outline: 2px solid #e8c58c;
+  outline-offset: 3px;
+  border-color: #fff;
+}
+
+.paleta-montagem [data-nome-cor-montagem] {
+  display: block;
+  color: #d8d0c4;
+  font-size: 12px;
+}
+
+.cor-montagem-interna {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}

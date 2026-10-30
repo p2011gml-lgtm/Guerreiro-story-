@@ -733,6 +733,33 @@ function renderizarCatalogo() {
                 >
               </button>
 
+
+function renderizarCatalogo() {
+  if (!listaCategorias) return;
+
+  listaCategorias.innerHTML = gruposCategorias.map(categoria => {
+    const itens = produtos.filter(p => p.categoria === categoria);
+
+    return `
+      <section class="grupo-categoria">
+        <h3>${escaparHTML(categoria)}</h3>
+
+        <div class="grade-produtos">
+          ${itens.map(produto => `
+            <article class="cartao-produto">
+              <button
+                type="button"
+                class="foto-produto"
+                data-ampliar="${produto.id}"
+                aria-label="Ampliar ${escaparHTML(produto.nome)}"
+              >
+                <img
+                  src="${escaparHTML(obterImagemProduto(produto))}"
+                  alt="${escaparHTML(produto.nome)}"
+                  loading="lazy"
+                >
+              </button>
+
               <div class="informacoes-produto">
                 <h4>${escaparHTML(produto.nome)}</h4>
 
@@ -774,7 +801,9 @@ function renderizarCatalogo() {
                   <p
                     class="nome-cor-escolhida"
                     data-nome-cor="${produto.id}"
-                  >${escaparHTML(produto.opcoes[0]?.cor || "")}</p>
+                  >
+                    ${escaparHTML(produto.opcoes[0]?.cor || "")}
+                  </p>
 
                   <label class="seletor-produto">
                     <span>Tamanho</span>
@@ -814,7 +843,6 @@ function renderizarCatalogo() {
     `;
   }).join("");
 
-  // Carrega os tamanhos disponíveis da primeira cor de cada produto.
   produtos.forEach(produto => {
     const primeiraOpcao = produto.opcoes[0];
 
@@ -823,6 +851,7 @@ function renderizarCatalogo() {
     }
   });
 }
+
 function atualizarTamanhosProduto(id, cor) {
   const produto = obterProduto(id);
   const seletor = document.querySelector(

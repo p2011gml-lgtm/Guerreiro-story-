@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11100e">
+
+  <title>Guerreiro Store | Moda Masculina</title>
+
+  <meta
+    name="description"
+    content="Descubra a coleção Guerreiro Store. Moda masculina, peças individuais e looks prontos."
+  >
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- CABEÇALHO -->
+  <header class="cabecalho" id="inicio">
+    <div class="cabecalho-conteudo">
+
+      <a href="#inicio" class="marca">
+        GUERREIRO <span>STORE</span>
+      </a>
+
+      <button
+        class="botao-menu"
+        id="botao-menu"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="navegacao" id="navegacao">
+        <a href="#inicio">Início</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#looks-prontos">Looks prontos</a>
+        <a href="#montar-look">Monte seu look</a>
+      </nav>
+
+      <button class="botao-sacola" id="abrir-sacola">
+        Sacola
+        <span id="contador-sacola">0</span>
+      </button>
+
+    </div>
+  </header>
+
+
+  <!-- CAPA PRINCIPAL -->
+  <main>
+
+    <section class="capa" aria-label="Apresentação da loja">
+
+      <div class="capa-conteudo">
+
+        <p class="texto-destaque">
+          GUERREIRO STORE · MODA MASCULINA
+        </p>
+
+        <h1>
+          Seu estilo.<br>
+          Sua <span>presença.</span>
+        </h1>
+
+        <p class="capa-descricao">
+          Vista-se com personalidade. Descubra peças que combinam
+          com você e encontre seu próximo look.
+        </p>
+
+        <a href="#catalogo" class="botao-principal">
+          CATÁLOGO
+        </a>
+
+      </div>
+
+      
+<div class="capa-imagem capa-logo">
+  <img
+    src="logo-guerreiro-store.png"
+    alt="Guerreiro Store"
+    fetchpriority="high"
+  >
+</div>
+
+      
+
+      <div class="capa-indicador">
+        <span></span>
+        ESTILO EM CADA DETALHE
+      </div>
+
+    </section>
+
+
+    <!-- INTRODUÇÃO AO CATÁLOGO -->
+    <section class="introducao-catalogo" id="catalogo">
+
+      <div class="introducao-texto">
+        <p class="texto-destaque">DESCUBRA A COLEÇÃO</p>
+
+        <h2>
+          Encontre suas<br>
+          próximas peças.
+        </h2>
+      </div>
+
+      <p class="introducao-descricao">
+        Explore as categorias, conheça as opções de cores e escolha
+        suas peças favoritas.
+      </p>
+
+    </section>
+
+
+    <!-- CATÁLOGO DE PEÇAS INDIVIDUAIS -->
+    <section class="catalogo-individual">
+
+      <div class="cabecalho-secao">
+        <div>
+          <p class="texto-destaque">PEÇAS INDIVIDUAIS</p>
+          <h2>O catálogo</h2>
+        </div>
+
+        <p class="nota-catalogo">
+          Escolha uma peça e descubra suas opções.
+        </p>
+      </div>
+
+      <!--
+        O JavaScript criará as categorias nesta área.
+        Cada categoria terá duas peças por linha em telas maiores,
+        com a organização adaptada para celulares.
+      -->
+
+      <div id="lista-categorias" class="lista-categorias">
+
+        <div class="carregando-catalogo">
+          Preparando a coleção...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- Paleta geral removida; as cores continuam disponíveis dentro de cada produto. -->
+
+    <!-- LOOKS PRONTOS -->
+    <section class="secao-looks" id="looks-prontos">
+
+      <div class="cabecalho-secao">
+        <div>
+          <p class="texto-destaque">COMBINAÇÕES DA LOJA</p>
+          <h2>Looks prontos</h2>
+        </div>
+
+        <p class="nota-catalogo">
+          Combinações selecionadas para facilitar sua escolha.
+        </p>
+      </div>
+
+      <!-- T-SHIRT TEXTURADA + BERMUDA BRIM -->
+      <article class="categoria-look" id="look-texturada-brim">
+
+        <div class="categoria-look-cabecalho">
+          <div>
+            <p class="texto-destaque">COMBINAÇÃO 01</p>
+            <h3>T-shirt Texturada + Bermuda Brim</h3>
+          </div>
+        </div>
+
+        <div class="look-destaque">
+
+          <div class="look-foto">
+            <img
+              src="35_1000073931_peca_04.jpg"
+              alt="T-shirt texturada com bermuda Brim caqui"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="look-info">
+            <span class="selo-look">LOOK EM DESTAQUE</span>
+
+            <h4>
+              T-shirt Texturada<br>
+              + Bermuda Brim Caqui
+            </h4>
+
+            <p>
+              Uma combinação casual para quem procura praticidade
+              e personalidade.
+            </p>
+
+            <button
+              class="botao-ver-mais"
+              data-abrir-look="texturada-brim"
+              aria-expanded="false"
+            >
+              VER MAIS
+            </button>
+          </div>
+
+        </div>
+
+        <div
+          class="opcoes-look"
+          id="opcoes-look-texturada-brim"
+          hidden
+        >
+          <div class="grade-opcoes-look"></div>
+        </div>
+
+      </article>
+
+
+      <!-- T-SHIRT ALGODÃO + SHORT SARJA -->
+      <article class="categoria-look" id="look-algodao-sarja">
+
+        <div class="categoria-look-cabecalho">
+          <div>
+            <p class="texto-destaque">COMBINAÇÃO 02</p>
+            <h3>T-shirt Algodão + Short Sarja</h3>
+          </div>
+        </div>
+
+        <div class="look-destaque">
+
+          <div class="look-foto">
+            <img
+              src="algodao_preta_short_sarja_amarelo_look.jpg"
+              alt="T-shirt algodão preta com short sarja amarelo"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="look-info">
+            <span class="selo-look">LOOK EM DESTAQUE</span>
+
+            <h4>
+              T-shirt Algodão Preta<br>
+              + Short Sarja Amarelo
+            </h4>
+
+            <p>
+              Duas peças combinadas em um visual marcante.
+            </p>
+
+            <button
+              class="botao-ver-mais"
+              data-abrir-look="algodao-sarja"
+              aria-expanded="false"
+            >
+              VER MAIS
+            </button>
+          </div>
+
+        </div>
+
+        <div
+          class="opcoes-look"
+          id="opcoes-look-algodao-sarja"
+          hidden
+        >
+          <div class="grade-opcoes-look"></div>
+        </div>
+
+      </article>
+
+
+      <!-- CAMISA CANELADA + SHORT SARJA -->
+      <article class="categoria-look" id="look-canelada-sarja">
+
+        <div class="categoria-look-cabecalho">
+          <div>
+            <p class="texto-destaque">COMBINAÇÃO 03</p>
+            <h3>Camisa Canelada + Short Sarja</h3>
+          </div>
+        </div>
+
+        <div class="look-destaque">
+
+          <div class="look-foto">
+            <img
+              src="camiseta-canelada-branca-marrom-short-sarja-marrom.jpg"
+              alt="Camisa canelada branca com preto e short sarja marrom"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="look-info">
+            <span class="selo-look">LOOK EM DESTAQUE</span>
+
+            <h4>
+              Camisa Canelada<br>
+              + Short Sarja Marrom
+            </h4>
+
+            <p>
+              Uma combinação de cores para compor seu estilo.
+            </p>
+
+            <button
+              class="botao-ver-mais"
+              data-abrir-look="canelada-sarja"
+              aria-expanded="false"
+            >
+              VER MAIS
+            </button>
+          </div>
+
+        </div>
+
+        <div
+          class="opcoes-look"
+          id="opcoes-look-canelada-sarja"
+          hidden
+        >
+          <div class="grade-opcoes-look"></div>
+        </div>
+
+      </article>
+
+
+      <!-- CAMISA DUBAI + SHORT LINHO -->
+      <article class="categoria-look" id="look-dubai-linho">
+
+        <div class="categoria-look-cabecalho">
+          <div>
+            <p class="texto-destaque">COMBINAÇÃO 04</p>
+            <h3>Camisa Dubai + Short Linho</h3>
+          </div>
+        </div>
+
+        <div class="look-destaque">
+
+          <div class="look-foto">
+            <img
+              src="look_dubai_preta_linho_marrom_02.jpg"
+              alt="Camisa Dubai preta com short linho marrom"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="look-info">
+            <span class="selo-look">LOOK EM DESTAQUE</span>
+
+            <h4>
+              Camisa Dubai Preta<br>
+              + Short Linho Marrom
+            </h4>
+
+            <p>
+              Uma combinação pensada para um visual alinhado.
+            </p>
+
+            <button
+              class="botao-ver-mais"
+              data-abrir-look="dubai-linho"
+              aria-expanded="false"
+            >
+              VER MAIS
+            </button>
+          </div>
+
+        </div>
+
+        <div
+          class="opcoes-look"
+          id="opcoes-look-dubai-linho"
+          hidden
+        >
+          <div class="grade-opcoes-look"></div>
+        </div>
+
+      </article>
+
+
+      <!-- T-SHIRT TRICÔ + BERMUDA BRIM -->
+      <article class="categoria-look" id="look-trico-brim">
+
+        <div class="categoria-look-cabecalho">
+          <div>
+            <p class="texto-destaque">COMBINAÇÃO 05</p>
+            <h3>T-shirt Tricô + Bermuda Brim</h3>
+          </div>
+        </div>
+
+        <div class="look-destaque">
+
+          <div class="look-foto">
+            <img
+              src="trico_azulclaro_bermuda_brim_preta_look.jpg"
+              alt="T-shirt tricô azul claro com bermuda Brim preta"
+              loading="lazy"
+            >
+          </div>
+
+          <div class="look-info">
+            <span class="selo-look">LOOK EM DESTAQUE</span>
+
+            <h4>
+              T-shirt Tricô Azul Claro<br>
+              + Bermuda Brim Preta
+            </h4>
+
+            <p>
+              Uma combinação com contraste entre as duas peças.
+            </p>
+
+            <button
+              class="botao-ver-mais"
+              data-abrir-look="trico-brim"
+              aria-expanded="false"
+            >
+              VER MAIS
+            </button>
+          </div>
+
+        </div>
+
+        <div
+          class="opcoes-look"
+          id="opcoes-look-trico-brim"
+          hidden
+        >
+          <div class="grade-opcoes-look"></div>
+        </div>
+
+      </article>
+
+        </section>
+    <!-- MONTAR LOOK -->
+    <section class="secao-montar" id="montar-look">
+
+      <div class="montar-introducao">
+        <p class="texto-destaque">CRIE SUA COMBINAÇÃO</p>
+
+        <h2>
+          Monte seu<br>
+          próprio look.
+        </h2>
+
+        <p>
+          Escolha as peças que você deseja combinar e confira
+          sua seleção antes de enviar o pedido.
+        </p>
+      </div>
+
+      <div class="montar-conteudo">
+
+        <div class="montar-lista">
+
+          <div class="montar-categoria">
+            <h3>1. Escolha suas peças</h3>
+            <p>Selecione as roupas que deseja incluir.</p>
+          </div>
+
+          <div
+            id="pecas-para-montar"
+            class="grade-montar"
+          >
+            <!-- O JavaScript preencherá esta área. -->
+          </div>
+
+        </div>
+
+        <aside class="resumo-montagem">
+
+          <p class="texto-destaque">SUA SELEÇÃO</p>
+
+          <h3>Seu look</h3>
+
+          <div id="resumo-selecao">
+            Nenhuma peça selecionada ainda.
+          </div>
+
+          <div class="resumo-total">
+            <span>Total das peças</span>
+            <strong id="total-montagem">R$ 0,00</strong>
+          </div>
+
+          <button
+            id="adicionar-look-sacola"
+            class="botao-principal botao-largo"
+          >
+            ADICIONAR À SACOLA
+          </button>
+
+          <p class="aviso-montagem">
+            A disponibilidade das peças será confirmada no atendimento.
+          </p>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- SACOLA LATERAL -->
+    <div
+      class="fundo-sacola"
+      id="fundo-sacola"
+      hidden
+    ></div>
+
+    <aside
+      class="painel-sacola"
+      id="painel-sacola"
+      aria-label="Sua sacola de compras"
+      aria-hidden="true"
+    >
+
+      <div class="sacola-cabecalho">
+
+        <div>
+          <p class="texto-destaque">GUERREIRO STORE</p>
+          <h2>Sua sacola</h2>
+        </div>
+
+        <button
+          id="fechar-sacola"
+          class="botao-fechar"
+          aria-label="Fechar sacola"
+        >
+          &times;
+        </button>
+
+      </div>
+
+      <div id="itens-sacola" class="itens-sacola">
+        <p class="sacola-vazia">
+          Sua sacola está vazia.
+        </p>
+      </div>
+
+      <div class="sacola-rodape">
+
+        <div class="sacola-total">
+          <span>Total</span>
+          <strong id="total-sacola">R$ 0,00</strong>
+        </div>
+
+        <button
+          id="enviar-pedido"
+          class="botao-principal botao-largo"
+        >
+          ENVIAR PEDIDO
+        </button>
+
+        <p>
+          Seu pedido será enviado pelo WhatsApp para confirmação.
+        </p>
+
+      </div>
+
+    </aside>
+
+
+    <!-- VISUALIZAÇÃO AMPLIADA DAS PEÇAS -->
+    <div
+      class="modal-imagem"
+      id="modal-imagem"
+      hidden
+      aria-hidden="true"
+    >
+
+      <div class="modal-conteudo">
+
+        <button
+          id="fechar-modal-imagem"
+          class="botao-fechar"
+          aria-label="Fechar imagem"
+        >
+          &times;
+        </button>
+
+        <img id="imagem-ampliada" src="" alt="">
+
+        <div class="modal-legenda">
+          <h3 id="nome-imagem-ampliada"></h3>
+          <p id="descricao-imagem-ampliada"></p>
+        </div>
+
+      </div>
+
+    </div>
+      </main>
+
+
+  <!-- RODAPÉ -->
+  <footer class="rodape">
+
+    <a href="#inicio" class="marca">
+      GUERREIRO <span>STORE</span>
+    </a>
+
+    <p>
+      Moda masculina. Estilo em cada detalhe.
+    </p>
+
+    <div class="rodape-links">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#looks-prontos">Looks prontos</a>
+      <a href="#montar-look">Monte seu look</a>
+    </div>
+
+    <p class="direitos">
+      &copy; <span id="ano-atual"></span> Guerreiro Store.
+    </p>
+
+  </footer>
+
+</body>
+</html>

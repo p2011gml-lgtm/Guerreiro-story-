@@ -522,8 +522,8 @@ const produtos = [
     categoria: "Regatas",
     opcoes: [
       { cor: "Preta", tamanhos: ["P"], imagem: "12_1000073887_peca_01.jpg" },
-      { cor: "Branca", tamanhos: ["G"], imagem: "15_1000073887_peca_04.jpg" },
-      { cor: "Azul claro", tamanhos: ["G", "GG"], imagem: "12_1000073887_peca_01.jpg" },
+      { cor: "Branca", tamanhos: ["G"], imagem: "14_1000073887_peca_03.jpg" },
+      { cor: "Azul claro", tamanhos: ["G", "GG"], imagem: "15_1000073887_peca_04.jpg" },
       { cor: "Verde claro", tamanhos: ["P", "M", "GG"], imagem: "13_1000073887_peca_02.jpg" },
       { cor: "Laranja", tamanhos: ["M"], imagem: "16_1000073887_peca_05.jpg" }
     ]

@@ -717,22 +717,6 @@ function renderizarCatalogo() {
       <section class="grupo-categoria">
         <h3>${escaparHTML(categoria)}</h3>
 
-        <div class="grade-produtos">
-          ${itens.map(produto => `
-            <article class="cartao-produto">
-              <button
-                type="button"
-                class="foto-produto"
-                data-ampliar="${produto.id}"
-                aria-label="Ampliar ${escaparHTML(produto.nome)}"
-              >
-                <img
-                  src="${escaparHTML(obterImagemProduto(produto))}"
-                  alt="${escaparHTML(produto.nome)}"
-                  loading="lazy"
-                >
-              </button>
-
 
 function renderizarCatalogo() {
   if (!listaCategorias) return;

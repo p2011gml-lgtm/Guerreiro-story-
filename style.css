@@ -2915,3 +2915,16 @@ a,
   object-fit: contain;
   object-position: center;
 }
+
+/* SHORT MAURICINHO — DIMINUIR A ÁREA DO FUNDO */
+#lista-categorias .cartao-produto[data-produto="short-mauricinho"] .foto-produto {
+  height: 220px;
+  min-height: 220px;
+}
+
+@media (max-width: 600px) {
+  #lista-categorias .cartao-produto[data-produto="short-mauricinho"] .foto-produto {
+    height: 190px;
+    min-height: 190px;
+  }
+}

@@ -2868,11 +2868,19 @@ a,
   object-position: center;
 }
 
-/* SHORT LINHO E SHORT SARJA — AJUSTE DE TAMANHO */
-#lista-categorias .cartao-produto[data-produto="short-linho"] .foto-produto img,
+/* SHORTS — NOVO AJUSTE DE TAMANHO */
+#lista-categorias .cartao-produto[data-produto="short-linho"] .foto-produto img {
+  width: 128%;
+  height: 128%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}
+
 #lista-categorias .cartao-produto[data-produto="short-sarja"] .foto-produto img {
-  width: 118%;
-  height: 118%;
+  width: 138%;
+  height: 138%;
   max-width: none;
   max-height: none;
   object-fit: contain;

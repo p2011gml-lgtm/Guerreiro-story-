@@ -455,7 +455,7 @@ const produtos = [
     preco: 129.90,
     categoria: "Shorts",
     opcoes: [
-      { cor: "Azul água", tamanhos: ["M", "G"], imagem: "28_1000073891_individual.jpg" }
+      { cor: "Azul água", tamanhos: ["M", "G"], imagem: "IMG_20261103_205325.jpg" }
     ]
   },
   {

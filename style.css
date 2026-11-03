@@ -2867,3 +2867,14 @@ a,
   object-fit: contain;
   object-position: center;
 }
+
+/* SHORT LINHO E SHORT SARJA — AJUSTE DE TAMANHO */
+#lista-categorias .cartao-produto[data-produto="short-linho"] .foto-produto img,
+#lista-categorias .cartao-produto[data-produto="short-sarja"] .foto-produto img {
+  width: 118%;
+  height: 118%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+}

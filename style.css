@@ -2905,3 +2905,13 @@ a,
     height: 304px;
   }
    }
+
+/* SHORT MAURICINHO — AJUSTE DE ALTURA */
+#lista-categorias .cartao-produto[data-produto="short-mauricinho"] .foto-produto img {
+  width: 118%;
+  height: 118%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+     }

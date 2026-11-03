@@ -2707,3 +2707,55 @@ a,
 .capa-indicador {
   animation: entradaCapa 1.2s ease both;
 }
+
+/* MOLDURA DE LUXO DA FOTO DA CAPA */
+.capa-imagem {
+  position: relative;
+  isolation: isolate;
+  padding: 12px;
+}
+
+/* BRILHO DOURADO ATRÁS DA FOTO */
+.capa-imagem::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(201, 155, 88, 0.65);
+  z-index: -1;
+  box-shadow: 0 0 35px rgba(201, 155, 88, 0.12);
+}
+
+/* CONTORNO INTERNO */
+.capa-imagem img {
+  display: block;
+  width: 100%;
+  border: 1px solid rgba(232, 197, 140, 0.35);
+  outline: 1px solid rgba(201, 155, 88, 0.25);
+  outline-offset: -7px;
+}
+
+/* DETALHE DECORATIVO */
+.capa-imagem::after {
+  content: "GUERREIRO STORE";
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  color: #e8c58c;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 8px #000;
+}
+
+/* AJUSTE PARA CELULAR */
+@media (max-width: 600px) {
+  .capa-imagem {
+    padding: 9px;
+  }
+
+  .capa-imagem::after {
+    right: 17px;
+    bottom: 17px;
+    font-size: 7px;
+  }
+}

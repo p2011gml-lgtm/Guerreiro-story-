@@ -2816,3 +2816,44 @@ a,
     line-height: 1.5;
   }
 }
+
+/* CARTÕES DE PRODUTOS - VISUAL PREMIUM */
+#lista-categorias .cartao-produto {
+  background: linear-gradient(
+    145deg,
+    #1c1915,
+    #11100e
+  );
+  border: 1px solid rgba(201, 155, 88, 0.22);
+  border-radius: 5px;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* DESTAQUE AO INTERAGIR */
+#lista-categorias .cartao-produto:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 155, 88, 0.65);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* SEPARAÇÃO ENTRE FOTO E INFORMAÇÕES */
+#lista-categorias .informacoes-produto {
+  padding: 15px;
+  background: #171410;
+  border-top: 1px solid rgba(201, 155, 88, 0.18);
+}
+
+/* AJUSTE PARA CELULAR */
+@media (max-width: 600px) {
+  #lista-categorias .cartao-produto:hover {
+    transform: none;
+  }
+
+  #lista-categorias .informacoes-produto {
+    padding: 11px;
+  }
+}

@@ -2512,3 +2512,37 @@ a,
     min-height: 220px;
   }
 }
+
+/* BENEFÍCIOS DA LOJA */
+.beneficios-loja {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 35px 8%;
+  background: #191714;
+  border-top: 1px solid rgba(201, 155, 88, 0.2);
+  border-bottom: 1px solid rgba(201, 155, 88, 0.2);
+  text-align: center;
+}
+
+.beneficio h3 {
+  color: #c99b58;
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+}
+
+.beneficio p {
+  color: #f1e8dc;
+  font-size: 15px;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 600px) {
+  .beneficios-loja {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    padding: 30px 20px;
+  }
+}

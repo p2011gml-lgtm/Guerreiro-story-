@@ -2906,12 +2906,12 @@ a,
   }
    }
 
-/* SHORT MAURICINHO — AJUSTE DE ALTURA */
+/* SHORT MAURICINHO — DIMINUIR MAIS A FOTO */
 #lista-categorias .cartao-produto[data-produto="short-mauricinho"] .foto-produto img {
-  width: 118%;
-  height: 118%;
+  width: 108%;
+  height: 108%;
   max-width: none;
   max-height: none;
   object-fit: contain;
   object-position: center;
-     }
+}

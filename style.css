@@ -2667,3 +2667,19 @@ a,
     letter-spacing: 2.5px;
   }
 }
+
+/* FOTO PRINCIPAL - ACABAMENTO PREMIUM */
+.capa-imagem img {
+  border-radius: 4px;
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(201, 155, 88, 0.10);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.capa-imagem img:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 25px 65px rgba(0, 0, 0, 0.55),
+    0 0 38px rgba(201, 155, 88, 0.18);
+}

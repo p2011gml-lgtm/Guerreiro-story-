@@ -2878,11 +2878,30 @@ a,
   object-position: center;
 }
 
+/* SHORT SARJA — FUNDO MAIS ALTO */
+#lista-categorias .cartao-produto[data-produto="short-sarja"] .foto-produto {
+  height: 300px;
+  min-height: 300px;
+}
+
+/* MANTER O TAMANHO ATUAL DA FOTO */
 #lista-categorias .cartao-produto[data-produto="short-sarja"] .foto-produto img {
   width: 138%;
-  height: 138%;
+  height: 359px;
   max-width: none;
   max-height: none;
   object-fit: contain;
   object-position: center;
 }
+
+/* AJUSTE PARA CELULAR */
+@media (max-width: 600px) {
+  #lista-categorias .cartao-produto[data-produto="short-sarja"] .foto-produto {
+    height: 260px;
+    min-height: 260px;
+  }
+
+  #lista-categorias .cartao-produto[data-produto="short-sarja"] .foto-produto img {
+    height: 304px;
+  }
+   }

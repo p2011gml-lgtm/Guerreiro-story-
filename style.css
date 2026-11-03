@@ -2683,3 +2683,27 @@ a,
     0 25px 65px rgba(0, 0, 0, 0.55),
     0 0 38px rgba(201, 155, 88, 0.18);
 }
+
+/* ANIMAÇÃO DE ENTRADA DA CAPA */
+@keyframes entradaCapa {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.capa-conteudo {
+  animation: entradaCapa 0.8s ease both;
+}
+
+.capa-imagem {
+  animation: entradaCapa 1s ease both;
+}
+
+.capa-indicador {
+  animation: entradaCapa 1.2s ease both;
+}

@@ -2548,3 +2548,61 @@ a,
     padding: 30px 20px;
   }
 }
+
+/* CAPA PREMIUM - BOTÕES */
+.capa-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.capa-acoes a {
+  min-height: 52px;
+  padding: 16px 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+}
+
+.capa-acoes .botao-principal {
+  background: #c99b58;
+  color: #17120b;
+  border: 1px solid #c99b58;
+}
+
+.capa-acoes .botao-secundario {
+  background: transparent;
+  color: #e8c58c;
+  border: 1px solid rgba(201, 155, 88, 0.6);
+}
+
+.capa-acoes a:hover {
+  transform: translateY(-3px);
+}
+
+.capa-acoes .botao-secundario:hover {
+  background: rgba(201, 155, 88, 0.12);
+  border-color: #e8c58c;
+}
+
+/* AJUSTE DOS BOTÕES NO CELULAR */
+@media (max-width: 600px) {
+  .capa-acoes {
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .capa-acoes a {
+    flex: 1;
+    min-width: 135px;
+    padding: 15px 12px;
+    font-size: 9px;
+  }
+}

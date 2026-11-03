@@ -1693,7 +1693,9 @@ a,
   }
 
   .capa-imagem {
-    width: min(100%, 450px);
+  width: min(100%, 300px);
+  justify-self: center;
+  margin: 0 auto;
   }
 
   .capa-imagem img {

@@ -2858,10 +2858,10 @@ a,
   }
 }
 
-/* TESTE DE TAMANHO — CAMISA DUBAI */
+/* CAMISA DUBAI — SEGUNDO TESTE */
 #lista-categorias .cartao-produto[data-produto="camisa-dubai"] .foto-produto img {
-  width: 112%;
-  height: 112%;
+  width: 118%;
+  height: 118%;
   max-width: none;
   max-height: none;
   object-fit: contain;

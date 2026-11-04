@@ -2936,5 +2936,5 @@ a,
 
 /* MANTER O EFEITO DE POSICIONAMENTO AO PASSAR O MOUSE */
 #lista-categorias .cartao-produto[data-produto="short-mauricinho"]:hover .foto-produto img {
-  transform: translateY(25px) scale(1.12);
+  transform: translateY(28px) scale(1.12);
    }

@@ -2929,8 +2929,12 @@ a,
   }
 }
 
-/* SHORT MAURICINHO — ABAIXAR SOMENTE A IMAGEM */
+/* SHORT MAURICINHO — POSIÇÃO DA IMAGEM */
 #lista-categorias .cartao-produto[data-produto="short-mauricinho"] .foto-produto img {
-  position: relative;
-  top: 25px;
+  transform: translateY(25px);
+}
+
+/* MANTER O EFEITO DE POSICIONAMENTO AO PASSAR O MOUSE */
+#lista-categorias .cartao-produto[data-produto="short-mauricinho"]:hover .foto-produto img {
+  transform: translateY(25px);
 }

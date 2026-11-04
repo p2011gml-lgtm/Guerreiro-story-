@@ -2928,3 +2928,9 @@ a,
     min-height: 190px;
   }
 }
+
+/* SHORT MAURICINHO — ABAIXAR SOMENTE A IMAGEM */
+#lista-categorias .cartao-produto[data-produto="short-mauricinho"] .foto-produto img {
+  position: relative;
+  top: 12px;
+}

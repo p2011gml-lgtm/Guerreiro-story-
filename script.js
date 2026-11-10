@@ -538,7 +538,95 @@ const produtos = [
       { cor: "Branca", tamanhos: ["M"], imagem: "31_1000073892_peca_03.jpg" },
       { cor: "Bege", tamanhos: ["M"], imagem: "29_1000073892_peca_01.jpg" }
     ]
-  }
+     
+  // CAMISA SOCIAL EM LINHO
+  {
+    id: 31,
+    name: "Camisa Social em Linho",
+    category: "Camisas",
+    color: "Laranja",
+    price: 189.90,
+    sizes: "P, M",
+    img: "IMG_20261110_162737.png"
+  },
+  {
+    id: 32,
+    name: "Camisa Social em Linho",
+    category: "Camisas",
+    color: "Branca",
+    price: 189.90,
+    sizes: "M",
+    img: "IMG_20261110_162715.png"
+  },
+
+  // CAMISA TECH SOCIAL
+  {
+    id: 33,
+    name: "Camisa Tech Social",
+    category: "Camisas",
+    color: "Preta",
+    price: 189.90,
+    sizes: "M, G",
+    img: "IMG_20261110_162655.png"
+  },
+  {
+    id: 34,
+    name: "Camisa Tech Social",
+    category: "Camisas",
+    color: "Verde acinzentada",
+    price: 189.90,
+    sizes: "P, M, G",
+    img: "file_00000000671c820e8ccae2162d28c2a9.png"
+  },
+  {
+    id: 35,
+    name: "Camisa Tech Social",
+    category: "Camisas",
+    color: "Azul",
+    price: 189.90,
+    sizes: "M, G",
+    img: "IMG_20261110_162618.png"
+  },
+
+  // BERMUDAS JEANS
+  {
+    id: 36,
+    name: "Bermuda Jeans Escura",
+    category: "Bermudas",
+    color: "Jeans escura",
+    price: 119.90,
+    sizes: "38, 40",
+    img: "bermuda_jeans_preta.jpg"
+  },
+  {
+    id: 37,
+    name: "Bermuda Jeans Normal",
+    category: "Bermudas",
+    color: "Jeans normal",
+    price: 119.90,
+    sizes: "40, 44",
+    img: "bermuda_jeans_azul_modelo_5.jpg"
+  },
+  {
+    id: 38,
+    name: "Bermuda Jeans Clara",
+    category: "Bermudas",
+    color: "Jeans clara",
+    price: 119.90,
+    sizes: "40",
+    img: "bermuda_jeans_azul_claro_modelo_6.jpg"
+  },
+  {
+    id: 39,
+    name: "Bermuda Jeans Meio-termo",
+    category: "Bermudas",
+    color: "Jeans meio-termo",
+    price: 119.90,
+    sizes: "40, 44",
+    img: "bermuda_jeans_azul_modelo_4.jpg"
+}
+       
+  
 ];
 
 const obterCorCSS = (cor = "") => {

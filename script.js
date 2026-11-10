@@ -609,22 +609,51 @@ const produtos = [
   },
   {
     id: 38,
-    name: "Bermuda Jeans Clara",
-    category: "Bermudas",
-    color: "Jeans clara",
-    price: 119.90,
-    sizes: "40",
-    img: "bermuda_jeans_azul_claro_modelo_6.jpg"
+  {
+    id: "camisa-canelada",
+    nome: "Camisa Canelada",
+    preco: 87.00,
+    categoria: "Camisas",
+    opcoes: [
+      { cor: "Marrom", tamanhos: ["M"], imagem: "30_1000073892_peca_02.jpg" },
+      { cor: "Branca", tamanhos: ["M"], imagem: "31_1000073892_peca_03.jpg" },
+      { cor: "Bege", tamanhos: ["M"], imagem: "29_1000073892_peca_01.jpg" }
+    ]
   },
   {
-    id: 39,
-    name: "Bermuda Jeans Meio-termo",
-    category: "Bermudas",
-    color: "Jeans meio-termo",
-    price: 119.90,
-    sizes: "40, 44",
-    img: "bermuda_jeans_azul_modelo_4.jpg"
-}
+    id: "camisa-social-linho",
+    nome: "Camisa Social em Linho",
+    preco: 189.90,
+    categoria: "Camisas",
+    opcoes: [
+      { cor: "Laranja", tamanhos: ["P", "M"], imagem: "IMG_20261110_162737.png" },
+      { cor: "Branca", tamanhos: ["M"], imagem: "IMG_20261110_162715.png" }
+    ]
+  },
+  {
+    id: "camisa-tech-social",
+    nome: "Camisa Tech Social",
+    preco: 189.90,
+    categoria: "Camisas",
+    opcoes: [
+      { cor: "Preta", tamanhos: ["M", "G"], imagem: "IMG_20261110_162655.png" },
+      { cor: "Verde acinzentada", tamanhos: ["P", "M", "G"], imagem: "file_00000000671c820e8ccae2162d28c2a9.png" },
+      { cor: "Azul", tamanhos: ["M", "G"], imagem: "IMG_20261110_162618.png" }
+    ]
+  },
+  {
+    id: "bermuda-jeans",
+    nome: "Bermuda Jeans",
+    preco: 119.90,
+    categoria: "Bermudas",
+    opcoes: [
+      { cor: "Jeans escura", tamanhos: ["38", "40"], imagem: "bermuda_jeans_preta.jpg" },
+      { cor: "Jeans normal", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_5.jpg" },
+      { cor: "Jeans clara", tamanhos: ["40"], imagem: "bermuda_jeans_azul_claro_modelo_6.jpg" },
+      { cor: "Jeans meio-termo", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_4.jpg" }
+    ]
+  }
+];
        
   
 ];

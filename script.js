@@ -575,9 +575,7 @@ const produtos = [
     ]
   }
 ];
-       
-  
-];
+      
 
 const obterCorCSS = (cor = "") => {
   const cores = {

@@ -538,7 +538,7 @@ const produtos = [
       { cor: "Branca", tamanhos: ["M"], imagem: "31_1000073892_peca_03.jpg" },
       { cor: "Bege", tamanhos: ["M"], imagem: "29_1000073892_peca_01.jpg" }
     ]
-  }
+  },
    {
   
 

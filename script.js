@@ -601,7 +601,7 @@ const obterCorCSS = (cor = "") => {
     "Cinza": "#929292",
     "Cinza claro": "#c4c4c4",
     "Caqui": "#a99b73",
-    "Laranja": "#df803b"
+    "Laranja": "#df803b",
      "Azul-claro": "#a9d4e8",
 "Azul médio": "#527da8",
   };

@@ -808,10 +808,10 @@ button:disabled {
   background:
     radial-gradient(
       ellipse at 85% 50%,
-      rgba(201, 155, 88, 0.1),
+      rgba(201, 161, 90, 0.10),
       transparent 55%
     ),
-    #171512;
+    var(--fundo-secundario);
 }
 
 .paleta-texto h2 {

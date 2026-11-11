@@ -1002,7 +1002,7 @@ button:disabled {
   margin-top: 18px;
   padding: 24px;
   border: 1px solid var(--borda);
-  background: #15130f;
+  background: var(--fundo-secundario);
   animation: surgir-abaixo 0.3s ease both;
 }
 

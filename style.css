@@ -106,11 +106,11 @@ button:disabled {
 }
 
 ::-webkit-scrollbar-track {
-  background: #11100e;
+  background: var(--fundo);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #55432c;
+  background: var(--dourado-escuro);
   border-radius: 10px;
 }
 

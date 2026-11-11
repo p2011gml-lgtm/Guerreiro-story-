@@ -571,7 +571,6 @@ const produtos = [
     preco: 119.90,
     categoria: "Bermudas",
     opcoes: [
-    opcoes: [
   { cor: "Preta", tamanhos: ["38", "40"], imagem: "bermuda_jeans_preta.jpg" },
   { cor: "Azul", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_5.jpg" },
   { cor: "Azul-claro", tamanhos: ["40"], imagem: "bermuda_jeans_azul_claro_modelo_6.jpg" },

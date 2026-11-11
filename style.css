@@ -2938,3 +2938,20 @@ a,
 #lista-categorias .cartao-produto[data-produto="short-mauricinho"]:hover .foto-produto img {
   transform: translateY(28px) scale(1.12);
    }
+
+/* AJUSTE DAS FOTOS — BERMUDA JEANS */
+
+.cartao-produto[data-produto="bermuda-jeans"]
+.foto-produto img[src*="bermuda_jeans_preta"] {
+  transform: translateX(30px);
+}
+
+.cartao-produto[data-produto="bermuda-jeans"]
+.foto-produto img[src*="bermuda_jeans_azul_claro"] {
+  transform: translateX(0);
+}
+
+.cartao-produto[data-produto="bermuda-jeans"]
+.foto-produto img[src*="bermuda_jeans_azul_modelo_4"] {
+  transform: translateX(-25px);
+}

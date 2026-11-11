@@ -119,20 +119,23 @@ function renderizarMontador() {
   if (!area) return;
 
   const nomesParteDeCima = [
-    "Camisa Dubai",
-    "Camisa Canelada",
-    "T-shirt Texturada",
-    "T-shirt Tricô",
-    "T-shirt Algodão",
-    "Regata"
-  ];
+  "Camisa Dubai",
+  "Camisa Canelada",
+  "Camisa Social em Linho",
+  "Camisa Tech Social",
+  "T-shirt Texturada",
+  "T-shirt Tricô",
+  "T-shirt Algodão",
+  "Regata"
+];
 
   const nomesParteDeBaixo = [
-    "Short Linho",
-    "Short Mauricinho de Algodão",
-    "Short Sarja",
-    "Bermuda Brim"
-  ];
+  "Short Linho",
+  "Short Mauricinho de Algodão",
+  "Short Sarja",
+  "Bermuda Brim",
+  "Bermuda Jeans"
+];
 
   function renderizarPeca(produto) {
     const primeiraOpcao = produto.opcoes[0];

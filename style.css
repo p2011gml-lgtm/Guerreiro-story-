@@ -563,7 +563,7 @@ button:disabled {
 }
 
 .produto-card:hover {
-  border-color: rgba(201, 155, 88, 0.48);
+  border-color: var(--borda);
   background: var(--fundo-card-hover);
   transform: translateY(-4px);
 }
@@ -575,8 +575,8 @@ button:disabled {
   background:
     radial-gradient(
       circle at center,
-      #29241d,
-      #1b1916 75%
+      #292929,
+      #141414 75%
     );
 }
 
@@ -598,7 +598,7 @@ button:disabled {
   left: 13px;
   z-index: 1;
   padding: 6px 9px;
-  background: rgba(17, 16, 14, 0.88);
+  background: rgba(11, 11, 11, 0.90);
   color: var(--dourado-claro);
   font-size: 9px;
   font-weight: 700;

@@ -719,10 +719,11 @@ button:disabled {
   gap: 12px;
 }
 
+
 .opcao-produto {
   min-width: 0;
   border: 1px solid var(--borda-suave);
-  background: #141310;
+  background: var(--fundo-secundario);
   transition: border-color var(--transicao);
 }
 

@@ -159,7 +159,7 @@ button:disabled {
   position: relative;
   z-index: 30;
   width: 100%;
-  background: rgba(17, 16, 14, 0.97);
+  background: rgba(11, 11, 11, 0.97);
   border-bottom: 1px solid var(--borda);
 }
 

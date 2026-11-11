@@ -735,7 +735,7 @@ button:disabled {
   width: 100%;
   aspect-ratio: 4 / 4.5;
   object-fit: cover;
-  background: #211e19;
+  background: var(--fundo-card-hover);
 }
 
 .opcao-produto-info {

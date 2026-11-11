@@ -948,7 +948,7 @@ button:disabled {
 .look-foto {
   min-width: 0;
   overflow: hidden;
-  background: #242019;
+  background: var(--fundo-card-hover);
 }
 
 .look-foto img {

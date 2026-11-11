@@ -653,6 +653,8 @@ button:disabled {
 
 /* BOTÕES DE PRODUTOS */
 
+/* BOTÕES DE PRODUTOS */
+
 .botao-ver-mais,
 .botao-adicionar,
 .botao-ampliar {
@@ -676,12 +678,12 @@ button:disabled {
 .botao-ampliar:hover {
   border-color: var(--dourado);
   background: var(--dourado);
-  color: #17120b;
+  color: #0b0b0b;
 }
 
 .botao-adicionar {
   background: var(--dourado);
-  color: #17120b;
+  color: #0b0b0b;
 }
 
 .botao-adicionar:hover {

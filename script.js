@@ -571,11 +571,12 @@ const produtos = [
     preco: 119.90,
     categoria: "Bermudas",
     opcoes: [
-      { cor: "Jeans escura", tamanhos: ["38", "40"], imagem: "bermuda_jeans_preta.jpg" },
-      { cor: "Jeans normal", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_5.jpg" },
-      { cor: "Jeans clara", tamanhos: ["40"], imagem: "bermuda_jeans_azul_claro_modelo_6.jpg" },
-      { cor: "Jeans meio-termo", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_4.jpg" }
-    ]
+    opcoes: [
+  { cor: "Preta", tamanhos: ["38", "40"], imagem: "bermuda_jeans_preta.jpg" },
+  { cor: "Azul", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_5.jpg" },
+  { cor: "Azul-claro", tamanhos: ["40"], imagem: "bermuda_jeans_azul_claro_modelo_6.jpg" },
+  { cor: "Azul médio", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_4.jpg" }
+]
   }
 ];
       

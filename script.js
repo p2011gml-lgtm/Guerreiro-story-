@@ -602,6 +602,8 @@ const obterCorCSS = (cor = "") => {
     "Cinza claro": "#c4c4c4",
     "Caqui": "#a99b73",
     "Laranja": "#df803b"
+     "Azul-claro": "#a9d4e8",
+"Azul médio": "#527da8",
   };
 
   return cores[cor] || "#c99b58";

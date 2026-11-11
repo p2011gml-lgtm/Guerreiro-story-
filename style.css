@@ -2955,3 +2955,50 @@ a,
 .foto-produto img[src*="bermuda_jeans_azul_modelo_4"] {
   transform: translateX(-25px);
 }
+
+
+/* =========================================
+   NOVO BANNER PRINCIPAL — GUERREIRO STORE
+========================================= */
+
+.capa {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+
+  background-color: #11100e;
+  background-image: url("./file_00000000ad1c820eb254ff35f33f9192.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+/* Ocultar os elementos antigos da capa */
+.capa-conteudo,
+.capa-imagem,
+.capa-indicador {
+  display: none !important;
+}
+
+/* Remover efeitos antigos */
+.capa::before {
+  display: none;
+}
+
+/* Adaptação para celulares */
+@media (max-width: 600px) {
+  .capa {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 0;
+    padding: 0;
+    background-size: contain;
+    background-position: center;
+  }
+}

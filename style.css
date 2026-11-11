@@ -1029,7 +1029,7 @@ button:disabled {
 
 .look-opcao-foto {
   overflow: hidden;
-  background: #242019;
+  background: var(--fundo-card-hover);
 }
 
 .look-opcao-foto img {

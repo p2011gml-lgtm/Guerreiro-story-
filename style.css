@@ -3045,3 +3045,19 @@ a,
 .capa-link-colecao:active {
   transform: scale(0.97);
 }
+
+/* AJUSTE: MOSTRAR AS FOTOS COMPLETAS DOS LOOKS */
+
+.look-foto img,
+.look-opcao-foto img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+.look-foto:hover img,
+.look-opcao:hover .look-opcao-foto img {
+  transform: none;
+}

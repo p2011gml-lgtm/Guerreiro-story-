@@ -3063,7 +3063,8 @@ a,
 }
 
 
-/* LED DOURADO DISCRETO NAS BORDAS DO SITE */
+
+/* LED DOURADO NAS BORDAS — SEM FAIXA INFERIOR */
 
 @property --angulo-led {
   syntax: "<angle>";
@@ -3079,20 +3080,14 @@ html::before {
   padding: 2px;
   pointer-events: none;
 
-  background:
-    conic-gradient(
-      from var(--angulo-led),
-      transparent 0deg 300deg,
-      rgba(232, 201, 143, 0.25) 315deg,
-      rgba(255, 225, 160, 0.95) 330deg,
-      rgba(201, 161, 90, 0.35) 342deg,
-      transparent 355deg 360deg
-    ),
-    linear-gradient(
-      90deg,
-      rgba(201, 161, 90, 0.22),
-      rgba(201, 161, 90, 0.22)
-    );
+  background: conic-gradient(
+    from var(--angulo-led),
+    transparent 0deg 300deg,
+    rgba(232, 201, 143, 0.25) 315deg,
+    rgba(255, 225, 160, 0.95) 330deg,
+    rgba(201, 161, 90, 0.35) 342deg,
+    transparent 355deg 360deg
+  );
 
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
@@ -3100,8 +3095,18 @@ html::before {
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 
-  filter: drop-shadow(0 0 3px rgba(232, 201, 143, 0.35));
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    calc(100% - 2px) 100%,
+    calc(100% - 2px) 2px,
+    2px 2px,
+    2px 100%,
+    0 100%
+  );
 
+  filter: drop-shadow(0 0 3px rgba(232, 201, 143, 0.35));
   animation: movimento-led 9s linear infinite;
 }
 
@@ -3115,5 +3120,32 @@ html::before {
   html::before {
     animation: none;
   }
+   }
+
+/* BRILHO LED NO NOME DA GUERREIRO STORE */
+
+.marca {
+  position: relative;
+  text-shadow:
+    0 0 5px rgba(201, 161, 90, 0.35),
+    0 0 12px rgba(201, 161, 90, 0.18);
+  animation: brilho-marca 3s ease-in-out infinite alternate;
 }
 
+.marca span {
+  color: #e8c98f;
+  text-shadow:
+    0 0 5px rgba(232, 201, 143, 0.8),
+    0 0 12px rgba(201, 161, 90, 0.6),
+    0 0 20px rgba(201, 161, 90, 0.3);
+}
+
+@keyframes brilho-marca {
+  from {
+    text-shadow: 0 0 4px rgba(201, 161, 90, 0.25);
+  }
+  to {
+    text-shadow: 0 0 9px rgba(232, 201, 143, 0.65),
+                 0 0 17px rgba(201, 161, 90, 0.35);
+  }
+}

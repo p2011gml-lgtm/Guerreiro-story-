@@ -3157,13 +3157,21 @@ html::before {
 }
 
 
-/* ANIMAÇÃO DE ABERTURA DO MENU PRINCIPAL */
 
+/* ANIMAÇÃO DE ABERTURA E FECHAMENTO DO MENU */
 @media (max-width: 760px) {
+  .navegacao {
+    transform-origin: top center;
+  }
+
   .navegacao.aberta {
     display: flex;
-    transform-origin: top center;
-    animation: abrir-menu-premium 2.6s ease-out both;
+    animation: abrir-menu-premium 1.8s ease-out both;
+  }
+
+  .navegacao.fechando {
+    display: flex;
+    animation: fechar-menu-premium 1.8s ease-in both;
   }
 
   @keyframes abrir-menu-premium {
@@ -3171,15 +3179,28 @@ html::before {
       transform: scaleY(0.05);
       opacity: 0.5;
     }
-
-    30% {
+    28% {
       transform: scaleY(0.05);
       opacity: 0.7;
     }
-
     100% {
       transform: scaleY(1);
       opacity: 1;
+    }
+  }
+
+  @keyframes fechar-menu-premium {
+    0% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+    72% {
+      transform: scaleY(0.05);
+      opacity: 0.7;
+    }
+    100% {
+      transform: scaleY(0.05);
+      opacity: 0;
     }
   }
 }

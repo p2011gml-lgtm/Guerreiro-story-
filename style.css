@@ -3012,20 +3012,36 @@ a,
   }
 }
 
-/* BOTÃO CLICÁVEL SOBRE A CAPA PRINCIPAL */
+/* BOTÃO REAL DA CAPA PRINCIPAL */
 .capa-link-colecao {
   position: absolute;
-  z-index: 10;
+  z-index: 20;
   left: 10%;
   top: 73%;
-  width: 39%;
-  height: 12%;
-  display: block;
+  width: 40%;
+  height: 13%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(
+    135deg,
+    #e8c98f,
+    #c9a15a
+  );
+
+  color: #111;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: clamp(7px, 1.8vw, 14px);
+  letter-spacing: 0.5px;
   border-radius: 50px;
+  border: 1px solid #f5dfae;
+  box-shadow: 0 3px 15px rgba(201, 161, 90, 0.35);
   cursor: pointer;
 }
 
-.capa-link-colecao:focus-visible {
-  outline: 3px solid #e8c98f;
-  outline-offset: 4px;
+.capa-link-colecao:active {
+  transform: scale(0.97);
 }

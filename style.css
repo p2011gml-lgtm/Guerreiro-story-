@@ -3155,3 +3155,31 @@ html::before {
       0 0 9px rgba(232, 201, 143, 0.8);
   }
 }
+
+
+/* ANIMAÇÃO DE ABERTURA DO MENU PRINCIPAL */
+
+@media (max-width: 760px) {
+  .navegacao.aberta {
+    display: flex;
+    transform-origin: top center;
+    animation: abrir-menu-premium 2.6s ease-out both;
+  }
+
+  @keyframes abrir-menu-premium {
+    0% {
+      transform: scaleY(0.05);
+      opacity: 0.5;
+    }
+
+    30% {
+      transform: scaleY(0.05);
+      opacity: 0.7;
+    }
+
+    100% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+}

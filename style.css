@@ -3011,3 +3011,21 @@ a,
     background-position: center;
   }
 }
+
+/* BOTÃO CLICÁVEL SOBRE A CAPA PRINCIPAL */
+.capa-link-colecao {
+  position: absolute;
+  z-index: 10;
+  left: 10%;
+  top: 73%;
+  width: 39%;
+  height: 12%;
+  display: block;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.capa-link-colecao:focus-visible {
+  outline: 3px solid #e8c98f;
+  outline-offset: 4px;
+}

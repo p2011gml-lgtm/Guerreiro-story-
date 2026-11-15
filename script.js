@@ -1429,12 +1429,18 @@ if (alvo.matches("[data-ver-mais]")) {
   }
 
   if (alvo.id === "botao-menu") {
-    const navegacao = document.getElementById("navegacao");
-    if (navegacao) {
-      const aberto = navegacao.classList.toggle("aberta");
-      alvo.setAttribute("aria-expanded", String(aberto));
+  const navegacao = document.getElementById("navegacao");
+
+  if (navegacao) {
+    if (navegacao.classList.contains("aberta")) {
+      fecharMenuPrincipal();
+    } else {
+      navegacao.classList.remove("fechando");
+      navegacao.classList.add("aberta");
+      alvo.setAttribute("aria-expanded", "true");
     }
   }
+  
 
   if (alvo.matches(".navegacao a")) {
     document.getElementById("navegacao")?.classList.remove("aberta");

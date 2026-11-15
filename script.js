@@ -1443,8 +1443,7 @@ if (alvo.matches("[data-ver-mais]")) {
   }
 
   if (alvo.matches(".navegacao a")) {
-    document.getElementById("navegacao")?.classList.remove("aberta");
-    document.getElementById("botao-menu")?.setAttribute("aria-expanded", "false");
+  fecharMenuPrincipal();
   }
 
   if (alvo.matches("[data-cor]")) {

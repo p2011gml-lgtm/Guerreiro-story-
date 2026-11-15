@@ -1274,6 +1274,22 @@ document.addEventListener("change", evento => {
 document.addEventListener("click", evento => {
   const alvo = evento.target.closest("button");
   if (!alvo) return;
+   function fecharMenuPrincipal() {
+  const navegacao = document.getElementById("navegacao");
+
+  if (!navegacao || !navegacao.classList.contains("aberta")) return;
+
+  navegacao.classList.remove("aberta");
+  navegacao.classList.add("fechando");
+
+  navegacao.addEventListener("animationend", function finalizar(evento) {
+    if (evento.animationName === "fechar-menu-premium") {
+      navegacao.classList.remove("fechando");
+    }
+  }, { once: true });
+
+  document.getElementById("botao-menu")?.setAttribute("aria-expanded", "false");
+   }
 
    
   if (alvo.matches("[data-escolher-cor-montagem]")) {

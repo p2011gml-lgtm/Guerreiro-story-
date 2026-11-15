@@ -1440,7 +1440,7 @@ if (alvo.matches("[data-ver-mais]")) {
       alvo.setAttribute("aria-expanded", "true");
     }
   }
-  
+  }
 
   if (alvo.matches(".navegacao a")) {
     document.getElementById("navegacao")?.classList.remove("aberta");

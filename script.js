@@ -1272,7 +1272,7 @@ document.addEventListener("change", evento => {
 });
 
 document.addEventListener("click", evento => {
-  const alvo = evento.target.closest("button");
+  const alvo = evento.target.closest("button, .navegacao a");
   if (!alvo) return;
    function fecharMenuPrincipal() {
   const navegacao = document.getElementById("navegacao");

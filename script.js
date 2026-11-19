@@ -784,7 +784,9 @@ function renderizarCatalogo() {
                   data-detalhes-produto="${produto.id}"
                   hidden
                 >
-                  <span class="titulo-opcoes">Escolha a cor</span>
+                  <span class="titulo-opcoes">
+  ${produto.tipoOpcao === "estampa" ? "Escolha a estampa" : "Escolha a cor"}
+</span>
 
                   <select data-cor-produto="${produto.id}" hidden aria-hidden="true" tabindex="-1">
                     ${produto.opcoes.map((opcao, indice) => `

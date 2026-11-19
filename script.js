@@ -577,6 +577,105 @@ const produtos = [
   { cor: "Azul médio", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_4.jpg" }
 ]
   }
+   
+  {
+    id: "camisa-chill-touch",
+    nome: "Camisa Chill Touch",
+    preco: 159.90,
+    categoria: "Camisas",
+    opcoes: [
+      {
+        cor: "Branca",
+        tamanhos: ["P", "M", "GG"],
+        imagem: "IMG_20261119_085528.png"
+      },
+      {
+        cor: "Verde",
+        tamanhos: ["M"],
+        imagem: "IMG_20261119_085548.png"
+      },
+      {
+        cor: "Azul",
+        tamanhos: ["M", "G"],
+        imagem: "IMG_20261119_085440.png"
+      },
+      {
+        cor: "Verde claro",
+        tamanhos: ["G"],
+        imagem: "IMG_20261119_085506.png"
+      }
+    ]
+  },
+  {
+    id: "camisa-oversized",
+    nome: "Camisa Oversized",
+    preco: 119.90,
+    categoria: "T-shirts",
+    tipoOpcao: "estampa",
+    opcoes: [
+      {
+        cor: "Águia",
+        tamanhos: ["G"],
+        imagem: "Camiseta com fundo dourado – 19 Nov 2026, 9.16 am_20261119_091659_0000.png",
+        imagens: ["Camiseta com fundo dourado – 19 Nov 2026, 9.16 am_20261119_091659_0000.png"]
+      },
+      {
+        cor: "Cenoura",
+        tamanhos: ["M"],
+        imagem: "IMG_20261119_090034.png",
+        imagens: ["IMG_20261119_090034.png", "IMG_20261119_085944.png"]
+      },
+      {
+        cor: "Casa Blanca",
+        tamanhos: ["G"],
+        imagem: "IMG_20261119_085622.png",
+        imagens: ["IMG_20261119_085622.png", "IMG_20261119_090011.png"]
+      },
+      {
+        cor: "Jordan 23",
+        tamanhos: ["M"],
+        imagem: "IMG_20261119_085644.png",
+        imagens: ["IMG_20261119_085644.png", "IMG_20261119_085831.png"]
+      },
+      {
+        cor: "Use Post",
+        tamanhos: ["P"],
+        imagem: "IMG_20261119_085716.png",
+        imagens: ["IMG_20261119_085716.png", "Camiseta com fundo dourado – 19 Nov 2026, 9.53 am_20261119_095400_0000.png"]
+      },
+      {
+        cor: "Anjo",
+        tamanhos: ["GG"],
+        imagem: "IMG_20261119_090228.png",
+        imagens: ["IMG_20261119_090228.png"]
+      },
+      {
+        cor: "Nike Air",
+        tamanhos: ["G"],
+        imagem: "IMG_20261119_090212.png",
+        imagens: ["IMG_20261119_090212.png"]
+      },
+      {
+        cor: "Nike colorido",
+        tamanhos: ["M"],
+        imagem: "IMG_20261119_090143.png",
+        imagens: ["IMG_20261119_090143.png"]
+      },
+      {
+        cor: "Thel mith",
+        tamanhos: ["M"],
+        imagem: "IMG_20261119_085853.png",
+        imagens: ["IMG_20261119_085853.png", "IMG_20261119_090055.png"]
+      },
+      {
+        cor: "Jordan",
+        tamanhos: ["M"],
+        imagem: "IMG_20261119_085913.png",
+        imagens: ["IMG_20261119_085913.png", "IMG_20261119_085739.png"]
+      }
+    ]
+  },
+         
 ];
       
 

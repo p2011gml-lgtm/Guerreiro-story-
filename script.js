@@ -576,7 +576,7 @@ const produtos = [
   { cor: "Azul-claro", tamanhos: ["40"], imagem: "bermuda_jeans_azul_claro_modelo_6.jpg" },
   { cor: "Azul médio", tamanhos: ["40", "44"], imagem: "bermuda_jeans_azul_modelo_4.jpg" }
 ]
-  }
+  },
    
   {
     id: "camisa-chill-touch",

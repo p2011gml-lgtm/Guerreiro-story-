@@ -798,7 +798,7 @@ function renderizarCatalogo() {
                     ${produto.opcoes.map((opcao, indice) => `
                       <button
                         type="button"
-                        class="cor-produto ${indice === 0 ? "cor-ativa" : ""}"
+                        class="${produto.tipoOpcao === "estampa" ? "opcao-estampa" : "cor-produto"} ${indice === 0 ? "cor-ativa" : ""}"
                         data-escolher-cor="${produto.id}"
                         data-valor-cor="${escaparHTML(opcao.cor)}"
                         aria-label="${escaparHTML(opcao.cor)}"

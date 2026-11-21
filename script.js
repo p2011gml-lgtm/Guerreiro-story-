@@ -1395,6 +1395,19 @@ document.addEventListener("change", evento => {
 document.addEventListener("click", evento => {
   const alvo = evento.target.closest("button, .navegacao a");
   if (!alvo) return;
+   
+  if (alvo.id === "imagem-frente") {
+    indiceImagemModal = 0;
+    atualizarImagemModal();
+    return;
+  }
+
+  if (alvo.id === "imagem-verso") {
+    indiceImagemModal = 1;
+    atualizarImagemModal();
+    return;
+  }
+   
    function fecharMenuPrincipal() {
   const navegacao = document.getElementById("navegacao");
 

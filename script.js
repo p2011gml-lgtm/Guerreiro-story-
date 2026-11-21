@@ -881,7 +881,6 @@ function atualizarTamanhosProduto(id, cor) {
 }
 
 function atualizarImagemProduto(id, cor) {
-function atualizarImagemProduto(id, cor) {
   const produto = obterProduto(id);
   const opcao = obterOpcao(produto, cor);
 

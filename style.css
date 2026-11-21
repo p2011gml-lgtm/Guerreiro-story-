@@ -367,14 +367,22 @@ button:disabled {
 }
 
 
+
 .capa-imagem::after {
   position: absolute;
-  inset: 0;
-  border: 2px solid rgba(255, 190, 45, 0.9);
+  inset: 4px;
+  z-index: 10;
+  border: 3px solid #ffc02e;
   content: "";
   pointer-events: none;
+  box-shadow:
+    inset 0 0 12px #ffc02e,
+    0 0 10px rgba(255, 192, 46, 0.9),
+    0 0 22px rgba(255, 192, 46, 0.65);
   animation: led-falhando 6s infinite;
 }
+
+
 
 @keyframes led-falhando {
   0%, 12%, 18%, 42%, 48%, 75%, 100% {

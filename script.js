@@ -805,7 +805,7 @@ function renderizarCatalogo() {
                         aria-pressed="${indice === 0}"
                         title="${escaparHTML(opcao.cor)}"
                         style="${produto.tipoOpcao === "estampa" ? "" : `--cor-amostra:${obterCorCSS(opcao.cor)}`}"
-                      ></button>
+                      >${escaparHTML(opcao.cor)}</button>
                     `).join("")}
                   </div>
 

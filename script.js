@@ -892,16 +892,18 @@ function atualizarImagemProduto(id, cor) {
   const imagem = cartao?.querySelector(".foto-produto img");
   const cortina = cartao?.querySelector(".cortina-troca");
 
-  if (!opcao || !imagem || !cortina) return;
-
-  const novaImagem = new Image();
-  novaImagem.src = opcao.imagem;
+  if (!produto || !opcao || !imagem) return;
 
   const pedido = (Number(imagem.dataset.pedidoTroca) || 0) + 1;
   imagem.dataset.pedidoTroca = pedido;
 
-  novaImagem.onload = () => {
+  const trocarImagem = () => {
     if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
+
+    if (!cortina) {
+      imagem.src = opcao.imagem;
+      return;
+    }
 
     cortina.style.background =
       produto.tipoOpcao === "estampa"
@@ -920,18 +922,25 @@ function atualizarImagemProduto(id, cor) {
     }, 300);
 
     setTimeout(() => {
-      if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
-
-      cortina.classList.remove("animando");
+      if (Number(imagem.dataset.pedidoTroca) === pedido) {
+        cortina.classList.remove("animando");
+      }
     }, 700);
   };
 
+  const novaImagem = new Image();
+  novaImagem.onload = trocarImagem;
   novaImagem.onerror = () => {
-    if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
-    imagem.src = opcao.imagem;
+    if (Number(imagem.dataset.pedidoTroca) === pedido) {
+      imagem.src = opcao.imagem;
+    }
   };
+  novaImagem.src = opcao.imagem;
+
+  if (novaImagem.complete && novaImagem.naturalWidth > 0) {
+    trocarImagem();
+  }
      }
-}
 
 /* Combinações dos looks prontos.
    Cada look é formado por duas peças.

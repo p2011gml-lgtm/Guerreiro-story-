@@ -366,13 +366,44 @@ button:disabled {
   animation: surgir-direita 0.9s ease both;
 }
 
+
 .capa-imagem::after {
   position: absolute;
   inset: 0;
-  border: 1px solid rgba(232, 197, 140, 0.06);
+  border: 2px solid rgba(255, 190, 45, 0.9);
   content: "";
   pointer-events: none;
+  animation: led-falhando 6s infinite;
 }
+
+@keyframes led-falhando {
+  0%, 12%, 18%, 42%, 48%, 75%, 100% {
+    border-color: rgba(255, 190, 45, 0.95);
+    box-shadow:
+      inset 0 0 8px rgba(255, 190, 45, 0.55),
+      inset 0 0 18px rgba(255, 190, 45, 0.2);
+    opacity: 1;
+  }
+
+  14%, 16%, 45% {
+    border-color: rgba(255, 190, 45, 0.2);
+    box-shadow: none;
+    opacity: 0.35;
+  }
+
+  50%, 53% {
+    border-color: rgba(255, 190, 45, 0.5);
+    box-shadow: inset 0 0 5px rgba(255, 190, 45, 0.2);
+    opacity: 0.65;
+  }
+
+  78% {
+    border-color: rgba(255, 190, 45, 0.3);
+    box-shadow: none;
+    opacity: 0.45;
+  }
+}
+
 
 .capa-imagem img {
   width: 100%;

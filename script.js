@@ -756,10 +756,11 @@ function renderizarCatalogo() {
                 aria-label="Ampliar ${escaparHTML(produto.nome)}"
               >
                 <img
-                  src="${escaparHTML(obterImagemProduto(produto))}"
-                  alt="${escaparHTML(produto.nome)}"
-                  loading="lazy"
-                >
+  src="${escaparHTML(obterImagemProduto(produto))}"
+  alt="${escaparHTML(produto.nome)}"
+  loading="lazy"
+>
+<span class="cortina-troca"></span>
               </button>
 
               <div class="informacoes-produto">

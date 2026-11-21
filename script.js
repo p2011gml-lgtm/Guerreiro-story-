@@ -1285,7 +1285,9 @@ function enviarPedidoWhatsApp() {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-/* Imagem ampliada */
+
+let imagensModal = [];
+let indiceImagemModal = 0;
 
 function abrirImagemAmpliada(produtoId) {
   const produto = obterProduto(produtoId);
@@ -1301,10 +1303,17 @@ function abrirImagemAmpliada(produtoId) {
   const imagem = document.getElementById("imagem-ampliada");
   const nome = document.getElementById("nome-imagem-ampliada");
   const descricao = document.getElementById("descricao-imagem-ampliada");
+  const navegacao = document.getElementById("navegacao-imagem");
 
   if (!modal || !imagem) return;
 
-  imagem.src = opcao.imagem;
+  imagensModal = opcao.imagens?.length
+    ? opcao.imagens
+    : [opcao.imagem];
+
+  indiceImagemModal = 0;
+
+  imagem.src = imagensModal[0];
   imagem.alt = `${produto.nome} — ${opcao.cor}`;
 
   if (nome) nome.textContent = produto.nome;
@@ -1313,16 +1322,27 @@ function abrirImagemAmpliada(produtoId) {
       `${opcao.cor} · ${opcao.tamanhos.join(", ")} · ${formatarPreco(produto.preco)}`;
   }
 
+  if (navegacao) {
+    navegacao.hidden = imagensModal.length < 2;
+  }
+
+  atualizarImagemModal();
+
   modal.hidden = false;
   modal.setAttribute("aria-hidden", "false");
 }
 
-function fecharImagemAmpliada() {
-  const modal = document.getElementById("modal-imagem");
-  if (!modal) return;
+function atualizarImagemModal() {
+  const imagem = document.getElementById("imagem-ampliada");
+  const frente = document.getElementById("imagem-frente");
+  const verso = document.getElementById("imagem-verso");
 
-  modal.hidden = true;
-  modal.setAttribute("aria-hidden", "true");
+  if (!imagem || !imagensModal.length) return;
+
+  imagem.src = imagensModal[indiceImagemModal];
+
+  if (frente) frente.classList.toggle("ativo", indiceImagemModal === 0);
+  if (verso) verso.classList.toggle("ativo", indiceImagemModal === 1);
 }
 
 /* Eventos gerais */

@@ -881,18 +881,56 @@ function atualizarTamanhosProduto(id, cor) {
 }
 
 function atualizarImagemProduto(id, cor) {
+function atualizarImagemProduto(id, cor) {
   const produto = obterProduto(id);
   const opcao = obterOpcao(produto, cor);
+
   const cartao = document.querySelector(
     `[data-adicionar-produto="${id}"]`
   )?.closest(".cartao-produto");
 
-  const imagem = cartao?.querySelector("img");
+  const imagem = cartao?.querySelector(".foto-produto img");
+  const cortina = cartao?.querySelector(".cortina-troca");
 
-  if (opcao && imagem) {
+  if (!opcao || !imagem || !cortina) return;
+
+  const novaImagem = new Image();
+  novaImagem.src = opcao.imagem;
+
+  const pedido = (Number(imagem.dataset.pedidoTroca) || 0) + 1;
+  imagem.dataset.pedidoTroca = pedido;
+
+  novaImagem.onload = () => {
+    if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
+
+    cortina.style.background =
+      produto.tipoOpcao === "estampa"
+        ? "#080808"
+        : obterCorCSS(opcao.cor);
+
+    cortina.classList.remove("animando");
+    void cortina.offsetWidth;
+    cortina.classList.add("animando");
+
+    setTimeout(() => {
+      if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
+
+      imagem.src = opcao.imagem;
+      imagem.alt = `${produto.nome} — ${opcao.cor}`;
+    }, 300);
+
+    setTimeout(() => {
+      if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
+
+      cortina.classList.remove("animando");
+    }, 700);
+  };
+
+  novaImagem.onerror = () => {
+    if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
     imagem.src = opcao.imagem;
-    imagem.alt = `${produto.nome} — ${opcao.cor}`;
-  }
+  };
+     }
 }
 
 /* Combinações dos looks prontos.

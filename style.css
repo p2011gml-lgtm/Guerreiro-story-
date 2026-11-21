@@ -3223,3 +3223,32 @@ html::before {
   background: #292929;
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
 }
+
+
+.navegacao-imagem {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.navegacao-imagem[hidden] {
+  display: none;
+}
+
+.imagem-lado {
+  padding: 10px 18px;
+  border: 1px solid #777;
+  border-radius: 8px;
+  background: #171717;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.imagem-lado.ativo {
+  border-color: #d6a84b;
+  color: #d6a84b;
+  box-shadow: 0 0 10px rgba(214, 168, 75, 0.25);
+}

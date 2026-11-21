@@ -3291,3 +3291,43 @@ html::before {
   color: #d6a84b;
   box-shadow: 0 0 10px rgba(214, 168, 75, 0.25);
 }
+
+/* CORTINA ANIMADA NA TROCA DE PEÇAS */
+
+.foto-produto {
+  position: relative;
+  isolation: isolate;
+}
+
+.foto-produto img {
+  position: relative;
+  z-index: 1;
+}
+
+.cortina-troca {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #080808;
+  transform: translateY(-105%);
+  pointer-events: none;
+}
+
+.cortina-troca.animando {
+  animation: cortina-troca 0.65s ease-in-out;
+}
+
+@keyframes cortina-troca {
+  0% {
+    transform: translateY(-105%);
+  }
+  38%, 62% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(105%);
+  }
+}

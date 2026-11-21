@@ -3331,3 +3331,42 @@ html::before {
     transform: translateY(105%);
   }
 }
+
+/* LED ANIMADO DO BANNER PRINCIPAL */
+
+.capa::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  z-index: 10;
+  pointer-events: none;
+  border: 2px solid #ffc02e;
+  box-shadow:
+    0 0 8px #ffc02e,
+    0 0 18px rgba(255, 192, 46, 0.9),
+    0 0 35px rgba(255, 192, 46, 0.55),
+    inset 0 0 12px rgba(255, 192, 46, 0.4);
+  animation: led-banner 4s infinite;
+}
+
+@keyframes led-banner {
+  0%, 15%, 20%, 45%, 52%, 80%, 100% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+
+  16%, 18%, 48% {
+    opacity: 0.15;
+    filter: brightness(0.3);
+  }
+
+  50%, 53% {
+    opacity: 0.5;
+    filter: brightness(0.7);
+  }
+
+  82% {
+    opacity: 0.3;
+    filter: brightness(0.5);
+  }
+}

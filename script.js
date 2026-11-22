@@ -111,7 +111,273 @@ function renderizarSacola() {
   `).join("");
 }
 
+function renderizarMontador() {
+  const area = document.getElementById("pecas-para-montar");
+  if (!area) return;
 
+  const parteDeCima = produtos.filter(produto =>
+    ["Camisas", "T-shirts", "Regatas"].includes(produto.categoria)
+  );
+
+  const parteDeBaixo = produtos.filter(produto =>
+    ["Shorts", "Bermudas"].includes(produto.categoria)
+  );
+
+  function criarPeca(produto) {
+    const primeiraOpcao = produto.opcoes[0];
+    const cores = produto.opcoes;
+
+    return `
+      <article class="cartao-roleta" data-item-roleta="${produto.id}">
+        <label class="selecao-roleta">
+          <input
+            type="checkbox"
+            data-selecionar-montagem="${produto.id}"
+          >
+          <span>Selecionar peça</span>
+        </label>
+
+        <img
+          class="imagem-roleta"
+          src="${escaparHTML(obterImagemProduto(produto))}"
+          alt="${escaparHTML(produto.nome)}"
+          loading="lazy"
+          data-imagem-montagem="${produto.id}"
+        >
+
+        <h3>${escaparHTML(produto.nome)}</h3>
+        <strong>${formatarPreco(produto.preco)}</strong>
+
+        <label class="seletor-produto">
+          <span>Cor</span>
+          <select data-cor-montagem="${produto.id}" required>
+            <option value="">Escolha a cor</option>
+            ${cores.map(opcao => `
+              <option value="${escaparHTML(opcao.cor)}">
+                ${escaparHTML(opcao.cor)}
+              </option>
+            `).join("")}
+          </select>
+        </label>
+
+        <label class="seletor-produto">
+          <span>Tamanho</span>
+          <select data-tamanho-montagem="${produto.id}" required>
+            <option value="">Escolha a cor primeiro</option>
+          </select>
+        </label>
+
+        <label class="seletor-produto">
+          <span>Quantidade</span>
+          <input
+            type="number"
+            min="1"
+            max="20"
+            value="1"
+            data-quantidade-montagem="${produto.id}"
+          >
+        </label>
+      </article>
+    `;
+  }
+
+  function criarRoleta(nome, titulo, lista) {
+    return `
+      <section class="bloco-roleta">
+        <h3 class="titulo-roleta">${titulo}</h3>
+
+        <div class="controles-roleta">
+          <button type="button" data-girar-roleta="${nome}" data-direcao="-1">
+            &#10094;
+          </button>
+
+          <span>Gire para escolher</span>
+
+          <button type="button" data-girar-roleta="${nome}" data-direcao="1">
+            &#10095;
+          </button>
+        </div>
+
+        <div class="janela-roleta" data-janela-roleta="${nome}">
+          <div class="trilho-roleta" data-trilho-roleta="${nome}">
+            ${lista.map(criarPeca).join("")}
+          </div>
+        </div>
+      </section>
+    `;
+  }
+
+  area.innerHTML = `
+    <div class="montador-3d">
+
+      ${criarRoleta("cima", "PARTE DE CIMA", parteDeCima)}
+
+      <section class="provador-central">
+        <span class="etiqueta-provador">SEU LOOK</span>
+
+        <div class="preview-look">
+          <div class="preview-parte">
+            <img data-previa-parte-cima alt="Parte de cima">
+            <span>Parte de cima</span>
+          </div>
+
+          <div class="preview-parte">
+            <img data-previa-parte-baixo alt="Parte de baixo">
+            <span>Parte de baixo</span>
+          </div>
+        </div>
+
+        <p class="texto-provador">
+          Escolha uma peça em cada roleta para montar seu visual.
+        </p>
+      </section>
+
+      ${criarRoleta("baixo", "PARTE DE BAIXO", parteDeBaixo)}
+
+    </div>
+  `;
+
+  function atualizarPerspectiva(nome) {
+    const janela = area.querySelector(
+      `[data-janela-roleta="${nome}"]`
+    );
+
+    const trilho = area.querySelector(
+      `[data-trilho-roleta="${nome}"]`
+    );
+
+    if (!janela || !trilho) return;
+
+    const itens = [...trilho.querySelectorAll(".cartao-roleta")];
+    const centroJanela = janela.getBoundingClientRect().left +
+      janela.clientWidth / 2;
+
+    itens.forEach(item => {
+      const retangulo = item.getBoundingClientRect();
+      const centroItem = retangulo.left + retangulo.width / 2;
+      const distancia = (centroItem - centroJanela) /
+        (janela.clientWidth / 2);
+
+      const distanciaLimitada = Math.max(-1.5, Math.min(1.5, distancia));
+      const intensidade = Math.min(1, Math.abs(distanciaLimitada));
+
+      const escala = 1 - intensidade * 0.32;
+      const profundidade = -intensidade * 130;
+      const rotacao = distanciaLimitada * -22;
+      const opacidade = 1 - intensidade * 0.38;
+
+      item.style.transform =
+        `translateZ(${profundidade}px) rotateY(${rotacao}deg) scale(${escala})`;
+
+      item.style.opacity = opacidade;
+      item.classList.toggle("roleta-central", intensidade < 0.18);
+    });
+  }
+
+  function atualizarPrevia() {
+    const selecionados = obterSelecaoMontagem();
+
+    const cima = selecionados.find(item =>
+      ["Camisas", "T-shirts", "Regatas"].includes(item.produto.categoria)
+    );
+
+    const baixo = selecionados.find(item =>
+      ["Shorts", "Bermudas"].includes(item.produto.categoria)
+    );
+
+    const imagemCima = area.querySelector("[data-previa-parte-cima]");
+    const imagemBaixo = area.querySelector("[data-previa-parte-baixo]");
+
+    if (imagemCima) {
+      imagemCima.src = cima ? cima.imagem : "";
+      imagemCima.style.visibility = cima ? "visible" : "hidden";
+    }
+
+    if (imagemBaixo) {
+      imagemBaixo.src = baixo ? baixo.imagem : "";
+      imagemBaixo.style.visibility = baixo ? "visible" : "hidden";
+    }
+  }
+
+  area.querySelectorAll("[data-girar-roleta]").forEach(botao => {
+    botao.addEventListener("click", () => {
+      const nome = botao.dataset.girarRoleta;
+      const direcao = Number(botao.dataset.direcao);
+
+      const janela = area.querySelector(
+        `[data-janela-roleta="${nome}"]`
+      );
+
+      const primeiroItem = janela?.querySelector(".cartao-roleta");
+      if (!janela || !primeiroItem) return;
+
+      janela.scrollBy({
+        left: direcao * (primeiroItem.offsetWidth + 24),
+        behavior: "smooth"
+      });
+    });
+  });
+
+  area.querySelectorAll("[data-cor-montagem]").forEach(seletor => {
+    seletor.addEventListener("change", () => {
+      const produto = obterProduto(seletor.dataset.corMontagem);
+      const opcao = obterOpcao(produto, seletor.value);
+
+      const tamanho = area.querySelector(
+        `[data-tamanho-montagem="${produto.id}"]`
+      );
+
+      const imagem = area.querySelector(
+        `[data-imagem-montagem="${produto.id}"]`
+      );
+
+      if (tamanho) {
+        tamanho.innerHTML = `
+          <option value="">Escolha o tamanho</option>
+          ${(opcao?.tamanhos || []).map(valor => `
+            <option value="${escaparHTML(valor)}">
+              ${escaparHTML(valor)}
+            </option>
+          `).join("")}
+        `;
+      }
+
+      if (imagem && opcao) imagem.src = opcao.imagem;
+
+      atualizarPrevia();
+      atualizarResumoMontagem();
+    });
+  });
+
+  area.querySelectorAll("[data-selecionar-montagem]").forEach(seletor => {
+    seletor.addEventListener("change", () => {
+      atualizarPrevia();
+      atualizarResumoMontagem();
+    });
+  });
+
+  area.querySelectorAll("[data-tamanho-montagem], [data-quantidade-montagem]")
+    .forEach(campo => {
+      campo.addEventListener("change", atualizarResumoMontagem);
+    });
+
+  ["cima", "baixo"].forEach(nome => {
+    const janela = area.querySelector(
+      `[data-janela-roleta="${nome}"]`
+    );
+
+    if (janela) {
+      janela.addEventListener("scroll", () => {
+        atualizarPerspectiva(nome);
+      }, { passive: true });
+    }
+
+    atualizarPerspectiva(nome);
+  });
+
+  atualizarPrevia();
+  atualizarResumoMontagem();
+}
 
 function obterSelecaoMontagem() {
   const selecionados = [];

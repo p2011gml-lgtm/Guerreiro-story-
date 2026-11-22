@@ -125,7 +125,9 @@ function renderizarMontador() {
   "Camisa Tech Social",
   "T-shirt Texturada",
   "T-shirt Tricô",
-  "T-shirt Algodão",
+    "T-shirt Algodão",
+  "Camisa Chill Touch",
+  "Camisa Oversized",
   "Regata"
 ];
 

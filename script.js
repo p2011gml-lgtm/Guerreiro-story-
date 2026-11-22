@@ -686,6 +686,8 @@ const obterCorCSS = (cor = "") => {
     "Preta": "#171717",
     "Preto": "#171717",
     "Verde": "#477653",
+     "Verde claro": "#a8c58f",
+"Verde acinzentada": "#879b8b",
     "Azul claro": "#a9d4e8",
     "Azul": "#315b91",
     "Azul escuro": "#1d3154",

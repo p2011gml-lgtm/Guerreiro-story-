@@ -448,7 +448,7 @@ const produtos = [
       { cor: "Branco", tamanhos: ["P", "G"], imagem: "01_Short_Linho_Branco.png" },
       { cor: "Preto", tamanhos: ["M", "G"], imagem: "02_Short_Linho_Preto.png" },
       { cor: "Marrom", tamanhos: ["G"], imagem: "03_Short_Linho_Marrom.png" },
-      { cor: "Verdeclaro", tamanhos: ["P", "M", "G"], imagem: "04_Short_Linho_Verdeclaro.png" },
+      { cor: "Verde claro", tamanhos: ["P", "M", "G"], imagem: "04_Short_Linho_Verdeclaro.png" },
       { cor: "Rosa", tamanhos: ["P"], imagem: "06_Short_Linho_Rosa.png" }
     ]
   },

@@ -1035,7 +1035,7 @@ const looksProntos = [
       { nome: "Dubai branca + rosa", imagem: "dubai_branca_short_linho_rosa_look.jpg",
         pecas: [{ produto: "camisa-dubai", cor: "Branca", tamanho: "G" }, { produto: "short-linho", cor: "Rosa", tamanho: "P" }] },
       { nome: "Dubai branca + verde", imagem: "dubai_branca_short_linho_verde_look.jpg",
-        pecas: [{ produto: "camisa-dubai", cor: "Branca", tamanho: "G" }, { produto: "short-linho", cor: "Bege", tamanho: "G" }] },
+        pecas: [{ produto: "camisa-dubai", cor: "Branca", tamanho: "G" }, { produto: "short-linho", cor: "Verde claro", tamanho: "G" }] },
       { nome: "Dubai preta + azul claro", imagem: "look_dubai_preta_linho_azulclaro_01.jpg",
         pecas: [{ produto: "camisa-dubai", cor: "Preta", tamanho: "G" }, { produto: "short-linho", cor: "Branco", tamanho: "G" }] },
       { nome: "Dubai preta + marrom", imagem: "look_dubai_preta_linho_marrom_02.jpg",

@@ -3851,3 +3851,262 @@ html::before {
     margin-bottom: 30px;
   }
 }
+
+
+
+/* ==========================================
+   PROVADOR GIRATÓRIO 3D — GUERREIRO STORE
+========================================== */
+
+#pecas-para-montar .montador-3d {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  overflow: hidden;
+}
+
+#pecas-para-montar .bloco-roleta {
+  width: 100%;
+  min-width: 0;
+  text-align: center;
+}
+
+#pecas-para-montar .titulo-roleta {
+  color: #d6ad70;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  margin: 0 0 12px;
+}
+
+#pecas-para-montar .controles-roleta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+  color: #aaa;
+  font-size: 12px;
+}
+
+#pecas-para-montar .controles-roleta button {
+  width: 36px;
+  height: 36px;
+  border: 1px solid #b98a4c;
+  border-radius: 50%;
+  background: #17130f;
+  color: #e6bd7c;
+  font-size: 19px;
+  cursor: pointer;
+  transition: .25s ease;
+}
+
+#pecas-para-montar .controles-roleta button:active {
+  transform: scale(.88);
+  background: #b98a4c;
+  color: #111;
+}
+
+#pecas-para-montar .janela-roleta {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  perspective: 1000px;
+  perspective-origin: 50% 45%;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 22px 0 30px;
+  box-sizing: border-box;
+}
+
+#pecas-para-montar .janela-roleta::-webkit-scrollbar {
+  display: none;
+}
+
+#pecas-para-montar .trilho-roleta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  width: max-content;
+  min-width: 100%;
+  padding: 0 calc(50% - 105px);
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+}
+
+#pecas-para-montar .cartao-roleta {
+  flex: 0 0 210px;
+  width: 210px;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid rgba(201, 155, 88, .25);
+  border-radius: 16px;
+  background: linear-gradient(145deg, #201c17, #100f0d);
+  color: #fff;
+  text-align: left;
+  scroll-snap-align: center;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  backface-visibility: hidden;
+  transition:
+    transform .35s ease,
+    opacity .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, .3);
+}
+
+#pecas-para-montar .cartao-roleta.roleta-central {
+  border-color: #d6ad70;
+  box-shadow:
+    0 0 0 1px rgba(214, 173, 112, .25),
+    0 15px 35px rgba(0, 0, 0, .45);
+}
+
+#pecas-para-montar .imagem-roleta {
+  display: block;
+  width: 100%;
+  height: 175px;
+  object-fit: contain;
+  margin: 8px auto 12px;
+}
+
+#pecas-para-montar .cartao-roleta h3 {
+  min-height: 36px;
+  margin: 8px 0;
+  color: #f4e7d3;
+  font-size: 14px;
+}
+
+#pecas-para-montar .cartao-roleta > strong {
+  display: block;
+  color: #d6ad70;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+#pecas-para-montar .selecao-roleta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #e8d7bf;
+  font-size: 12px;
+}
+
+#pecas-para-montar .seletor-produto {
+  display: block;
+  margin-top: 10px;
+  color: #c8b9a5;
+  font-size: 11px;
+}
+
+#pecas-para-montar .seletor-produto select,
+#pecas-para-montar .seletor-produto input {
+  width: 100%;
+  min-height: 36px;
+  margin-top: 5px;
+  padding: 7px;
+  border: 1px solid #554632;
+  border-radius: 8px;
+  background: #100f0d;
+  color: #fff;
+  box-sizing: border-box;
+}
+
+/* PROVADOR CENTRAL */
+
+#pecas-para-montar .provador-central {
+  position: relative;
+  width: 100%;
+  padding: 24px 15px;
+  border: 1px solid rgba(201, 155, 88, .35);
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at center, #292117 0%, #15120e 65%, #0d0c0b 100%);
+  box-sizing: border-box;
+  text-align: center;
+  overflow: hidden;
+}
+
+#pecas-para-montar .etiqueta-provador {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #d6ad70;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 4px;
+}
+
+#pecas-para-montar .preview-look {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  max-width: 650px;
+  margin: auto;
+}
+
+#pecas-para-montar .preview-parte {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  color: #cbb99e;
+  font-size: 12px;
+  gap: 8px;
+}
+
+#pecas-para-montar .preview-parte img {
+  width: 100%;
+  max-width: 220px;
+  height: 230px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, .45));
+  transition: opacity .3s ease, transform .3s ease;
+}
+
+#pecas-para-montar .texto-provador {
+  margin: 18px 0 0;
+  color: #a99a85;
+  font-size: 12px;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+  #pecas-para-montar .montador-3d {
+    gap: 24px;
+  }
+
+  #pecas-para-montar .trilho-roleta {
+    gap: 13px;
+    padding-left: calc(50% - 88px);
+    padding-right: calc(50% - 88px);
+  }
+
+  #pecas-para-montar .cartao-roleta {
+    flex-basis: 176px;
+    width: 176px;
+    padding: 10px;
+  }
+
+  #pecas-para-montar .imagem-roleta {
+    height: 150px;
+  }
+
+  #pecas-para-montar .preview-look {
+    gap: 8px;
+  }
+
+  #pecas-para-montar .preview-parte img {
+    height: 170px;
+  }
+
+  #pecas-para-montar .provador-central {
+    padding: 20px 10px;
+  }
+   }

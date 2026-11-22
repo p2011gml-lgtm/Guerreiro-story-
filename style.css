@@ -3766,3 +3766,88 @@ html::before {
     transition: none;
   }
 }
+
+
+/* =========================================
+   ORGANIZAÇÃO GERAL DO MONTADOR
+========================================= */
+
+/* A área principal não deve criar colunas
+   entre as duas categorias */
+#pecas-para-montar {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+/* Separação entre parte de cima e de baixo */
+#pecas-para-montar .secao-montagem {
+  width: 100%;
+  margin-bottom: 42px;
+}
+
+#pecas-para-montar .secao-montagem:last-child {
+  margin-bottom: 0;
+}
+
+/* Grade individual de cada categoria */
+#pecas-para-montar .grade-montagem {
+  width: 100%;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Coluna das peças e resumo */
+.montar-conteudo {
+  grid-template-columns: minmax(0, 1fr) 320px;
+  align-items: start;
+  gap: 28px;
+}
+
+.montar-lista {
+  min-width: 0;
+}
+
+/* Títulos das categorias */
+.titulo-secao-montagem {
+  position: relative;
+  padding-bottom: 12px;
+}
+
+.titulo-secao-montagem::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 55px;
+  height: 2px;
+  background: linear-gradient(90deg, #c99b58, transparent);
+}
+
+/* Adaptação para tablets e celulares */
+@media (max-width: 900px) {
+  .montar-conteudo {
+    grid-template-columns: 1fr;
+  }
+
+  .resumo-montagem {
+    position: relative;
+    top: auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 760px) {
+  #pecas-para-montar .grade-montagem {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  #pecas-para-montar .secao-montagem {
+    margin-bottom: 32px;
+  }
+
+  .montar-introducao {
+    margin-bottom: 30px;
+  }
+}

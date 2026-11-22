@@ -1392,6 +1392,15 @@ function atualizarImagemModal() {
   if (verso) verso.classList.toggle("ativo", indiceImagemModal === 1);
 }
 
+function fecharImagemAmpliada() {
+  const modal = document.getElementById("modal-imagem");
+
+  if (!modal) return;
+
+  modal.hidden = true;
+  modal.setAttribute("aria-hidden", "true");
+}
+
 /* Eventos gerais */
 
 document.addEventListener("change", evento => {

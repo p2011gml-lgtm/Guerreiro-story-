@@ -3447,3 +3447,201 @@ html::before {
   transform-origin: center;
   object-position: center;
 }
+
+
+/* =========================================
+   NOVO VISUAL — MONTADOR DE LOOKS
+========================================= */
+
+.secao-montagem {
+  margin-bottom: 38px;
+  animation: montagem-entrada 0.65s ease both;
+}
+
+.titulo-secao-montagem {
+  margin-bottom: 7px;
+  color: var(--dourado-claro);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.descricao-secao-montagem {
+  margin-bottom: 20px;
+  color: var(--texto-secundario);
+  font-size: 12px;
+}
+
+.grade-montagem {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 20px;
+}
+
+.grade-montagem .cartao-montagem {
+  min-width: 0;
+  padding: 13px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 161, 90, 0.16);
+  border-radius: 9px;
+  background: linear-gradient(145deg, #211e19, #151412);
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+  animation: montagem-cartao-entrada 0.55s ease both;
+}
+
+.grade-montagem .cartao-montagem:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.grade-montagem .cartao-montagem:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.grade-montagem .cartao-montagem:nth-child(4) {
+  animation-delay: 0.18s;
+}
+
+.grade-montagem .cartao-montagem:nth-child(5) {
+  animation-delay: 0.24s;
+}
+
+.grade-montagem .cartao-montagem:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 161, 90, 0.55);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.grade-montagem .cartao-montagem > label:first-child {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.grade-montagem .cartao-montagem > label:first-child strong {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.grade-montagem .cartao-montagem > img {
+  height: 220px;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 5px;
+  background: #11100e;
+  transition: transform 0.45s ease, opacity 0.3s ease;
+}
+
+.grade-montagem .cartao-montagem:hover > img {
+  transform: scale(1.035);
+}
+
+.grade-montagem .cartao-montagem > p {
+  margin-top: 12px;
+  color: var(--dourado-claro);
+  font-size: 16px;
+}
+
+.grade-montagem .paleta-montagem {
+  padding: 12px 0;
+  border-top: 1px solid var(--borda-suave);
+}
+
+.grade-montagem .bolinha-montagem {
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+
+.grade-montagem .bolinha-montagem:hover {
+  transform: scale(1.14);
+}
+
+.grade-montagem .bolinha-montagem.cor-montagem-ativa {
+  transform: scale(1.12);
+  box-shadow: 0 0 12px rgba(232, 201, 143, 0.25);
+}
+
+.grade-montagem .seletor-produto {
+  display: block;
+  margin-top: 12px;
+  color: var(--texto-secundario);
+  font-size: 11px;
+}
+
+.grade-montagem .seletor-produto select,
+.grade-montagem .seletor-produto input {
+  min-height: 42px;
+  margin-top: 6px;
+  border-radius: 6px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.grade-montagem .seletor-produto select:focus,
+.grade-montagem .seletor-produto input:focus {
+  outline: none;
+  border-color: var(--dourado);
+  box-shadow: 0 0 0 3px rgba(201, 161, 90, 0.12);
+}
+
+@keyframes montagem-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes montagem-cartao-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .grade-montagem {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .grade-montagem .cartao-montagem {
+    padding: 9px;
+  }
+
+  .grade-montagem .cartao-montagem > img {
+    height: 175px;
+  }
+
+  .grade-montagem .cartao-montagem > label:first-child strong {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 360px) {
+  .grade-montagem .cartao-montagem > img {
+    height: 145px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secao-montagem,
+  .grade-montagem .cartao-montagem {
+    animation: none;
+    transition: none;
+  }
+}

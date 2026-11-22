@@ -2996,7 +2996,7 @@ a,
 
 .cartao-produto[data-produto="bermuda-jeans"]
 .foto-produto img[src*="bermuda_jeans_azul_claro"] {
-  transform: translateX(0);
+  transform: translateX(25px);
 }
 
 .cartao-produto[data-produto="bermuda-jeans"]

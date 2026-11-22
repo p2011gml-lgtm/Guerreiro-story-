@@ -242,33 +242,7 @@ function renderizarMontador() {
     </section>
 
     <section class="secao-montagem">
-      <h3 class="titulo-secao-montagem">PARTE DE BAIXO</h3>
-      <p class="descricao-secao-montagem">
-        Escolha seus shorts e bermudas.
-      </p>
-      <div class="grade-montagem">
-        ${parteDeBaixo.map(renderizarPeca).join("")}
-      </div>
-    </section>
-  `;
 
-  produtos.forEach(produto => {
-    const opcao = produto.opcoes[0];
-    const seletorTamanho = area.querySelector(
-      `[data-tamanho-montagem="${produto.id}"]`
-    );
-
-    if (seletorTamanho && opcao) {
-      seletorTamanho.innerHTML =
-        `<option value="">Selecione</option>` +
-        opcao.tamanhos.map(t =>
-          `<option value="${escaparHTML(t)}">${escaparHTML(t)}</option>`
-        ).join("");
-    }
-  });
-
-  atualizarResumoMontagem();
-}
 
 
 function obterSelecaoMontagem() {

@@ -222,27 +222,6 @@ function renderizarMontador() {
     `;
   }
 
-  const parteDeCima = produtos.filter(produto =>
-    nomesParteDeCima.includes(produto.nome)
-  );
-
-  const parteDeBaixo = produtos.filter(produto =>
-    nomesParteDeBaixo.includes(produto.nome)
-  );
-
-  area.innerHTML = `
-    <section class="secao-montagem">
-      <h3 class="titulo-secao-montagem">PARTE DE CIMA</h3>
-      <p class="descricao-secao-montagem">
-        Escolha suas camisas, camisetas e regatas.
-      </p>
-      <div class="grade-montagem">
-        ${parteDeCima.map(renderizarPeca).join("")}
-      </div>
-    </section>
-
-    <section class="secao-montagem">
-
 
 
 function obterSelecaoMontagem() {

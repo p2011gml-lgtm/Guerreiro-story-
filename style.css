@@ -3394,3 +3394,56 @@ html::before {
     inset: 4px;
   }
 }
+
+
+/* =====================================
+   ALINHAMENTO DAS FOTOS DO CATÁLOGO
+===================================== */
+
+/* T-SHIRT ALGODÃO — REFERÊNCIA BRANCA */
+#lista-categorias .cartao-produto[data-produto="tshirt-algodao"] .foto-produto img {
+  transform: translateX(-4px);
+  object-position: center;
+}
+
+/* T-SHIRT TRICÔ — PADRONIZAR COMO A AZUL CLARA */
+#lista-categorias .cartao-produto[data-produto="tshirt-trico"] .foto-produto img {
+  object-position: center;
+  transform: none;
+}
+
+/* REGATAS — REFERÊNCIA VERDE */
+#lista-categorias .cartao-produto[data-produto="regata"] .foto-produto img {
+  width: 112%;
+  height: 112%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+}
+
+/* TECH SOCIAL — PADRONIZAR AS TRÊS CORES */
+#lista-categorias .cartao-produto[data-produto="camisa-tech-social"] .foto-produto img {
+  object-position: center;
+  transform: none;
+}
+
+/* BERMUDA JEANS — REFERÊNCIA AZUL NORMAL */
+#lista-categorias .cartao-produto[data-produto="bermuda-jeans"] .foto-produto img {
+  transform: none;
+  object-position: center;
+}
+
+/* OVERSIZED — REFERÊNCIA CENOURA */
+#lista-categorias .cartao-produto[data-produto="camisa-oversized"] .foto-produto img {
+  object-position: center;
+  transform: none;
+}
+
+/* CHILL TOUCH — AUMENTO HORIZONTAL DISCRETO */
+#lista-categorias .cartao-produto[data-produto="camisa-chill-touch"] .foto-produto img {
+  transform: scaleX(1.06);
+  transform-origin: center;
+  object-position: center;
+}

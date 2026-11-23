@@ -112,7 +112,179 @@ function renderizarSacola() {
 }
 
 
+function renderizarMontador() {
+  const area = document.getElementById("pecas-para-montar");
+  if (!area) return;
 
+  const partes = {
+    cima: produtos.filter(p =>
+      ["Camisas", "T-shirts", "Regatas"].includes(p.categoria)
+    ),
+    baixo: produtos.filter(p =>
+      ["Shorts", "Bermudas"].includes(p.categoria)
+    )
+  };
+
+  const selecao = {
+    cima: 0,
+    baixo: 0,
+    corCima: 0,
+    corBaixo: 0,
+    tamanhoCima: "",
+    tamanhoBaixo: ""
+  };
+
+  function criarFaixa(tipo, titulo) {
+    return `
+      <section class="nova-roleta" data-roleta="${tipo}">
+        <h3>${titulo}</h3>
+        <div class="nova-roleta-controles">
+          <button type="button" data-mover="${tipo}" data-passo="-1">❮</button>
+          <div class="nova-roleta-pecas" data-lista="${tipo}"></div>
+          <button type="button" data-mover="${tipo}" data-passo="1">❯</button>
+        </div>
+      </section>
+    `;
+  }
+
+  area.innerHTML = `
+    <div class="montador-novo">
+      ${criarFaixa("cima", "PARTE DE CIMA")}
+
+      <section class="novo-provador">
+        <span>SEU LOOK</span>
+        <div class="novo-preview">
+          <img data-preview="cima" alt="Parte de cima">
+          <img data-preview="baixo" alt="Parte de baixo">
+        </div>
+        <p data-nome-look>Escolha suas peças</p>
+      </section>
+
+      ${criarFaixa("baixo", "PARTE DE BAIXO")}
+
+      <div class="novo-detalhes">
+        <div data-detalhes="cima"></div>
+        <div data-detalhes="baixo"></div>
+      </div>
+    </div>
+  `;
+
+  function atualizar(tipo) {
+    const lista = partes[tipo];
+    const indice = selecao[tipo];
+    const produto = lista[indice];
+    const opcao = produto.opcoes[selecao[tipo === "cima" ? "corCima" : "corBaixo"]];
+    const faixa = area.querySelector(`[data-lista="${tipo}"]`);
+
+    faixa.innerHTML = [-1, 0, 1].map(distancia => {
+      const posicao = (indice + distancia + lista.length) % lista.length;
+      const item = lista[posicao];
+      const imagem = obterImagemProduto(item);
+
+      return `
+        <button type="button"
+          class="nova-peca ${distancia === 0 ? "peca-central" : ""}"
+          data-ir="${tipo}" data-indice="${posicao}">
+          <img src="${imagem}" alt="${escaparHTML(item.nome)}">
+        </button>
+      `;
+    }).join("");
+
+    const preview = area.querySelector(`[data-preview="${tipo}"]`);
+    if (preview) {
+      preview.classList.remove("troca-preview");
+      void preview.offsetWidth;
+      preview.src = opcao.imagem;
+      preview.classList.add("troca-preview");
+    }
+
+    const detalhes = area.querySelector(`[data-detalhes="${tipo}"]`);
+    const chaveCor = tipo === "cima" ? "corCima" : "corBaixo";
+    const chaveTamanho = tipo === "cima" ? "tamanhoCima" : "tamanhoBaixo";
+
+    detalhes.innerHTML = `
+      <button type="button" class="botao-detalhes" data-abrir="${tipo}">
+        ${escaparHTML(produto.nome)} · ${formatarPreco(produto.preco)} +
+      </button>
+      <div class="opcoes-nova-peca" data-opcoes="${tipo}" hidden>
+        <p>Cor: ${escaparHTML(opcao.cor)}</p>
+        <div class="cores-nova-peca">
+          ${produto.opcoes.map((cor, i) => `
+            <button type="button"
+              data-cor="${tipo}" data-indice-cor="${i}"
+              class="${i === selecao[chaveCor] ? "cor-escolhida" : ""}">
+              ${escaparHTML(cor.cor)}
+            </button>
+          `).join("")}
+        </div>
+        <label>Tamanho</label>
+        <select data-tamanho="${tipo}">
+          <option value="">Escolha</option>
+          ${opcao.tamanhos.map(t => `
+            <option value="${t}" ${selecao[chaveTamanho] === t ? "selected" : ""}>${t}</option>
+          `).join("")}
+        </select>
+      </div>
+    `;
+  }
+
+  function atualizarTudo() {
+    atualizar("cima");
+    atualizar("baixo");
+    const cima = partes.cima[selecao.cima];
+    const baixo = partes.baixo[selecao.baixo];
+    area.querySelector("[data-nome-look]").textContent =
+      `${cima.nome} + ${baixo.nome}`;
+    atualizarResumoMontagem();
+  }
+
+  area.addEventListener("click", evento => {
+    const mover = evento.target.closest("[data-mover]");
+    const ir = evento.target.closest("[data-ir]");
+    const abrir = evento.target.closest("[data-abrir]");
+    const cor = evento.target.closest("[data-cor]");
+
+    if (mover) {
+      const tipo = mover.dataset.mover;
+      const lista = partes[tipo];
+      selecao[tipo] = (selecao[tipo] + Number(mover.dataset.passo) + lista.length) % lista.length;
+      selecao[tipo === "cima" ? "corCima" : "corBaixo"] = 0;
+      selecao[tipo === "cima" ? "tamanhoCima" : "tamanhoBaixo"] = "";
+      atualizarTudo();
+    }
+
+    if (ir) {
+      const tipo = ir.dataset.ir;
+      selecao[tipo] = Number(ir.dataset.indice);
+      selecao[tipo === "cima" ? "corCima" : "corBaixo"] = 0;
+      selecao[tipo === "cima" ? "tamanhoCima" : "tamanhoBaixo"] = "";
+      atualizarTudo();
+    }
+
+    if (abrir) {
+      const opcoes = area.querySelector(`[data-opcoes="${abrir.dataset.abrir}"]`);
+      opcoes.hidden = !opcoes.hidden;
+    }
+
+    if (cor) {
+      const tipo = cor.dataset.cor;
+      selecao[tipo === "cima" ? "corCima" : "corBaixo"] = Number(cor.dataset.indiceCor);
+      selecao[tipo === "cima" ? "tamanhoCima" : "tamanhoBaixo"] = "";
+      atualizar(tipo);
+      area.querySelector(`[data-opcoes="${tipo}"]`).hidden = false;
+    }
+  });
+
+  area.addEventListener("change", evento => {
+    if (!evento.target.matches("[data-tamanho]")) return;
+    const tipo = evento.target.dataset.tamanho;
+    selecao[tipo === "cima" ? "tamanhoCima" : "tamanhoBaixo"] = evento.target.value;
+    atualizarResumoMontagem();
+  });
+
+  window.selecaoMontadorNova = { partes, selecao };
+  atualizarTudo();
+       }
   
 function obterSelecaoMontagem() {
   const selecionados = [];

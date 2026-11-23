@@ -4343,3 +4343,14 @@ html::before {
     height: 72px;
   }
 }
+
+/* AJUSTE PRECISO DOS LINKS DO MENU */
+html {
+  scroll-padding-top: 0 !important;
+}
+
+#catalogo,
+#looks-prontos,
+#montar-look {
+  scroll-margin-top: 0 !important;
+}

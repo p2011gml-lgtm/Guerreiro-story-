@@ -189,6 +189,9 @@ function renderizarMontador() {
         </button>
       `;
     }).join("");
+         faixa.classList.remove("girar-esquerda", "girar-direita");
+    void faixa.offsetWidth;
+    faixa.classList.add(faixa.dataset.animacao || "girar-esquerda");
 
     const preview = area.querySelector(`[data-preview="${tipo}"]`);
     if (preview) {

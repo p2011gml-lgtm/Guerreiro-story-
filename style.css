@@ -4354,3 +4354,49 @@ html {
 #montar-look {
   scroll-margin-top: 0 !important;
 }
+
+/* AMPLIAR PEÇA NO PROVADOR */
+.ampliacao-peca {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0,0,0,.94);
+  animation: entrada-ampliacao .2s ease;
+}
+
+.ampliacao-peca img {
+  max-width: 92vw;
+  max-height: 86vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 25px rgba(0,0,0,.6));
+}
+
+.ampliacao-peca button {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #d6ad68;
+  border-radius: 50%;
+  background: #171717;
+  color: #d6ad68;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+@keyframes entrada-ampliacao {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#pecas-para-montar .novo-preview img {
+  cursor: zoom-in;
+}

@@ -4446,3 +4446,8 @@ html {
   transform: scale(1.35) !important;
   transform-origin: center center;
 }
+
+/* CENTRALIZAR BERMUDA JEANS PRETA */
+#lista-categorias .cartao-produto[data-produto="bermuda-jeans"] .foto-produto img[src*="bermuda_jeans_preta"] {
+  transform: translateX(18px) !important;
+}

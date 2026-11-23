@@ -4456,3 +4456,8 @@ html {
 #lista-categorias .cartao-produto[data-produto="bermuda-jeans"] .foto-produto img[src*="bermuda_jeans_azul_claro"] {
   transform: translateX(18px) !important;
 }
+
+/* CENTRALIZAR BERMUDA JEANS AZUL-MÉDIO */
+#lista-categorias .cartao-produto[data-produto="bermuda-jeans"] .foto-produto img[src*="bermuda_jeans_azul_modelo_4"] {
+  transform: translateX(-18px) !important;
+}

@@ -4439,3 +4439,10 @@ html {
   max-width: 100% !important;
   max-height: 100% !important;
 }
+
+/* CORREÇÃO REGATAS AZUL-CLARA E LARANJA */
+#lista-categorias .cartao-produto[data-produto="regata"] .foto-produto img[src*="15_1000073887"] ,
+#lista-categorias .cartao-produto[data-produto="regata"] .foto-produto img[src*="16_1000073887"] {
+  transform: scale(1.35) !important;
+  transform-origin: center center;
+}

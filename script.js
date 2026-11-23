@@ -111,75 +111,7 @@ function renderizarSacola() {
   `).join("");
 }
 
-function renderizarMontador() {
-  const area = document.getElementById("pecas-para-montar");
-  if (!area) return;
 
-  const parteDeCima = produtos.filter(produto =>
-    ["Camisas", "T-shirts", "Regatas"].includes(produto.categoria)
-  );
-
-  const parteDeBaixo = produtos.filter(produto =>
-    ["Shorts", "Bermudas"].includes(produto.categoria)
-  );
-
-  function criarPeca(produto) {
-    const primeiraOpcao = produto.opcoes[0];
-    const cores = produto.opcoes;
-
-    return `
-      <article class="cartao-roleta" data-item-roleta="${produto.id}">
-        <label class="selecao-roleta">
-          <input
-            type="checkbox"
-            data-selecionar-montagem="${produto.id}"
-          >
-          <span>Selecionar peça</span>
-        </label>
-
-        <img
-          class="imagem-roleta"
-          src="${escaparHTML(obterImagemProduto(produto))}"
-          alt="${escaparHTML(produto.nome)}"
-          loading="lazy"
-          data-imagem-montagem="${produto.id}"
-        >
-
-        <h3>${escaparHTML(produto.nome)}</h3>
-        <strong>${formatarPreco(produto.preco)}</strong>
-
-        <label class="seletor-produto">
-          <span>Cor</span>
-          <select data-cor-montagem="${produto.id}" required>
-            <option value="">Escolha a cor</option>
-            ${cores.map(opcao => `
-              <option value="${escaparHTML(opcao.cor)}">
-                ${escaparHTML(opcao.cor)}
-              </option>
-            `).join("")}
-          </select>
-        </label>
-
-        <label class="seletor-produto">
-          <span>Tamanho</span>
-          <select data-tamanho-montagem="${produto.id}" required>
-            <option value="">Escolha a cor primeiro</option>
-          </select>
-        </label>
-
-        <label class="seletor-produto">
-          <span>Quantidade</span>
-          <input
-            type="number"
-            min="1"
-            max="20"
-            value="1"
-            data-quantidade-montagem="${produto.id}"
-          >
-        </label>
-      </article>
-    `;
-  }
 
   function criarRoleta(nome, titulo, lista) {
     return `

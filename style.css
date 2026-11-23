@@ -4428,3 +4428,14 @@ html {
   height: 185px;
   min-height: 185px;
 }
+
+/* PADRONIZAR BERMUDAS JEANS */
+#lista-categorias .cartao-produto[data-produto="bermuda-jeans"] .foto-produto img {
+  object-fit: contain !important;
+  object-position: center center !important;
+  transform: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}

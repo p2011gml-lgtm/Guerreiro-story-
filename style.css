@@ -4400,3 +4400,19 @@ html {
 #pecas-para-montar .novo-preview img {
   cursor: zoom-in;
 }
+
+/* ANIMAÇÃO DA ROLETA */
+#pecas-para-montar .nova-roleta-pecas.girar-esquerda .nova-peca {
+  animation: roleta-deslizar .35s ease both;
+}
+
+@keyframes roleta-deslizar {
+  from {
+    opacity: 0;
+    transform: translateX(35px) scale(.85);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}

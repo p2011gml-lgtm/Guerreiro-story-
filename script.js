@@ -287,36 +287,27 @@ function renderizarMontador() {
        }
   
 function obterSelecaoMontagem() {
+  const estado = window.selecaoMontadorNova;
+  if (!estado) return [];
+
+  const { partes, selecao } = estado;
   const selecionados = [];
 
-  produtos.forEach(produto => {
-    const marcado = document.querySelector(
-      `[data-selecionar-montagem="${produto.id}"]`
-    );
+  ["cima", "baixo"].forEach(tipo => {
+    const produto = partes[tipo][selecao[tipo]];
+    if (!produto) return;
 
-    if (!marcado?.checked) return;
+    const indiceCor = selecao[tipo === "cima" ? "corCima" : "corBaixo"];
+    const tamanho = selecao[tipo === "cima" ? "tamanhoCima" : "tamanhoBaixo"];
+    const opcao = produto.opcoes[indiceCor];
 
-    const cor = document.querySelector(
-      `[data-cor-montagem="${produto.id}"]`
-    )?.value;
-
-    const tamanho = document.querySelector(
-      `[data-tamanho-montagem="${produto.id}"]`
-    )?.value;
-
-    const quantidade = Number(document.querySelector(
-      `[data-quantidade-montagem="${produto.id}"]`
-    )?.value || 1);
-
-    const opcao = obterOpcao(produto, cor);
-
-    if (!opcao || !opcao.tamanhos.includes(tamanho)) return;
+    if (!opcao || !tamanho || !opcao.tamanhos.includes(tamanho)) return;
 
     selecionados.push({
       produto,
-      cor,
+      cor: opcao.cor,
       tamanho,
-      quantidade: Math.max(1, Math.min(20, quantidade)),
+      quantidade: 1,
       imagem: opcao.imagem
     });
   });

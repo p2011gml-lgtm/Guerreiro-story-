@@ -4461,3 +4461,16 @@ html {
 #lista-categorias .cartao-produto[data-produto="bermuda-jeans"] .foto-produto img[src*="bermuda_jeans_azul_modelo_4"] {
   transform: translateX(-18px) !important;
 }
+
+/* CENTRALIZAR BERMUDAS JEANS NA AMPLIAÇÃO */
+#modal-imagem #imagem-ampliada[src*="bermuda_jeans_preta"] {
+  transform: translateX(11.25%) !important;
+}
+
+#modal-imagem #imagem-ampliada[src*="bermuda_jeans_azul_claro"] {
+  transform: translateX(11.25%) !important;
+}
+
+#modal-imagem #imagem-ampliada[src*="bermuda_jeans_azul_modelo_4"] {
+  transform: translateX(-11.25%) !important;
+}

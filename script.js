@@ -239,6 +239,32 @@ function renderizarMontador() {
   }
 
   area.addEventListener("click", evento => {
+     const imagemPreview = evento.target.closest("[data-preview]");
+
+if (imagemPreview) {
+  const ampliacao = document.createElement("div");
+  ampliacao.className = "ampliacao-peca";
+
+  const imagemGrande = document.createElement("img");
+  imagemGrande.src = imagemPreview.src;
+  imagemGrande.alt = imagemPreview.alt;
+
+  const fechar = document.createElement("button");
+  fechar.type = "button";
+  fechar.textContent = "×";
+  fechar.setAttribute("aria-label", "Fechar");
+
+  ampliacao.append(fechar, imagemGrande);
+  document.body.appendChild(ampliacao);
+
+  ampliacao.addEventListener("click", evento => {
+    if (evento.target === ampliacao || evento.target === fechar) {
+      ampliacao.remove();
+    }
+  });
+
+  return;
+}
     const mover = evento.target.closest("[data-mover]");
     const ir = evento.target.closest("[data-ir]");
     const abrir = evento.target.closest("[data-abrir]");

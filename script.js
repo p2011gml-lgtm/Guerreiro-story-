@@ -712,7 +712,40 @@ const produtos = [
       }
     ]
   },
-         
+       ,
+  {
+    id: "camisa-zara",
+    nome: "Camisa Zara",
+    preco: 169.90,
+    categoria: "Camisas",
+    opcoes: [
+      {
+        cor: "Azul",
+        tamanhos: ["P", "G", "GG"],
+        imagem: "IMG_20261124_183546.png"
+      },
+      {
+        cor: "Branca",
+        tamanhos: ["G"],
+        imagem: "IMG_20261124_183610.png"
+      },
+      {
+        cor: "Verde",
+        tamanhos: ["P", "M", "GG"],
+        imagem: "IMG_20261124_183911.png"
+      },
+      {
+        cor: "Preta",
+        tamanhos: ["P", "M"],
+        imagem: "IMG_20261124_183634.png"
+      },
+      {
+        cor: "Marrom",
+        tamanhos: ["M"],
+        imagem: "IMG_20261124_183654.png"
+      }
+    ]
+       }    
 ];
       
 

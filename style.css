@@ -4493,3 +4493,9 @@ html {
 #lista-categorias .detalhes-produto:not([hidden]) {
   animation: abrir-detalhes-produto 0.18s ease-out;
 }
+
+/* AUMENTAR CAMISA TECH SOCIAL VERDE ACINZENTADA */
+#lista-categorias .cartao-produto[data-produto="camisa-tech-social"] .foto-produto img[src*="file_00000000671c820e8ccae2162d28c2a9"] {
+  transform: scale(1.15) !important;
+  transform-origin: center center;
+}

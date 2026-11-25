@@ -956,10 +956,9 @@ function atualizarImagemProduto(id, cor) {
   const produto = obterProduto(id);
   const opcao = obterOpcao(produto, cor);
 
-  const cartao = document.querySelector(
-    `[data-adicionar-produto="${id}"]`
-  )?.closest(".cartao-produto");
-
+    const cartao = document.querySelector(
+    `.cartao-produto[data-produto="${id}"]`
+  );
   const imagem = cartao?.querySelector(".foto-produto img");
   const cortina = cartao?.querySelector(".cortina-troca");
 

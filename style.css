@@ -2497,13 +2497,7 @@ a,
   }
 }
 
-/* GRADE CONTÍNUA: todos os produtos compartilham as mesmas duas colunas. */
-#lista-categorias {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
-  gap: 30px 16px;
-}
+
 
 #lista-categorias > .cartao-produto {
   display: flex;

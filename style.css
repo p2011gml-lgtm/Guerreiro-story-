@@ -4477,3 +4477,19 @@ html {
 #modal-imagem #imagem-ampliada[src*="bermuda_jeans_azul_modelo_4"] {
   transform: translateX(-11.25%) !important;
 }
+
+/* ANIMAÇÃO RÁPIDA AO ABRIR OS DETALHES */
+@keyframes abrir-detalhes-produto {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#lista-categorias .detalhes-produto:not([hidden]) {
+  animation: abrir-detalhes-produto 0.18s ease-out;
+}

@@ -987,18 +987,7 @@ function atualizarImagemProduto(id, cor) {
   }
 }
   const novaImagem = new Image();
-  novaImagem.onload = trocarImagem;
-  novaImagem.onerror = () => {
-    if (Number(imagem.dataset.pedidoTroca) === pedido) {
-      imagem.src = opcao.imagem;
-    }
-  };
-  novaImagem.src = opcao.imagem;
-
-  if (novaImagem.complete && novaImagem.naturalWidth > 0) {
-    trocarImagem();
-  }
-     }
+  
 
 /* Combinações dos looks prontos.
    Cada look é formado por duas peças.

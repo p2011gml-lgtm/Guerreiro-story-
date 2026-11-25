@@ -712,7 +712,7 @@ const produtos = [
       }
     ]
   },
-       ,
+       
   {
     id: "camisa-zara",
     nome: "Camisa Zara",

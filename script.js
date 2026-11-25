@@ -819,7 +819,11 @@ function renderizarCatalogo() {
   const listaCategorias = document.getElementById("lista-categorias");
   if (!listaCategorias) return;
 
-  listaCategorias.innerHTML = produtos.map(produto => `
+  const ordem = { "Camisas": 0, "T-shirts": 1, "Regatas": 2, "Shorts": 3, "Bermudas": 3 };
+
+  listaCategorias.innerHTML = [...produtos]
+    .sort((a, b) => (ordem[a.categoria] ?? 4) - (ordem[b.categoria] ?? 4))
+    .map(produto => `
             <article class="cartao-produto" data-produto="${produto.id}">
               <button
                 type="button"

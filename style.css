@@ -4440,10 +4440,14 @@ html {
   max-height: 100% !important;
 }
 
-/* CORREÇÃO REGATAS AZUL-CLARA E LARANJA */
-#lista-categorias .cartao-produto[data-produto="regata"] .foto-produto img[src*="15_1000073887"] ,
+/* AJUSTE REGATAS AZUL-CLARA E LARANJA */
+#lista-categorias .cartao-produto[data-produto="regata"] .foto-produto img[src*="15_1000073887"] {
+  transform: translateX(-10px) scale(1.42) !important;
+  transform-origin: center center;
+}
+
 #lista-categorias .cartao-produto[data-produto="regata"] .foto-produto img[src*="16_1000073887"] {
-  transform: scale(1.35) !important;
+  transform: translateX(10px) scale(1.42) !important;
   transform-origin: center center;
 }
 

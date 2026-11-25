@@ -956,9 +956,10 @@ function atualizarImagemProduto(id, cor) {
   const produto = obterProduto(id);
   const opcao = obterOpcao(produto, cor);
 
-    const cartao = document.querySelector(
+  const cartao = document.querySelector(
     `.cartao-produto[data-produto="${id}"]`
   );
+
   const imagem = cartao?.querySelector(".foto-produto img");
   const cortina = cartao?.querySelector(".cortina-troca");
 
@@ -967,37 +968,24 @@ function atualizarImagemProduto(id, cor) {
   const pedido = (Number(imagem.dataset.pedidoTroca) || 0) + 1;
   imagem.dataset.pedidoTroca = pedido;
 
-  const trocarImagem = () => {
-    if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
-
-    if (!cortina) {
-      imagem.src = opcao.imagem;
-      return;
-    }
-
-    cortina.style.background =
-      produto.tipoOpcao === "estampa"
-        ? "#080808"
-        : obterCorCSS(opcao.cor);
-
+  if (cortina) {
+    cortina.style.background = obterCorCSS(opcao.cor);
     cortina.classList.remove("animando");
     void cortina.offsetWidth;
     cortina.classList.add("animando");
+  }
 
-    setTimeout(() => {
-      if (Number(imagem.dataset.pedidoTroca) !== pedido) return;
+  imagem.src = opcao.imagem;
+  imagem.alt = `${produto.nome} — ${opcao.cor}`;
 
-      imagem.src = opcao.imagem;
-      imagem.alt = `${produto.nome} — ${opcao.cor}`;
-    }, 300);
-
+  if (cortina) {
     setTimeout(() => {
       if (Number(imagem.dataset.pedidoTroca) === pedido) {
         cortina.classList.remove("animando");
       }
     }, 700);
-  };
-
+  }
+}
   const novaImagem = new Image();
   novaImagem.onload = trocarImagem;
   novaImagem.onerror = () => {

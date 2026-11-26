@@ -4511,3 +4511,33 @@ html {
   transform: scale(1.15) !important;
   transform-origin: center center;
 }
+
+/* ORGANIZAÇÃO PERSONALIZADA DOS PRODUTOS */
+#lista-categorias {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-count: initial !important;
+  column-gap: 16px;
+  row-gap: 24px;
+  align-items: start;
+}
+
+#lista-categorias > .cartao-produto {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0;
+  break-inside: avoid;
+}
+
+/* T-shirt Tricô centralizada, mantendo o tamanho */
+#lista-categorias > .cartao-produto[data-produto="tshirt-trico"] {
+  grid-column: 1 / -1;
+  width: calc((100% - 16px) / 2);
+  justify-self: center;
+}
+
+/* Espaço antes dos shorts */
+#lista-categorias > .cartao-produto[data-produto="short-linho"] {
+  margin-top: 24px;
+}

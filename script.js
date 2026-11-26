@@ -842,7 +842,6 @@ listaCategorias.innerHTML = [...produtos]
     return pos(a) - pos(b);
   })
   .map(produto => `
-  .map(produto => `
             <article class="cartao-produto" data-produto="${produto.id}">
               <button
                 type="button"

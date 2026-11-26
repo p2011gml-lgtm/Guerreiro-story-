@@ -834,9 +834,9 @@ listaCategorias.innerHTML = [...produtos]
 
       if (indice !== -1) return indice;
 
-      if (["Shorts", "Bermudas"].includes(produto.categoria)) return 5;
+      if (["Shorts", "Bermudas"].includes(produto.categoria)) return 10;
 
-      return 6;
+      return 5;
     };
 
     return pos(a) - pos(b);

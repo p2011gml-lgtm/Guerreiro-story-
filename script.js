@@ -819,9 +819,7 @@ function renderizarCatalogo() {
   const listaCategorias = document.getElementById("lista-categorias");
   if (!listaCategorias) return;
 
-  const ordem = { "Camisas": 0, "T-shirts": 1, "Regatas": 2, "Shorts": 3, "Bermudas": 3 };
-
-const ordemPersonalizada = [
+  const ordemPersonalizada = [
   "camisa-tech-social",
   "camisa-chill-touch",
   "camisa-zara",
@@ -831,17 +829,19 @@ const ordemPersonalizada = [
 
 listaCategorias.innerHTML = [...produtos]
   .sort((a, b) => {
-    const posA = ordemPersonalizada.indexOf(a.id);
-    const posB = ordemPersonalizada.indexOf(b.id);
+    const pos = produto => {
+      const indice = ordemPersonalizada.indexOf(produto.id);
 
-    if (posA !== -1 || posB !== -1) {
-      if (posA === -1) return 1;
-      if (posB === -1) return -1;
-      return posA - posB;
-    }
+      if (indice !== -1) return indice;
 
-    return (ordem[a.categoria] ?? 4) - (ordem[b.categoria] ?? 4);
+      if (["Shorts", "Bermudas"].includes(produto.categoria)) return 5;
+
+      return 6;
+    };
+
+    return pos(a) - pos(b);
   })
+  .map(produto => `
   .map(produto => `
             <article class="cartao-produto" data-produto="${produto.id}">
               <button

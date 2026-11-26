@@ -1,0 +1,292 @@
+/*
+  GUERREIRO STORE — CAMADA VISUAL ORGANIZADA
+  Mantém o style.css original e aplica melhorias por cima dele.
+  Para usar: salve este arquivo como "style-organizado.css"
+  e troque no index.html o href de style.css para style-organizado.css.
+*/
+
+@import url("./style.css");
+
+/* =========================================================
+   1. BASE, ACESSIBILIDADE E MOVIMENTO
+========================================================= */
+
+:root {
+  --gs-dourado-brilho: #e8c98f;
+  --gs-sombra-card: 0 14px 34px rgba(0, 0, 0, 0.34);
+  --gs-transicao-suave: 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gs-dourado-brilho);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   2. CABEÇALHO E NAVEGAÇÃO
+   Não altera o funcionamento do menu nem suas classes JS.
+========================================================= */
+
+.cabecalho {
+  isolation: isolate;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.navegacao a,
+.menu-mobile a {
+  transition:
+    color var(--gs-transicao-suave),
+    background-color var(--gs-transicao-suave),
+    transform var(--gs-transicao-suave);
+}
+
+.navegacao a:hover,
+.menu-mobile a:hover {
+  color: var(--gs-dourado-brilho);
+}
+
+.navegacao a::after {
+  transition: transform 0.32s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* =========================================================
+   3. CATÁLOGO E CARTÕES DE PRODUTO
+   Mantém a grade de duas colunas e a Tricô centralizada.
+========================================================= */
+
+#lista-categorias {
+  align-items: start;
+}
+
+#lista-categorias > .cartao-produto {
+  min-width: 0;
+  border-color: rgba(201, 161, 90, 0.2);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.18);
+  transition:
+    transform var(--gs-transicao-suave),
+    border-color var(--gs-transicao-suave),
+    box-shadow var(--gs-transicao-suave);
+  animation: gs-cartao-entrada 0.42s ease both;
+}
+
+#lista-categorias > .cartao-produto:nth-child(2) {
+  animation-delay: 0.035s;
+}
+
+#lista-categorias > .cartao-produto:nth-child(3) {
+  animation-delay: 0.07s;
+}
+
+#lista-categorias > .cartao-produto:nth-child(4) {
+  animation-delay: 0.105s;
+}
+
+#lista-categorias > .cartao-produto:nth-child(5) {
+  animation-delay: 0.14s;
+}
+
+#lista-categorias .foto-produto {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+#lista-categorias .foto-produto img {
+  transition:
+    filter 0.35s ease,
+    transform 0.42s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+#lista-categorias .detalhes-produto:not([hidden]) {
+  transform-origin: top center;
+  animation: gs-detalhes-entrada 0.2s ease-out both;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #lista-categorias > .cartao-produto:hover {
+    transform: translateY(-4px);
+    border-color: rgba(232, 201, 143, 0.58);
+    box-shadow: var(--gs-sombra-card);
+  }
+
+  #lista-categorias .foto-produto:hover img {
+    filter: brightness(1.045);
+  }
+}
+
+/* =========================================================
+   4. BOTÕES E CONTROLES
+   Efeitos discretos; sem alterar textos ou ações.
+========================================================= */
+
+button,
+.botao-detalhes,
+.botao-comprar,
+.botao-sacola,
+.botao-whatsapp {
+  transition:
+    color var(--gs-transicao-suave),
+    background-color var(--gs-transicao-suave),
+    border-color var(--gs-transicao-suave),
+    box-shadow var(--gs-transicao-suave),
+    transform var(--gs-transicao-suave),
+    filter var(--gs-transicao-suave);
+}
+
+button:active,
+.botao-detalhes:active,
+.botao-comprar:active,
+.botao-sacola:active,
+.botao-whatsapp:active {
+  transform: scale(0.975);
+}
+
+button:disabled {
+  transform: none;
+  filter: grayscale(0.25);
+}
+
+/* =========================================================
+   5. MONTAR LOOK / PROVADOR
+   Mantém a cortina, a roleta e as imagens ampliadas existentes.
+========================================================= */
+
+#pecas-para-montar .nova-peca,
+#pecas-para-montar .novo-preview img {
+  transition:
+    transform 0.28s cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 0.28s ease,
+    filter 0.28s ease;
+}
+
+#pecas-para-montar .nova-peca:active {
+  transform: scale(0.94);
+}
+
+#pecas-para-montar .botao-detalhes,
+#pecas-para-montar .cores-nova-peca button {
+  transition:
+    background-color var(--gs-transicao-suave),
+    border-color var(--gs-transicao-suave),
+    color var(--gs-transicao-suave),
+    transform var(--gs-transicao-suave);
+}
+
+/* =========================================================
+   6. SACOLA, MODAIS E AMPLIAÇÕES
+========================================================= */
+
+.ampliacao-peca {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.ampliacao-peca img {
+  animation: gs-imagem-ampliada 0.28s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.ampliacao-peca button:hover {
+  color: #17120b;
+  background: var(--gs-dourado-brilho);
+}
+
+/* =========================================================
+   7. ANIMAÇÕES ADICIONAIS
+========================================================= */
+
+@keyframes gs-cartao-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gs-detalhes-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gs-imagem-ampliada {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   8. RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 600px) {
+  #lista-categorias {
+    column-gap: 12px;
+    row-gap: 18px;
+  }
+
+  #lista-categorias > .cartao-produto {
+    border-radius: 12px;
+  }
+
+  #lista-categorias .foto-produto {
+    border-radius: 10px;
+  }
+
+  .cabecalho-secao {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 360px) {
+  #lista-categorias {
+    column-gap: 9px;
+    row-gap: 14px;
+  }
+}
+
+/* =========================================================
+   9. RESPEITO A QUEM PREFERE MENOS ANIMAÇÃO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
